@@ -154,23 +154,41 @@ TEST(ProcessesManagement, SJFManager) {
 
     for(uint_fast16_t i = 0; i<5; i++) {
         manager.addProcess(ProcessBuilder::getInstance()
-        .newProcess()
-        .setName("SJF" + std::to_string(i))
-        .setDelay(0)
-        .setExecutionTime(2*(i+1))
-        .create());
+          .newProcess()
+          .setName("SJF" + std::to_string(i))
+          .setDelay(0)
+          .setExecutionTime(2*(i+1))
+          .create());
     }
 
     EXPECT_EQ(manager.simulate(), 40.0/5.0);
 
     for(int_fast16_t i = 4; i>=0; i--) {
         manager.addProcess(ProcessBuilder::getInstance()
-                                   .newProcess()
-                                   .setName("SJF" + std::to_string(i))
-                                   .setDelay(0)
-                                   .setExecutionTime(2*(i+1))
-                                   .create());
+            .newProcess()
+            .setName("SJF" + std::to_string(i))
+            .setDelay(0)
+            .setExecutionTime(2*(i+1))
+            .create());
     }
 
     EXPECT_EQ(manager.simulate(), 40.0/5.0);
+
+    for(uint_fast16_t i = 0; i<5; i++) {
+        manager.addProcess(ProcessBuilder::getInstance()
+             .newProcess()
+             .setName("SJF - D(" + std::to_string(3*i) + "), E(" + std::to_string(10-2*i) + ")")
+             .setDelay(3*i)
+             .setExecutionTime(10-2*i)
+             .create());
+    }
+
+    StandardOutputLogStream stream;
+    EXPECT_EQ(manager.simulate(&stream), 32.0/5.0);
+    stream.writeAll();
+
+}
+
+TEST(ProcessesManagement, SRTFmanager) {
+
 }
