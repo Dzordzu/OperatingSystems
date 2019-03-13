@@ -84,6 +84,9 @@ double FCFSManager::simulate(LogStream * const logStream) {
         if(queue.empty()) continue;
 
         if(queue[0].activate(currentTime)) {
+
+            if(queue.size() > 1) queue[1].deactivate(currentTime);
+
             if(logStream != nullptr) {
                 *logStream >> Log("Started execution of the process", queue[0].getProcess().getName() + " (time: " + std::to_string(currentTime) + ")");
             }
