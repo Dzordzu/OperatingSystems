@@ -68,11 +68,10 @@ public:
     void addToQueue(Process & process) override;
 };
 
-class SRTFManager : public Manager {
+class SRTFManager : public FCFSManager {
 public:
     inline SRTFManager() { reset(); }
     void addToQueue(Process & process) override;
-
 };
 
 

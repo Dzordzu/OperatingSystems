@@ -117,7 +117,6 @@ double FCFSManager::simulate(LogStream * const logStream) {
     }
 
     reset();
-
     return avgTime / consumedProcesses;
 }
 
@@ -150,6 +149,14 @@ void SJFManager::addToQueue(Process &process) {
 
 void SRTFManager::addToQueue(Process &process) {
     QueuedProcess queuedProcess(nextPid, process, currentTime);
+    std::cout<<"CALLED"<<std::endl;
+
+    if(queue.size() == 0) {
+        queue.emplace_back(queuedProcess);
+        nextPid++;
+        return;
+    }
+
     queue.insert(std::upper_bound(queue.begin(), queue.end(), queuedProcess, [](const QueuedProcess & q1, const QueuedProcess & q2) -> bool {
         return q1.getProcess().getLeftExecutionTime() < q2.getProcess().getLeftExecutionTime();
     }),queuedProcess);

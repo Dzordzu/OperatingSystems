@@ -183,12 +183,36 @@ TEST(ProcessesManagement, SJFManager) {
              .create());
     }
 
-    StandardOutputLogStream stream;
-    EXPECT_EQ(manager.simulate(&stream), 32.0/5.0);
-    stream.writeAll();
+    EXPECT_EQ(manager.simulate(), 32.0/5.0);
+
+    for(uint_fast16_t i = 0; i<3; i++) {
+        manager.addProcess(ProcessBuilder::getInstance()
+                                       .newProcess()
+                                       .setName("SJF" + std::to_string((uint_fast16_t)(20 / pow(2, i))))
+                                       .setDelay((uint_fast16_t)(2.5  * i * (i+1)))
+                                       .setExecutionTime((uint_fast16_t)(20 / pow(2, i)))
+                                       .create());
+    }
+
+
+    EXPECT_EQ(manager.simulate(), 25.0/3.0);
+
 
 }
 
 TEST(ProcessesManagement, SRTFmanager) {
+    SRTFManager manager;
 
+    for(uint_fast16_t i = 0; i<3; i++) {
+        manager.addProcess(ProcessBuilder::getInstance()
+                                   .newProcess()
+                                   .setName("SRTF" + std::to_string((uint_fast16_t)(20 / pow(2, i))))
+                                   .setDelay((uint_fast16_t)(2.5  * i * (i+1)))
+                                   .setExecutionTime((uint_fast16_t)(20 / pow(2, i)))
+                                   .create());
+    }
+
+    StandardOutputLogStream stream;
+    EXPECT_EQ(manager.simulate(&stream), 15.0/5.0);
+    stream.writeAll();
 }
