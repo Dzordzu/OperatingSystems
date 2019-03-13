@@ -40,7 +40,6 @@ protected:
     std::vector<Process> processes;
 
     std::vector<QueuedProcess> queue;
-    QueuedProcess * currentlyExcuted;
 
     uint_fast16_t nextPid;
     uint_fast64_t currentTime;

@@ -71,7 +71,6 @@ double FCFSManager::simulate(LogStream * const logStream) {
         if(!processes.empty()) {
             while(processes[0].getDelay() < currentTime) {
 
-
                 if(logStream != nullptr) {
                     *logStream >> Log("Added process to the queue", processes[0].getName() + " (time: " + std::to_string(currentTime) + ")");
                 }
@@ -126,15 +125,25 @@ double FCFSManager::simulate() {
 
 void SJFManager::addToQueue(Process &process) {
     QueuedProcess queuedProcess(nextPid, process, currentTime);
+
     if(queue.size() == 0) {
         queue.emplace_back(queuedProcess);
         nextPid++;
         return;
     }
-    queue.insert(std::upper_bound(queue.begin() + 1, queue.end(), queuedProcess, [](const QueuedProcess & q1, const QueuedProcess & q2) -> bool {
+
+    u_short indexMovement = 0;
+
+    if(queue[0].getStatus()) {
+        indexMovement = 1;
+    }
+
+    queue.insert(std::upper_bound(queue.begin() + indexMovement, queue.end(), queuedProcess, [](const QueuedProcess & q1, const QueuedProcess & q2) -> bool {
         return q1.getProcess().getLeftExecutionTime() < q2.getProcess().getLeftExecutionTime();
     }),queuedProcess);
     nextPid++;
+
+
 }
 
 void SRTFManager::addToQueue(Process &process) {
