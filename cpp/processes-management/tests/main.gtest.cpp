@@ -212,7 +212,5 @@ TEST(ProcessesManagement, SRTFmanager) {
                                    .create());
     }
 
-    StandardOutputLogStream stream;
-    EXPECT_EQ(manager.simulate(&stream), 15.0/3.0);
-    stream.writeAll();
+    EXPECT_EQ(manager.simulate(), 15.0/3.0);
 }

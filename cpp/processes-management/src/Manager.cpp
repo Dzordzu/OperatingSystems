@@ -152,7 +152,6 @@ void SJFManager::addToQueue(Process &process) {
 
 void SRTFManager::addToQueue(Process &process) {
     QueuedProcess queuedProcess(nextPid, process, currentTime);
-    std::cout<<"CALLED"<<std::endl;
 
     if(queue.size() == 0) {
         queue.emplace_back(queuedProcess);
