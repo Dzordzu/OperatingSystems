@@ -116,6 +116,8 @@ double FCFSManager::simulate(LogStream * const logStream) {
         *logStream >> Log("Total average time", std::to_string(avgTime / consumedProcesses));
     }
 
+    reset();
+
     return avgTime / consumedProcesses;
 }
 
