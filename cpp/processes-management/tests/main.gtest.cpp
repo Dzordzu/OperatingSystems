@@ -214,3 +214,21 @@ TEST(ProcessesManagement, SRTFmanager) {
 
     EXPECT_EQ(manager.simulate(), 15.0/3.0);
 }
+
+TEST(ProcessesManagement, RRManager) {
+    RRManager manager;
+
+    for(int i=0; i<2; i++) {
+        manager.addProcess(ProcessBuilder::getInstance()
+            .newProcess()
+            .setName("RR" + std::to_string(i))
+            .setExecutionTime(30)
+            .setDelay(15*i)
+            .create()
+            );
+    }
+
+    StandardOutputLogStream stream;
+    EXPECT_THAT(manager.simulate(&stream), 25.0/2.0);
+    stream.writeAll();
+}

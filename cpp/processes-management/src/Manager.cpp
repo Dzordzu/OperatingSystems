@@ -203,8 +203,32 @@ double RRManager::simulate(LogStream *const logStream) {
 
         if(queue.empty()) continue;
 
-        queue[(currentlyExecuted - 1) < 0 ? (currentlyExecuted - 1) : queue.size() - 1].deactivate(currentTime);
-        for(uint_fast16_t jj = 0; jj<execTimes; jj++) queue[currentlyExecuted].activate(currentTime);
+        uint_fast64_t deactivateIndex = (currentlyExecuted) > 0 ? (currentlyExecuted - 1) : queue.size() - 1;
+        *logStream >> Log("Deactivated process", queue[deactivateIndex].getProcess().getName() + " (time: " + std::to_string(currentTime) + ")");
+        queue[deactivateIndex].deactivate(currentTime);
+        *logStream >> Log("Activated process", queue[currentlyExecuted].getProcess().getName() + "(time: " + std::to_string(currentTime) + ")");
+        queue[currentlyExecuted].activate(currentTime);
+
+        for(uint_fast16_t jj = 0; jj<execTimes; jj++) {
+            queue[currentlyExecuted].getProcess().execute();
+            currentTime++;
+
+            if(!processes.empty()) {
+                while(processes[0].getDelay() < currentTime) {
+
+                    if(logStream != nullptr) {
+                        *logStream >> Log("Added process to the queue", processes[0].getName() + " (time: " + std::to_string(currentTime) + ")");
+                    }
+
+                    addToQueue(processes[0]);
+                    processes.erase(processes.begin());
+                    if(processes.empty()) break;
+                }
+            }
+
+            if(queue[currentlyExecuted].getProcess().isDone()) break;
+        }
+        currentTime--;
 
         if(queue[currentlyExecuted].getProcess().isDone()) {
 
@@ -215,7 +239,9 @@ double RRManager::simulate(LogStream *const logStream) {
             queue[currentlyExecuted].deactivate(currentTime);
             times.emplace_back(Times{queue[currentlyExecuted].getProcess().getName(), queue[currentlyExecuted].getWaitTime()});
             queue.erase(queue.begin());
+            currentlyExecuted--;
         }
+        currentlyExecuted = currentlyExecuted + 1 < queue.size() ? currentlyExecuted + 1 : 0;
     }
 
     double avgTime = 0;
