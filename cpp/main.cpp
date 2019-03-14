@@ -30,7 +30,7 @@ void showFor(uint_fast64_t sample) {
         rrManager.addProcess(process);
     }
 
-    rrManager.setExecTimes(50);
+    rrManager.setExecTimes(500);
 
     std::cout<<"Sample: "<<sample<<std::endl;
 
@@ -66,7 +66,7 @@ void showFor(uint_fast64_t sample) {
     });
     std::cout<<"Winner "<<(fastest.second) << std::endl;
     std::cout<<"Looser "<<(slowest.second) << std::endl;
-    std::cout<<"Difference "<< ((double)slowest.first - (double)fastest.first) << std::endl;
+    std::cout<<"Difference "<< ((double)slowest.first - (double)fastest.first) << " (" << ((double)slowest.first / (double)fastest.first) * 100 << "%)" << std::endl;
 
     std::cout<<std::endl<<std::endl;
 }
@@ -79,7 +79,7 @@ int main() {
     showFor(5);
     showFor(100);
     showFor(500);
-    showFor(1000);
+    for(int i=0; i<10; i++) showFor(1000);
     showFor(5000);
     showFor(10000);
 
