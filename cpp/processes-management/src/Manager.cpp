@@ -164,3 +164,76 @@ void SRTFManager::addToQueue(Process &process) {
     }),queuedProcess);
     nextPid++;
 }
+
+double RRManager::simulate() {
+    return Manager::simulate();
+}
+
+double RRManager::simulate(LogStream *const logStream) {
+    typedef typename std::pair<std::string, uint_fast32_t> Times;
+    std::vector<Times> times;
+    uint_fast32_t consumedProcesses = processes.size();
+
+    std::stable_sort(processes.begin(), processes.end(), [](const Process &a, const Process &b) -> bool {
+        return (a.getDelay() < b.getDelay());
+    });
+
+    if(logStream != nullptr) {
+        for(auto & p : processes) {
+            *logStream >> Log("Process", p.getName() + " with delay(" + std::to_string(p.getDelay()) + ") and exec(" + std::to_string(p.getLeftExecutionTime()) + ")");
+        }
+    }
+
+    uint_fast64_t currentlyExecuted = 0;
+    while(!finished()) {
+        currentTime++;
+
+        if(!processes.empty()) {
+            while(processes[0].getDelay() < currentTime) {
+
+                if(logStream != nullptr) {
+                    *logStream >> Log("Added process to the queue", processes[0].getName() + " (time: " + std::to_string(currentTime) + ")");
+                }
+
+                addToQueue(processes[0]);
+                processes.erase(processes.begin());
+                if(processes.empty()) break;
+            }
+        }
+
+        if(queue.empty()) continue;
+
+        queue[(currentlyExecuted - 1) < 0 ? (currentlyExecuted - 1) : queue.size() - 1].deactivate(currentTime);
+        for(uint_fast16_t jj = 0; jj<execTimes; jj++) queue[currentlyExecuted].activate(currentTime);
+
+        if(queue[currentlyExecuted].getProcess().isDone()) {
+
+            if(logStream != nullptr) {
+                *logStream >> Log("Removed process from the queue", queue[currentlyExecuted].getProcess().getName() + " (time: " + std::to_string(currentTime) + ")");
+            }
+
+            queue[currentlyExecuted].deactivate(currentTime);
+            times.emplace_back(Times{queue[currentlyExecuted].getProcess().getName(), queue[currentlyExecuted].getWaitTime()});
+            queue.erase(queue.begin());
+        }
+    }
+
+    double avgTime = 0;
+    for(auto t : times) {
+        avgTime += t.second;
+    }
+
+    if(logStream != nullptr) {
+
+        for(auto t : times) {
+            *logStream >> Log("Waiting Time", t.first + " " + std::to_string(t.second));
+        }
+
+        *logStream >> Log("Total average time", std::to_string(avgTime / consumedProcesses));
+    }
+
+    reset();
+    return avgTime / consumedProcesses;
+
+
+}

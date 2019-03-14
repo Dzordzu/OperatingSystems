@@ -74,5 +74,15 @@ public:
     void addToQueue(Process & process) override;
 };
 
+class RRManager : public Manager {
+protected:
+    uint_fast16_t execTimes;
+public:
+    inline RRManager() { reset(); execTimes = 10; }
+    double simulate(LogStream * const logStream) override;
+    double simulate() override;
+    inline void setExecTimes(uint_fast16_t execTimes) {this->execTimes = execTimes;}
+};
+
 
 #endif //OPERATING_SYSTEMS_CPP_MANAGER_HPP
