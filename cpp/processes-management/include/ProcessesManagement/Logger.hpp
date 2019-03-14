@@ -39,6 +39,7 @@ public:
     const std::list<Log> get() const override;
 
     void writeAll();
+    inline void clear() {this->logs.clear();}
 
 };
 
