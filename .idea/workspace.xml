@@ -19,8 +19,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d3b76862-218c-44c4-9e27-2609c0ee150e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Manager.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Manager.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpp/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cpp/processes-management/src/Manager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/processes-management/src/Manager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpp/processes-management/tests/main.gtest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/processes-management/tests/main.gtest.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cpp/cmake-build-debug/CMakeFiles/" />
@@ -36,41 +37,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cpp/processes-management/src/Manager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="232" column="5" lean-forward="true" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cpp/processes-management/tests/main.gtest.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1547">
-              <caret line="214" column="40" selection-start-line="214" selection-start-column="40" selection-end-line="214" selection-end-column="40" />
-              <folding>
-                <element signature="e#42#66#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="228">
+              <caret line="244" column="57" selection-start-line="244" selection-start-column="57" selection-end-line="244" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Manager.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
-              <folding>
-                <element signature="e#127#169#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cpp/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+            <state relative-caret-position="273">
+              <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -79,31 +56,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cpp/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Logger.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
-              <folding>
-                <element signature="e#125#142#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cpp/processes-management/src/Process.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="56" column="1" selection-start-line="56" selection-start-column="1" selection-end-line="56" selection-end-column="1" />
+            <state relative-caret-position="-327">
+              <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -141,22 +97,23 @@
         <option value="$PROJECT_DIR$/cpp/processes-management/src/Process.hpp" />
         <option value="$PROJECT_DIR$/cpp/processes-management/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cpp/processes-management/src/Logger.cpp" />
-        <option value="$PROJECT_DIR$/cpp/processes-management/src/Process.cpp" />
         <option value="$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Process.hpp" />
-        <option value="$PROJECT_DIR$/cpp/processes-management/tests/main.gtest.cpp" />
         <option value="$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Logger.hpp" />
         <option value="$PROJECT_DIR$/cpp/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/cpp/main.cpp" />
-        <option value="$PROJECT_DIR$/cpp/processes-management/src/Manager.cpp" />
         <option value="$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Manager.hpp" />
+        <option value="$PROJECT_DIR$/cpp/processes-management/tests/main.gtest.cpp" />
+        <option value="$PROJECT_DIR$/cpp/processes-management/src/Process.cpp" />
+        <option value="$PROJECT_DIR$/cpp/processes-management/src/Manager.cpp" />
+        <option value="$PROJECT_DIR$/cpp/main.cpp" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="136" />
     <option name="y" value="27" />
-    <option name="width" value="1366" />
-    <option name="height" value="741" />
+    <option name="width" value="1306" />
+    <option name="height" value="617" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -181,26 +138,7 @@
               <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
               <item name="cpp" type="462c0819:PsiDirectoryNode" />
               <item name="processes-management" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cpp" type="462c0819:PsiDirectoryNode" />
-              <item name="processes-management" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="ProcessesManagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cpp" type="462c0819:PsiDirectoryNode" />
-              <item name="processes-management" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cpp" type="462c0819:PsiDirectoryNode" />
-              <item name="processes-management" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -329,7 +267,7 @@
       <workItem from="1552332403503" duration="2566000" />
       <workItem from="1552359401413" duration="1287000" />
       <workItem from="1552427239151" duration="3274000" />
-      <workItem from="1552500860293" duration="18050000" />
+      <workItem from="1552500860293" duration="26594000" />
     </task>
     <task id="LOCAL-00001" summary="Changed SJF algorithm">
       <created>1552515237551</created>
@@ -380,54 +318,68 @@
       <option name="project" value="LOCAL" />
       <updated>1552524259562</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Implemented RR Algo">
+      <created>1552525320166</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1552525320166</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Finally ended this shit">
+      <created>1552529370225</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1552529370225</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_Tests - 2019.03.14 at 00h 41m 31s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 02h 56m 20s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Tests - 2019.03.14 at 00h 42m 21s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 02h 59m 26s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Tests - 2019.03.14 at 00h 43m 24s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 03h 00m 22s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Tests - 2019.03.14 at 00h 44m 57s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 03h 01m 02s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Tests - 2019.03.14 at 00h 47m 11s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 03h 01m 20s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Tests - 2019.03.14 at 00h 48m 47s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 03h 04m 57s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Tests - 2019.03.14 at 00h 52m 53s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 03h 06m 50s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Tests - 2019.03.14 at 00h 55m 23s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 03h 07m 45s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Tests - 2019.03.14 at 00h 57m 41s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 03h 08m 34s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_Tests - 2019.03.14 at 01h 12m 14s.xml">
+    <history-entry file="All_in_Tests - 2019.03.14 at 03h 13m 18s.xml">
       <configuration name="All in Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66131000" />
+    <option name="totallyTimeSpent" value="74675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33761328" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33761328" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3289689" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3289689" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -456,7 +408,9 @@
     <MESSAGE value="Repaired code and (what's more important) tests" />
     <MESSAGE value="Removed helpers" />
     <MESSAGE value="Implemented usages in main.cpp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented usages in main.cpp" />
+    <MESSAGE value="Implemented RR Algo" />
+    <MESSAGE value="Finally ended this shit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finally ended this shit" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/googletest-src/CMakeLists.txt">
@@ -546,16 +500,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Process.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#127#144#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/8.2.1/bits/stl_construct.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -567,13 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="82" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/processes-management/src/Process.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="56" column="1" selection-start-line="56" selection-start-column="1" selection-end-line="56" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -608,39 +545,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cpp/processes-management/tests/main.gtest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1547">
-          <caret line="214" column="40" selection-start-line="214" selection-start-column="40" selection-end-line="214" selection-end-column="40" />
+        <state relative-caret-position="242">
+          <caret line="230" column="46" selection-start-line="230" selection-start-column="46" selection-end-line="230" selection-end-column="46" />
           <folding>
             <element signature="e#42#66#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/processes-management/src/Manager.cpp">
+    <entry file="file://$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Manager.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="232" column="5" lean-forward="true" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
+        <state relative-caret-position="288">
+          <caret line="78" column="18" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
+          <folding>
+            <element signature="e#127#169#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Manager.hpp">
+    <entry file="file://$PROJECT_DIR$/cpp/processes-management/include/ProcessesManagement/Process.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#127#144#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp/processes-management/src/Process.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-327">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp/processes-management/src/Manager.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+          <caret line="244" column="57" selection-start-line="244" selection-start-column="57" selection-end-line="244" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
           <folding>
-            <element signature="e#127#169#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>

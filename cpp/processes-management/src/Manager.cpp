@@ -189,7 +189,7 @@ double RRManager::simulate(LogStream *const logStream) {
         currentTime++;
 
         if(!processes.empty()) {
-            while(processes[0].getDelay() < currentTime) {
+            while(processes[0].getDelay() <= currentTime) {
 
                 if(logStream != nullptr) {
                     *logStream >> Log("Added process to the queue", processes[0].getName() + " (time: " + std::to_string(currentTime) + ")");
@@ -204,17 +204,20 @@ double RRManager::simulate(LogStream *const logStream) {
         if(queue.empty()) continue;
 
         uint_fast64_t deactivateIndex = (currentlyExecuted) > 0 ? (currentlyExecuted - 1) : queue.size() - 1;
-        *logStream >> Log("Deactivated process", queue[deactivateIndex].getProcess().getName() + " (time: " + std::to_string(currentTime) + ")");
-        queue[deactivateIndex].deactivate(currentTime);
-        *logStream >> Log("Activated process", queue[currentlyExecuted].getProcess().getName() + "(time: " + std::to_string(currentTime) + ")");
-        queue[currentlyExecuted].activate(currentTime);
+
+        if(queue[deactivateIndex].deactivate(currentTime))
+            *logStream >> Log("Deactivated process", queue[deactivateIndex].getProcess().getName() + " (time: " + std::to_string(currentTime)+ ", waited: " + std::to_string(queue[currentlyExecuted].getWaitTime()) + ")");
+
+
+        if(queue[currentlyExecuted].activate(currentTime))
+            *logStream >> Log("Activated process", queue[currentlyExecuted].getProcess().getName() + "(time: " + std::to_string(currentTime) + ", waited: " + std::to_string(queue[currentlyExecuted].getWaitTime()) + ")");
+
 
         for(uint_fast16_t jj = 0; jj<execTimes; jj++) {
             queue[currentlyExecuted].getProcess().execute();
-            currentTime++;
 
             if(!processes.empty()) {
-                while(processes[0].getDelay() < currentTime) {
+                while(processes[0].getDelay() <= currentTime) {
 
                     if(logStream != nullptr) {
                         *logStream >> Log("Added process to the queue", processes[0].getName() + " (time: " + std::to_string(currentTime) + ")");
@@ -226,6 +229,7 @@ double RRManager::simulate(LogStream *const logStream) {
                 }
             }
 
+            currentTime++;
             if(queue[currentlyExecuted].getProcess().isDone()) break;
         }
         currentTime--;
@@ -238,7 +242,7 @@ double RRManager::simulate(LogStream *const logStream) {
 
             queue[currentlyExecuted].deactivate(currentTime);
             times.emplace_back(Times{queue[currentlyExecuted].getProcess().getName(), queue[currentlyExecuted].getWaitTime()});
-            queue.erase(queue.begin());
+            queue.erase(queue.begin() + currentlyExecuted);
             currentlyExecuted--;
         }
         currentlyExecuted = currentlyExecuted + 1 < queue.size() ? currentlyExecuted + 1 : 0;
@@ -260,6 +264,5 @@ double RRManager::simulate(LogStream *const logStream) {
 
     reset();
     return avgTime / consumedProcesses;
-
 
 }

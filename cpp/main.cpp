@@ -10,6 +10,7 @@ void showFor(uint_fast64_t sample) {
     FCFSManager fcfsManager;
     SJFManager sjfManager;
     SRTFManager srtfManager;
+    RRManager rrManager;
 
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -26,33 +27,46 @@ void showFor(uint_fast64_t sample) {
         fcfsManager.addProcess(process);
         sjfManager.addProcess(process);
         srtfManager.addProcess(process);
+        rrManager.addProcess(process);
     }
+
+    rrManager.setExecTimes(50);
 
     std::cout<<"Sample: "<<sample<<std::endl;
 
     typedef typename std::pair<double_t, std::string> Record;
     auto filterFunc = [](const Log & log) -> bool { return log.getTitle() == "Total average time"; };
 
-    fcfsManager.simulate(&logs);
+    Record fcfsResult(fcfsManager.simulate(&logs), "FCFS");
     logs.filter(filterFunc, logs);
-    Record fcfsResult(std::stod((*logs.get().begin()).getMessage()), "FCFS");
     std::cout<<"FCFS: "; logs.writeAll();
     logs.clear();
 
-    sjfManager.simulate(&logs);
+    Record sjfResult(sjfManager.simulate(&logs), "SJF");
     logs.filter(filterFunc, logs);
-    Record sjfResult(std::stod((*logs.get().begin()).getMessage()), "SJF");
     std::cout<<"SJF: "; logs.writeAll();
     logs.clear();
 
-    srtfManager.simulate(&logs);
+    Record srtfResult(srtfManager.simulate(&logs), "SRTF");
     logs.filter(filterFunc, logs);
-    Record srtfResult(std::stod((*logs.get().begin()).getMessage()), "SRTF");
     std::cout<<"SRTF: "; logs.writeAll();
+    logs.clear();
 
-    std::cout<<"Winner "<<std::max({srtfResult, sjfResult, fcfsResult}, [](Record a, Record b) -> bool {
+    Record rrResult(rrManager.simulate(&logs), "RR");
+    logs.filter(filterFunc, logs);
+    std::cout<<"RR: "; logs.writeAll();
+    logs.clear();
+
+    auto fastest = std::min({srtfResult, sjfResult, fcfsResult, rrResult}, [](Record a, Record b) -> bool {
         return a.first < b.first;
-    }).second;
+    });
+
+    auto slowest = std::max({srtfResult, sjfResult, fcfsResult, rrResult}, [](Record a, Record b) -> bool {
+        return a.first < b.first;
+    });
+    std::cout<<"Winner "<<(fastest.second) << std::endl;
+    std::cout<<"Looser "<<(slowest.second) << std::endl;
+    std::cout<<"Difference "<< ((double)slowest.first - (double)fastest.first) << std::endl;
 
     std::cout<<std::endl<<std::endl;
 }
@@ -62,7 +76,7 @@ int main() {
     //std::thread newThread(showFor, 100000);
     //newThread.join();
 
-    showFor(10);
+    showFor(5);
     showFor(100);
     showFor(500);
     showFor(1000);

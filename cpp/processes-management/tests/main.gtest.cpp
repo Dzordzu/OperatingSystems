@@ -228,7 +228,5 @@ TEST(ProcessesManagement, RRManager) {
             );
     }
 
-    StandardOutputLogStream stream;
-    EXPECT_THAT(manager.simulate(&stream), 25.0/2.0);
-    stream.writeAll();
+    EXPECT_THAT(manager.simulate(), 25.0/2.0);
 }
