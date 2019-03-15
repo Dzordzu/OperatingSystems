@@ -205,11 +205,11 @@ double RRManager::simulate(LogStream *const logStream) {
 
         uint_fast64_t deactivateIndex = (currentlyExecuted) > 0 ? (currentlyExecuted - 1) : queue.size() - 1;
 
-        if(queue[deactivateIndex].deactivate(currentTime))
+        if(queue[deactivateIndex].deactivate(currentTime) && logStream != nullptr)
             *logStream >> Log("Deactivated process", queue[deactivateIndex].getProcess().getName() + " (time: " + std::to_string(currentTime)+ ", waited: " + std::to_string(queue[currentlyExecuted].getWaitTime()) + ")");
 
 
-        if(queue[currentlyExecuted].activate(currentTime))
+        if(queue[currentlyExecuted].activate(currentTime) && logStream != nullptr)
             *logStream >> Log("Activated process", queue[currentlyExecuted].getProcess().getName() + "(time: " + std::to_string(currentTime) + ", waited: " + std::to_string(queue[currentlyExecuted].getWaitTime()) + ")");
 
 

@@ -48,7 +48,7 @@ void showFor(uint_fast64_t sample) {
     logs.clear();
 
     Record srtfResult(srtfManager.simulate(&logs), "SRTF");
-    logs.filter(filterFunc, logs);
+    //logs.filter(filterFunc, logs);
     std::cout<<"SRTF: "; logs.writeAll();
     logs.clear();
 
@@ -77,11 +77,11 @@ int main() {
     //newThread.join();
 
     showFor(5);
-    showFor(100);
-    showFor(500);
-    for(int i=0; i<10; i++) showFor(1000);
-    showFor(5000);
-    showFor(10000);
+//    showFor(100);
+//    showFor(500);
+//    for(int i=0; i<10; i++) showFor(1000);
+//    showFor(5000);
+//    showFor(10000);
 
 
 }
