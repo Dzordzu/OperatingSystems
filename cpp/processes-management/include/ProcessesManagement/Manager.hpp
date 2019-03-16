@@ -6,7 +6,7 @@
 #define OPERATING_SYSTEMS_CPP_MANAGER_HPP
 
 #include <ProcessesManagement/Process.hpp>
-#include <ProcessesManagement/Logger.hpp>
+#include <CppUtils/Logger.hpp>
 #include <vector>
 #include <utility>
 #include <iostream>

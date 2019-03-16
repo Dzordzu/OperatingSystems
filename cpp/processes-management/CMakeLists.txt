@@ -4,7 +4,6 @@ project(processes-management VERSION 1.0.0 )
 add_library(ProcessesManagement SHARED
         src/Manager.cpp
         src/Process.cpp
-        src/Logger.cpp
         )
 
 target_include_directories(ProcessesManagement
@@ -14,6 +13,10 @@ target_include_directories(ProcessesManagement
         PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         )
+
+target_link_libraries(ProcessesManagement
+        PUBLIC
+        CppUtils)
 
 target_compile_features(ProcessesManagement PRIVATE cxx_std_14)
 add_subdirectory(tests)

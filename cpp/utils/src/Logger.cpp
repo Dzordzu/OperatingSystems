@@ -2,9 +2,7 @@
 // Created by dzordzu on 10.03.19.
 //
 
-#include <ProcessesManagement/Logger.hpp>
-
-#include "ProcessesManagement/Logger.hpp"
+#include "CppUtils/Logger.hpp"
 
 Log::Log(const std::string &title, const std::string &name) : title(title), message(name) {}
 
