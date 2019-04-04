@@ -58,3 +58,21 @@ DiskManagement::QueuedTrack DiskManagement::QueuedTrackBuilder::build() {
     queuedTime = 0;
     return queuedTrack;
 }
+
+uint_fast32_t DiskManagement::Disk::getSize() const {
+    return size;
+}
+
+uint_fast32_t DiskManagement::Disk::getArmPosition() const {
+    return armPosition;
+}
+
+uint_fast8_t DiskManagement::Disk::getDataReadCost() const {
+    return dataReadCost;
+}
+
+DiskManagement::Disk::Disk(uint_fast32_t size, uint_fast32_t armPosition, uint_fast8_t dataReadCost) : size(size),
+                                                                                                       armPosition(
+                                                                                                               armPosition),
+                                                                                                       dataReadCost(
+                                                                                                               dataReadCost) {}

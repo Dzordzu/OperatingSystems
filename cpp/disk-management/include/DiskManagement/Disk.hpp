@@ -42,6 +42,20 @@ namespace DiskManagement {
 
         QueuedTrack build();
     };
+
+
+    class Disk {
+        uint_fast32_t size;
+        uint_fast32_t armPosition;
+        uint_fast8_t dataReadCost;
+
+    public:
+        Disk(uint_fast32_t size, uint_fast32_t armPosition, uint_fast8_t dataReadCost);
+
+        uint_fast32_t getSize() const;
+        uint_fast32_t getArmPosition() const;
+        uint_fast8_t getDataReadCost() const;
+    };
 }
 
 
