@@ -38,7 +38,7 @@ TEST(Algorithm, FCFS) {
     manager.setLogStream(logStream);
     EXPECT_EQ(10, manager.simulate());
 
-    logStream->writeAll();
+//    logStream->writeAll();
 }
 
 
@@ -82,9 +82,9 @@ TEST(Algorithm, SSTF) {
 
     StandardOutputLogStream * logStream = new StandardOutputLogStream();
     manager.setLogStream(logStream);
-    EXPECT_EQ(342, manager.simulate());
+    EXPECT_EQ(354, manager.simulate());
 
-    logStream->writeAll();
+//    logStream->writeAll();
 
 
 }
