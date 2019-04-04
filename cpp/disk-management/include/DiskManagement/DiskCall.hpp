@@ -7,43 +7,42 @@
 
 #include <cstdint>
 
-class DiskCall {
-    uint_fast32_t position;
-    uint_fast32_t accelerationTime;
-    bool async;
-    uint_fast64_t deadline;
-public:
-    DiskCall(const uint_fast32_t position, const uint_fast32_t accelerationTime, bool isAsync,
-             const uint_fast64_t deadline);
+namespace DiskManagement {
+    class QueuedTrack {
+        uint_fast32_t queuedTime;
+        uint_fast32_t trackNumber;
 
-    uint_fast32_t getPosition() const;
-    uint_fast32_t getAccelerationTime() const;
-    bool isAsync() const;
-    uint_fast64_t getTimeToDeadline() const;
+        bool realTime;
+        uint_fast32_t timeToDeadline;
 
-};
+    public:
+        QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t trackNumber, uint_fast32_t timeToDeadline);
+        QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t trackNumber);
 
-class DiskCallBuilder {
+        uint_fast32_t getQueuedTime() const;
+        uint_fast32_t getTrackNumber() const;
+        bool isRealTime() const;
+        uint_fast32_t getDeadlineTime() const;
+    };
 
-    DiskCallBuilder(){}
+    class QueuedTrackBuilder {
+        QueuedTrackBuilder(){}
+        uint_fast32_t queuedTime;
+        uint_fast32_t trackNumber;
+        uint_fast32_t timeToDeadline;
+        bool realTime = false;
 
-    uint_fast32_t position;
-    uint_fast32_t accelerationTime;
-    bool isAsync;
-    uint_fast64_t deadline;
-public:
-    inline static DiskCallBuilder & getInstace() { static DiskCallBuilder instance; return instance; }
-    DiskCallBuilder(DiskCallBuilder const&) = delete;
-    void operator=(const DiskCallBuilder &) = delete;
+    public:
+        static QueuedTrackBuilder & getInstance();
+        QueuedTrackBuilder(const QueuedTrackBuilder &) = delete;
+        void operator=(const QueuedTrackBuilder &) = delete;
+        void setQueuedTime(uint_fast32_t queuedTime);
+        void setTrackNumber(uint_fast32_t trackNumber);
+        void setTimeToDeadline(uint_fast32_t timeToDeadline);
 
-
-    DiskCallBuilder & setPosition(uint_fast32_t position);
-    DiskCallBuilder & setAccelerationTime(uint_fast32_t accelerationTime);
-    DiskCallBuilder & setIsAsync(bool isAsync);
-    DiskCallBuilder & setTimeToDeadline(uint_fast64_t timeToDeadline);
-
-    const DiskCall build();
-};
+        QueuedTrack build();
+    };
+}
 
 
 

@@ -3,51 +3,58 @@
 //
 
 #include <DiskManagement/DiskCall.hpp>
-
-#include "DiskManagement/DiskCall.hpp"
-
 #include <iostream>
 
-DiskCall::DiskCall(const uint_fast32_t position, const uint_fast32_t accelerationTime, bool isAsync,
-                   const uint_fast64_t deadline) : position(position), accelerationTime(accelerationTime),
-                                                   async(isAsync), deadline(deadline) {}
-
-uint_fast32_t DiskCall::getPosition() const {
-    return position;
+uint_fast32_t DiskManagement::QueuedTrack::getQueuedTime() const {
+    return queuedTime;
 }
 
-uint_fast32_t DiskCall::getAccelerationTime() const {
-    return accelerationTime;
+uint_fast32_t DiskManagement::QueuedTrack::getTrackNumber() const {
+    return trackNumber;
 }
 
-bool DiskCall::isAsync() const {
-    return async;
+bool DiskManagement::QueuedTrack::isRealTime() const {
+    return realTime;
 }
 
-uint_fast64_t DiskCall::getTimeToDeadline() const {
-    return deadline;
+uint_fast32_t DiskManagement::QueuedTrack::getDeadlineTime() const {
+    return queuedTime + timeToDeadline;
 }
 
-DiskCallBuilder & DiskCallBuilder::setPosition(uint_fast32_t position) {
-    this->position = position;
-    return *this;
+DiskManagement::QueuedTrack::QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t trackNumber,
+                                         uint_fast32_t timeToDeadline) : queuedTime(queuedTime),
+                                                                         trackNumber(trackNumber),
+                                                                         realTime(true),
+                                                                         timeToDeadline(timeToDeadline) {}
+
+DiskManagement::QueuedTrack::QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t trackNumber) : queuedTime(queuedTime),
+                                                                                                realTime(false),
+                                                                                                trackNumber(
+                                                                                                        trackNumber) {}
+
+void DiskManagement::QueuedTrackBuilder::setQueuedTime(uint_fast32_t queuedTime) {
+    QueuedTrackBuilder::queuedTime = queuedTime;
 }
 
-DiskCallBuilder & DiskCallBuilder::setAccelerationTime(uint_fast32_t accelerationTime) {
-    DiskCallBuilder::accelerationTime = accelerationTime;
-    return *this;
+void DiskManagement::QueuedTrackBuilder::setTrackNumber(uint_fast32_t trackNumber) {
+    QueuedTrackBuilder::trackNumber = trackNumber;
 }
 
-DiskCallBuilder & DiskCallBuilder::setIsAsync(bool isAsync) {
-    DiskCallBuilder::isAsync = isAsync;
-    return *this;
+void DiskManagement::QueuedTrackBuilder::setTimeToDeadline(uint_fast32_t timeToDeadline) {
+    realTime = true;
+    QueuedTrackBuilder::timeToDeadline = timeToDeadline;
 }
 
-DiskCallBuilder & DiskCallBuilder::setTimeToDeadline(uint_fast64_t timeToDeadline) {
-    DiskCallBuilder::deadline = timeToDeadline;
-    return *this;
+DiskManagement::QueuedTrackBuilder &DiskManagement::QueuedTrackBuilder::getInstance() {
+    static QueuedTrackBuilder instance;
+    return instance;
 }
 
-const DiskCall DiskCallBuilder::build() {
-    return { position, accelerationTime, isAsync, deadline };
+DiskManagement::QueuedTrack DiskManagement::QueuedTrackBuilder::build() {
+    DiskManagement::QueuedTrack queuedTrack = realTime ? DiskManagement::QueuedTrack(queuedTime, trackNumber, timeToDeadline) : DiskManagement::QueuedTrack(queuedTime, trackNumber);
+    realTime = false;
+    timeToDeadline = 0;
+    trackNumber = 0;
+    queuedTime = 0;
+    return queuedTrack;
 }

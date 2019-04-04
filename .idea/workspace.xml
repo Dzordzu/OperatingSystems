@@ -23,7 +23,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d3b76862-218c-44c4-9e27-2609c0ee150e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskCall.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskCall.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpp/disk-management/src/DiskCall.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/src/DiskCall.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpp/disk-management/src/DiskManagement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/src/DiskManagement.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cpp/cmake-build-debug/CMakeFiles/" />
@@ -49,83 +52,74 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.54681647">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskCall.hpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="44" column="27" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskCall.cpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="227">
-                  <caret line="50" column="41" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
-                  <folding>
-                    <element signature="e#42#80#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManagement.cpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="31" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="128" column="47" selection-start-line="128" selection-start-column="47" selection-end-line="128" selection-end-column="47" />
-                  <folding>
-                    <element signature="e#42#66#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/cpp/main.cpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-162">
-                  <caret line="88" column="22" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#0#19#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="78">
-                  <caret line="39" column="47" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
-                  <folding>
-                    <element signature="e#142#165#0" expanded="true" />
-                    <element signature="e#300#312#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskCall.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="62">
+              <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskCall.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
+              <folding>
+                <element signature="e#42#80#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManagement.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+              <folding>
+                <element signature="e#142#165#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1278">
+              <caret line="128" column="47" selection-start-line="128" selection-start-column="47" selection-end-line="128" selection-end-column="47" />
+              <folding>
+                <element signature="e#42#66#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpp/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-162">
+              <caret line="88" column="22" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -150,7 +144,9 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_COMMON_BRANCH" value="master" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -183,21 +179,21 @@
         <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cpp/processes-management/src/Manager.cpp" />
-        <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskCall.hpp" />
-        <option value="$PROJECT_DIR$/cpp/disk-management/src/DiskCall.cpp" />
         <option value="$PROJECT_DIR$/cpp/main.cpp" />
+        <option value="$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/src/DiskManagement.cpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp" />
-        <option value="$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp" />
+        <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskCall.hpp" />
+        <option value="$PROJECT_DIR$/cpp/disk-management/src/DiskCall.cpp" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="90" />
+    <option name="x" value="125" />
     <option name="y" value="27" />
-    <option name="width" value="1296" />
-    <option name="height" value="624" />
+    <option name="width" value="1221" />
+    <option name="height" value="599" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -221,7 +217,20 @@
               <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
               <item name="cpp" type="462c0819:PsiDirectoryNode" />
               <item name="disk-management" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cpp" type="462c0819:PsiDirectoryNode" />
+              <item name="disk-management" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="DiskManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cpp" type="462c0819:PsiDirectoryNode" />
+              <item name="disk-management" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
@@ -428,7 +437,7 @@
       <workItem from="1554368708596" duration="7641000" />
       <workItem from="1554386033737" duration="417000" />
       <workItem from="1554386495525" duration="1246000" />
-      <workItem from="1554387784220" duration="22478000" />
+      <workItem from="1554387784220" duration="24023000" />
     </task>
     <task id="LOCAL-00001" summary="Changed SJF algorithm">
       <created>1552515237551</created>
@@ -542,13 +551,24 @@
       <option name="project" value="LOCAL" />
       <updated>1554410004004</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Implemented SCAN">
+      <created>1554412838006</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1554412838006</updated>
+    </task>
+    <task id="LOCAL-00018" summary="I've forgotten to add core functionality to git. Really">
+      <created>1554412944013</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1554412944013</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_DiskManagementTests - 2019.04.04 at 22h 27m 38s.xml">
-      <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="All_in_DiskManagementTests - 2019.04.04 at 22h 28m 15s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
@@ -576,20 +596,23 @@
     <history-entry file="All_in_DiskManagementTests - 2019.04.04 at 23h 17m 24s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="All_in_DiskManagementTests - 2019.04.04 at 23h 17m 37s.xml">
+      <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115105000" />
+    <option name="totallyTimeSpent" value="116650000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19335347" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19335347" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3289689" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -650,7 +673,9 @@
     <MESSAGE value="Huge commit with loads of shitty code" />
     <MESSAGE value="This shit will probably be working. Somewhere in the future..." />
     <MESSAGE value="28-5 = 14 and everything is wrong" />
-    <option name="LAST_COMMIT_MESSAGE" value="28-5 = 14 and everything is wrong" />
+    <MESSAGE value="Implemented SCAN" />
+    <MESSAGE value="I've forgotten to add core functionality to git. Really" />
+    <option name="LAST_COMMIT_MESSAGE" value="I've forgotten to add core functionality to git. Really" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/googletest-src/CMakeLists.txt">
@@ -905,23 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskCall.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="44" column="27" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskCall.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="50" column="41" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
-          <folding>
-            <element signature="e#42#80#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cpp/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-162">
@@ -932,30 +940,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManagement.cpp">
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="31" />
+        <state relative-caret-position="1278">
+          <caret line="128" column="47" selection-start-line="128" selection-start-column="47" selection-end-line="128" selection-end-column="47" />
+          <folding>
+            <element signature="e#42#66#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="39" column="47" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="e#142#165#0" expanded="true" />
-            <element signature="e#300#312#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManagement.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="128" column="47" selection-start-line="128" selection-start-column="47" selection-end-line="128" selection-end-column="47" />
+        <state relative-caret-position="60">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskCall.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskCall.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
           <folding>
-            <element signature="e#42#66#0" expanded="true" />
+            <element signature="e#42#80#0" expanded="true" />
           </folding>
         </state>
       </provider>
