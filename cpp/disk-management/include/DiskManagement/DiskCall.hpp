@@ -8,15 +8,19 @@
 #include <cstdint>
 
 class DiskCall {
+    uint_fast32_t position;
+    uint_fast32_t accelerationTime;
+    bool async;
+    uint_fast64_t deadline;
 public:
     DiskCall(const uint_fast32_t position, const uint_fast32_t accelerationTime, bool isAsync,
              const uint_fast64_t deadline);
 
-private:
-    const uint_fast32_t position;
-    const uint_fast32_t accelerationTime;
-    const bool async;
-    const uint_fast64_t deadline;
+    uint_fast32_t getPosition() const;
+    uint_fast32_t getAccelerationTime() const;
+    bool isAsync() const;
+    uint_fast64_t getTimeToDeadline() const;
+
 };
 
 class DiskCallBuilder {
@@ -30,15 +34,15 @@ class DiskCallBuilder {
 public:
     inline static DiskCallBuilder & getInstace() { static DiskCallBuilder instance; return instance; }
     DiskCallBuilder(DiskCallBuilder const&) = delete;
-    void operator=(DiskCallBuilder const&) = delete;
+    void operator=(const DiskCallBuilder &) = delete;
 
 
     DiskCallBuilder & setPosition(uint_fast32_t position);
     DiskCallBuilder & setAccelerationTime(uint_fast32_t accelerationTime);
     DiskCallBuilder & setIsAsync(bool isAsync);
-    DiskCallBuilder & setDeadline(uint_fast64_t deadline);
+    DiskCallBuilder & setTimeToDeadline(uint_fast64_t timeToDeadline);
 
-    DiskCall build();
+    const DiskCall build();
 };
 
 
