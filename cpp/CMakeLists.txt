@@ -7,6 +7,7 @@ project(operating-systems-cpp VERSION 1.0.0 )
 include(cmake/GTest.cmake)
 add_subdirectory(utils)
 add_subdirectory(processes-management)
+add_subdirectory(disk-management)
 
 find_package(Threads)
 
