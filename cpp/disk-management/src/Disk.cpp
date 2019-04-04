@@ -2,7 +2,7 @@
 // Created by dzordzu on 04.04.19.
 //
 
-#include <DiskManagement/DiskCall.hpp>
+#include <DiskManagement/Disk.hpp>
 #include <iostream>
 
 uint_fast32_t DiskManagement::QueuedTrack::getQueuedTime() const {

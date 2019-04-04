@@ -6,7 +6,7 @@
 #define OPERATING_SYSTEMS_CPP_DISKMANAGEMENT_HPP
 
 
-#include "DiskCall.hpp"
+#include "Disk.hpp"
 #include "CppUtils/Logger.hpp"
 
 #include <vector>
