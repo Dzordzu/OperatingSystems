@@ -21,12 +21,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3b76862-218c-44c4-9e27-2609c0ee150e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/disk-management/src/Disk.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/src/Disk.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="d3b76862-218c-44c4-9e27-2609c0ee150e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cpp/cmake-build-debug/CMakeFiles/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +50,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="76" column="21" lean-forward="true" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+            <state relative-caret-position="383">
+              <caret line="77" column="6" lean-forward="true" selection-start-line="77" selection-start-column="6" selection-end-line="77" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -425,7 +420,7 @@
       <workItem from="1554368708596" duration="7641000" />
       <workItem from="1554386033737" duration="417000" />
       <workItem from="1554386495525" duration="1246000" />
-      <workItem from="1554387784220" duration="25452000" />
+      <workItem from="1554387784220" duration="25503000" />
     </task>
     <task id="LOCAL-00001" summary="Changed SJF algorithm">
       <created>1552515237551</created>
@@ -574,7 +569,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554414760453</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Upgraded something...">
+      <created>1554415675503</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1554415675503</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -610,7 +612,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118079000" />
+    <option name="totallyTimeSpent" value="118130000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -696,7 +698,8 @@
     <MESSAGE value="Started v2" />
     <MESSAGE value="Renamed DiskCall to Disk" />
     <MESSAGE value="Added Disk class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Disk class" />
+    <MESSAGE value="Upgraded something..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgraded something..." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/googletest-src/CMakeLists.txt">
@@ -997,8 +1000,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="76" column="21" lean-forward="true" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+        <state relative-caret-position="383">
+          <caret line="77" column="6" lean-forward="true" selection-start-line="77" selection-start-column="6" selection-end-line="77" selection-end-column="6" />
         </state>
       </provider>
     </entry>

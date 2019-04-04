@@ -3,7 +3,7 @@ project(disk-management VERSION 1.0.0 )
 
 add_library(DiskManagement SHARED
         src/Disk.cpp
-        src/DiskManagement.cpp
+        src/DiskManager.cpp
         )
 
 target_include_directories(DiskManagement

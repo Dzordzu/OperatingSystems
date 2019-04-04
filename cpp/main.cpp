@@ -1,6 +1,6 @@
 #include <iostream>
 #include <ProcessesManagement/Manager.hpp>
-#include <DiskManagement/DiskManagement.hpp>
+#include <DiskManagement/DiskManager.hpp>
 #include <random>
 #include <string>
 #include <thread>

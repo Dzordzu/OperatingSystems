@@ -6,7 +6,7 @@
 #include <gmock/gmock.h>
 #include <CppUtils/Logger.hpp>
 #include <string>
-#include <DiskManagement/DiskManagement.hpp>
+#include <DiskManagement/DiskManager.hpp>
 
 using namespace DiskManagement;
 
