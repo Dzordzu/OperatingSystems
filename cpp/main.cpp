@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ProcessesManagement/Manager.hpp>
+#include <DiskManagement/DiskManagement.hpp>
 #include <random>
 #include <string>
 #include <thread>
@@ -76,12 +77,41 @@ int main() {
     //std::thread newThread(showFor, 100000);
     //newThread.join();
 
-    showFor(5);
+//    showFor(5);
 //    showFor(100);
 //    showFor(500);
 //    for(int i=0; i<10; i++) showFor(1000);
 //    showFor(5000);
 //    showFor(10000);
+
+    DiskManagement::FCFSManager manager;
+
+    manager.addDiskCall(DiskCallBuilder::getInstace()
+                                .setAccelerationTime(8)
+                                .setIsAsync(false)
+                                .setTimeToDeadline(45)
+                                .setPosition(7)
+                                .build());
+
+    manager.addDiskCall(DiskCallBuilder::getInstace()
+                                .setAccelerationTime(9)
+                                .setIsAsync(false)
+                                .setTimeToDeadline(45)
+                                .setPosition(4)
+                                .build());
+
+    manager.addDiskCall(DiskCallBuilder::getInstace()
+                                .setAccelerationTime(4)
+                                .setIsAsync(false)
+                                .setTimeToDeadline(2)
+                                .setPosition(4)
+                                .build());
+
+    StandardOutputLogStream * logStream = new StandardOutputLogStream();
+    manager.setLogStream(logStream);
+    10, manager.simulate();
+
+    logStream->writeAll();
 
 
 }
