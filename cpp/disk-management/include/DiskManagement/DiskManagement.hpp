@@ -13,6 +13,22 @@
 #include <algorithm>
 #include <functional>
 
+namespace DiskManagement {
+
+    class Manager {
+        LogStream * logStream;
+        Disk disk;
+        std::vector<QueuedTrack> queue;
+
+        uint_fast64_t operations;
+        uint_fast64_t time;
+
+    public:
+
+
+    };
+}
+
 
 
 

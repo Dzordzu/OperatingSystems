@@ -48,13 +48,33 @@ namespace DiskManagement {
         uint_fast32_t size;
         uint_fast32_t armPosition;
         uint_fast8_t dataReadCost;
+        uint_fast8_t singleTrackMovementCost;
 
     public:
-        Disk(uint_fast32_t size, uint_fast32_t armPosition, uint_fast8_t dataReadCost);
+        Disk(uint_fast32_t size, uint_fast32_t armPosition, uint_fast8_t dataReadCost,
+             uint_fast8_t singleTrackMovementCost);
 
         uint_fast32_t getSize() const;
         uint_fast32_t getArmPosition() const;
         uint_fast8_t getDataReadCost() const;
+        uint_fast8_t getSingleTrackMovementCost() const;
+
+        void moveArmTo(uint32_t position);
+    };
+
+    class DiskBuilder {
+        uint_fast32_t size;
+        uint_fast32_t armPosition;
+        uint_fast8_t dataReadCost = 0;
+        uint_fast8_t singleTrackMovementCost = 1;
+
+    public:
+        void setSize(uint_fast32_t size);
+        void setArmPosition(uint_fast32_t armPosition);
+        void setDataReadCost(uint_fast8_t dataReadCost);
+        void setSingleTrackMovementCost(uint_fast8_t singleTrackMovementCost);
+
+        Disk build();
     };
 }
 

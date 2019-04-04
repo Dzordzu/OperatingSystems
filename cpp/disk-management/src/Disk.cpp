@@ -76,3 +76,40 @@ DiskManagement::Disk::Disk(uint_fast32_t size, uint_fast32_t armPosition, uint_f
                                                                                                                armPosition),
                                                                                                        dataReadCost(
                                                                                                                dataReadCost) {}
+
+void DiskManagement::Disk::moveArmTo(uint32_t position) {
+    this->armPosition = position;
+}
+
+uint_fast8_t DiskManagement::Disk::getSingleTrackMovementCost() const {
+    return singleTrackMovementCost;
+}
+
+DiskManagement::Disk::Disk(uint_fast32_t size, uint_fast32_t armPosition, uint_fast8_t dataReadCost,
+                           uint_fast8_t singleTrackMovementCost) : size(size), armPosition(armPosition),
+                                                                   dataReadCost(dataReadCost),
+                                                                   singleTrackMovementCost(singleTrackMovementCost) {}
+
+void DiskManagement::DiskBuilder::setSize(uint_fast32_t size) {
+    DiskBuilder::size = size;
+}
+
+void DiskManagement::DiskBuilder::setDataReadCost(uint_fast8_t dataReadCost) {
+    DiskBuilder::dataReadCost = dataReadCost;
+}
+
+void DiskManagement::DiskBuilder::setSingleTrackMovementCost(uint_fast8_t singleTrackMovementCost) {
+    DiskBuilder::singleTrackMovementCost = singleTrackMovementCost;
+}
+
+DiskManagement::Disk DiskManagement::DiskBuilder::build() {
+    DiskManagement::Disk disk(size, armPosition, dataReadCost, singleTrackMovementCost);
+    size = 0;
+    armPosition = 0;
+    dataReadCost = 0;
+    singleTrackMovementCost = 1;
+}
+
+void DiskManagement::DiskBuilder::setArmPosition(uint_fast32_t armPosition) {
+    DiskBuilder::armPosition = armPosition;
+}
