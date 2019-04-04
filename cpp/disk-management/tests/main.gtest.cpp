@@ -90,3 +90,46 @@ TEST(Algorithm, SSTF) {
 }
 
 
+TEST(Algorithm, SCAN) {
+    SCANManager manager;
+    manager.setMaxSize(100);
+
+    manager.addDiskCall(DiskCallBuilder::getInstace()
+                                .setAccelerationTime(0)
+                                .setIsAsync(false)
+                                .setTimeToDeadline(45)
+                                .setPosition(24)
+                                .build());
+
+    manager.addDiskCall(DiskCallBuilder::getInstace()
+                                .setAccelerationTime(21)
+                                .setIsAsync(false)
+                                .setTimeToDeadline(45)
+                                .setPosition(5)
+                                .build());
+
+    manager.addDiskCall(DiskCallBuilder::getInstace()
+                                .setAccelerationTime(22)
+                                .setIsAsync(false)
+                                .setTimeToDeadline(2)
+                                .setPosition(28)
+                                .build());
+
+    manager.addDiskCall(DiskCallBuilder::getInstace()
+                                .setAccelerationTime(26)
+                                .setIsAsync(false)
+                                .setTimeToDeadline(2)
+                                .setPosition(98)
+                                .build());
+
+    manager.addDiskCall(DiskCallBuilder::getInstace()
+                                .setAccelerationTime(26)
+                                .setIsAsync(false)
+                                .setTimeToDeadline(2)
+                                .setPosition(94)
+                                .build());
+
+    EXPECT_EQ(200, manager.simulate());
+}
+
+
