@@ -15,5 +15,6 @@ add_executable(MAIN main.cpp)
 target_link_libraries(MAIN
         PUBLIC
         ProcessesManagement
+        DiskManagement
         ${CMAKE_THREAD_LIBS_INIT})
 #message(Test)

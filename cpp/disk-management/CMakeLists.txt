@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.13)
 project(disk-management VERSION 1.0.0 )
 
 add_library(DiskManagement SHARED
-
+        src/DiskCall.cpp
+        src/Manager.cpp
         )
 
 target_include_directories(DiskManagement
