@@ -26,81 +26,79 @@ namespace DiskManagement {
             .setSize(100)
             .build();
 
+    Disk smallSize = DiskBuilder::getInstance()
+            .setArmPosition(0)
+            .enableServicingOnRun(true)
+            .setDataReadCost(0)
+            .setSingleTrackMovementCost(1)
+            .setSize(10)
+            .build();
+
+
+    void prepareForTest_1(Manager * manager) {
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                       .setQueuedTime(8)
+                                       .setTrackPosition(7)
+                                       .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                       .setQueuedTime(9)
+                                       .setTrackPosition(4)
+                                       .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                       .setQueuedTime(9)
+                                       .setTrackPosition(6)
+                                       .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                       .setQueuedTime(4)
+                                       .setTrackPosition(4)
+                                       .build());
+    }
+
+    void prepareForTest_2(Manager * manager) {
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                       .setQueuedTime(0)
+                                       .setTrackPosition(10)
+                                       .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                       .setQueuedTime(1)
+                                       .setTrackPosition(15)
+                                       .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                       .setQueuedTime(2)
+                                       .setTrackPosition(7)
+                                       .build());
+    }
+
 }
 
 using namespace DiskManagement;
 
-TEST(Algorithm, FCFS) {
+TEST(Algorithm, FCFS_1) {
+
     FCFSManager manager(simpleDisk);
-    StandardOutputLogStream * logStream = new StandardOutputLogStream();
-    manager.setLogStream(logStream);
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(8)
-                                   .setTrackPosition(7)
-                                   .build());
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(9)
-                                   .setTrackPosition(4)
-                                   .build());
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(9)
-                                   .setTrackPosition(6)
-                                   .build());
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(4)
-                                   .setTrackPosition(4)
-                                   .build());
-
+    prepareForTest_1(&manager);
     EXPECT_EQ(10, manager.simulate());
-
 
 }
 
-TEST(Algorithm, FCFS2) {
+TEST(Algorithm, FCFS_2) {
+
     FCFSManager manager(simpleDisk);
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(0)
-                                   .setTrackPosition(10)
-                                   .build());
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(1)
-                                   .setTrackPosition(15)
-                                   .build());
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(2)
-                                   .setTrackPosition(7)
-                                   .build());
-
+    prepareForTest_2(&manager);
     EXPECT_EQ(15, manager.simulate());
 
 
     manager.setDisk(noServiceOnRun);
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(0)
-                                   .setTrackPosition(10)
-                                   .build());
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(1)
-                                   .setTrackPosition(15)
-                                   .build());
-
-    manager.enqueueRequest(DiskRequestBuilder::getInstance()
-                                   .setQueuedTime(2)
-                                   .setTrackPosition(7)
-                                   .build());
-    StandardOutputLogStream * logStream = new StandardOutputLogStream();
-    manager.setLogStream(logStream);
+    prepareForTest_2(&manager);
     EXPECT_EQ(23, manager.simulate());
 
+//    StandardOutputLogStream * logStream = new StandardOutputLogStream();
+//    manager.setLogStream(logStream);
 //    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
 //    logStream->writeAll();
 
