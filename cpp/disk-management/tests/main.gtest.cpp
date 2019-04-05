@@ -10,7 +10,22 @@
 
 namespace DiskManagement {
 
-    Disk simpleDisk = DiskBuilder::getInstance()
+    /*
+     * Explanations:
+     * SD - Simple Disk
+     * NSOR - No Service On Run
+     * SIZE[NUM] - Size (value of NUM)
+     * SS - Small Size (same as SIZE10)
+     * NS - Normal Size (same AS SIZE500)
+     * HS - Huge Size (same as SIZE10000)
+     * ES - Enormous Size (same as SIZE100000)
+     * ASYNC - Asynchronous
+     * DR[NUM] - Data Read Cost (value of NUM)
+     * STM[NUM] - Single Track Movement (value of NUM)
+     * AP[NUM] - Arm Position (value of NUM)
+     */
+
+    Disk SD = DiskBuilder::getInstance()
             .setArmPosition(0)
             .enableServicingOnRun(true)
             .setDataReadCost(0)
@@ -18,7 +33,7 @@ namespace DiskManagement {
             .setSize(100)
             .build();
 
-    Disk noServiceOnRun = DiskBuilder::getInstance()
+    Disk NSOR = DiskBuilder::getInstance()
             .setArmPosition(0)
             .enableServicingOnRun(false)
             .setDataReadCost(0)
@@ -26,7 +41,15 @@ namespace DiskManagement {
             .setSize(100)
             .build();
 
-    Disk smallSize = DiskBuilder::getInstance()
+    Disk SS = DiskBuilder::getInstance()
+            .setArmPosition(0)
+            .enableServicingOnRun(false)
+            .setDataReadCost(0)
+            .setSingleTrackMovementCost(1)
+            .setSize(10)
+            .build();
+
+    Disk SS_NSOR = DiskBuilder::getInstance()
             .setArmPosition(0)
             .enableServicingOnRun(false)
             .setDataReadCost(0)
@@ -80,7 +103,7 @@ using namespace DiskManagement;
 
 TEST(Algorithm, FCFS_1) {
 
-    FCFSManager manager(simpleDisk);
+    FCFSManager manager(SD);
     prepareForTest_1(&manager);
     EXPECT_EQ(10, manager.simulate());
 
@@ -88,25 +111,22 @@ TEST(Algorithm, FCFS_1) {
 
 TEST(Algorithm, FCFS_2) {
 
-    FCFSManager manager(simpleDisk);
+    FCFSManager manager(SD);
     prepareForTest_2(&manager);
     EXPECT_EQ(15, manager.simulate());
 
-
-    manager.setDisk(noServiceOnRun);
+    manager.setDisk(NSOR);
     prepareForTest_2(&manager);
     EXPECT_EQ(23, manager.simulate());
 
-    StandardOutputLogStream * logStream = new StandardOutputLogStream();
-    manager.setLogStream(logStream);
-
-    manager.setDisk(smallSize);
+    manager.setDisk(SS);
     prepareForTest_2(&manager);
     EXPECT_EQ(7, manager.simulate());
 
-
+//    StandardOutputLogStream * logStream = new StandardOutputLogStream();
+//    manager.setLogStream(logStream);
     //logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
-    logStream->writeAll();
+//    logStream->writeAll();
 
 }
 
