@@ -221,11 +221,12 @@ TEST(Algorithm, CSCAN_1) {
 
     SCANManager manager(SD); manager.setModeToCSCAN(true);
     prepareForTest_1(&manager);
-    EXPECT_EQ(10, manager.simulate());
+    EXPECT_EQ(14, manager.simulate());
 
     manager.useLastRequest(false);
     prepareForTest_1(&manager);
-    EXPECT_EQ(254, manager.simulate());
+    EXPECT_EQ(250, manager.simulate());
+
 
 }
 

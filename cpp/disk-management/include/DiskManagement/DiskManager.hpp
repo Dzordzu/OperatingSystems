@@ -23,6 +23,7 @@ namespace DiskManagement {
 
         uint_fast64_t operations = 0;
         uint_fast64_t time = 0;
+        bool alwaysMove = false;
 
         void moveArmTo(uint_fast64_t next);
         void service(uint_fast32_t initialPosition, uint_fast32_t distance, bool goesRight);
@@ -36,6 +37,7 @@ namespace DiskManagement {
         void setDisk(const Disk &disk);
 
         uint_fast64_t simulate();
+
     };
 
 
@@ -55,6 +57,8 @@ namespace DiskManagement {
         double CSCANReturnCostProportion = 0.5;
         bool CSCAN = false;
         bool lastRequest = true;
+
+        void CSCANMoveArmToStart();
     public:
         explicit SCANManager(Disk &disk);
         uint_fast32_t findNext() override;
