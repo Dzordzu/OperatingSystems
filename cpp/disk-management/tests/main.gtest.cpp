@@ -169,7 +169,7 @@ TEST(Algorithm, FCFS_2) {
 
     manager.setDisk(NSOR_NS_DR1_STM10_AP5);
     prepareForTest_2(&manager);
-    EXPECT_EQ(163, manager.simulate());
+    EXPECT_EQ(183, manager.simulate());
 
 //    StandardOutputLogStream * logStream = new StandardOutputLogStream();
 //    manager.setLogStream(logStream);
