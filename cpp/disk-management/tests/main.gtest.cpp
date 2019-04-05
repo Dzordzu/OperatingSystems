@@ -57,15 +57,11 @@ TEST(Algorithm, FCFS) {
 
     EXPECT_EQ(10, manager.simulate());
 
-//    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
-//    logStream->writeAll();
 
 }
 
 TEST(Algorithm, FCFS2) {
     FCFSManager manager(simpleDisk);
-    StandardOutputLogStream * logStream = new StandardOutputLogStream();
-    manager.setLogStream(logStream);
 
     manager.enqueueRequest(DiskRequestBuilder::getInstance()
                                    .setQueuedTime(0)
@@ -84,8 +80,6 @@ TEST(Algorithm, FCFS2) {
 
     EXPECT_EQ(15, manager.simulate());
 
-//    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
-//    logStream->writeAll();
 
     manager.setDisk(noServiceOnRun);
 
@@ -103,8 +97,12 @@ TEST(Algorithm, FCFS2) {
                                    .setQueuedTime(2)
                                    .setTrackPosition(7)
                                    .build());
-
+    StandardOutputLogStream * logStream = new StandardOutputLogStream();
+    manager.setLogStream(logStream);
     EXPECT_EQ(23, manager.simulate());
+
+//    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
+//    logStream->writeAll();
 
 }
 

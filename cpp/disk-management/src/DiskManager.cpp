@@ -47,7 +47,15 @@ void DiskManagement::Manager::moveArmTo(uint_fast64_t next) {
     uint_fast32_t previousArmPosition = disk.getArmPosition(); // before move
     uint_fast32_t servicingDistance = disk.moveArmTo(next);
 
-    if(!disk.isServicingOnRun()) { servicingDistance = 0; previousArmPosition = disk.getArmPosition(); }
+    if(!disk.isServicingOnRun()) {
+
+        operations += disk.getSingleTrackMovementCost() * servicingDistance;
+        time += servicingDistance;
+
+        servicingDistance = 0;
+        previousArmPosition = disk.getArmPosition();
+    }
+
     service(previousArmPosition, servicingDistance, disk.goesRight());
 
     operations += disk.getSingleTrackMovementCost() * servicingDistance;
