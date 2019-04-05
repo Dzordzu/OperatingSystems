@@ -26,7 +26,7 @@ namespace DiskManagement {
     };
 
     class QueuedTrackBuilder {
-        QueuedTrackBuilder(){}
+        QueuedTrackBuilder() = default;
         uint_fast32_t queuedTime;
         uint_fast32_t trackPosition;
         uint_fast32_t timeToDeadline;
@@ -36,6 +36,7 @@ namespace DiskManagement {
         static QueuedTrackBuilder & getInstance();
         QueuedTrackBuilder(const QueuedTrackBuilder &) = delete;
         void operator=(const QueuedTrackBuilder &) = delete;
+
         void setQueuedTime(uint_fast32_t queuedTime);
         void setTrackPosition(uint_fast32_t trackNumber);
         void setTimeToDeadline(uint_fast32_t timeToDeadline);
@@ -67,6 +68,7 @@ namespace DiskManagement {
     };
 
     class DiskBuilder {
+        DiskBuilder() = default;
         uint_fast32_t size;
         uint_fast32_t armPosition;
         uint_fast8_t dataReadCost = 0;
@@ -74,6 +76,10 @@ namespace DiskManagement {
         bool servicingOnRun = false;
 
     public:
+        DiskBuilder(const DiskBuilder&) = delete;
+        void operator=(const DiskBuilder&) = delete;
+        inline static DiskBuilder & getInstance() { static DiskBuilder instance; return instance; }
+
         void setSize(uint_fast32_t size);
         void setArmPosition(uint_fast32_t armPosition);
         void setDataReadCost(uint_fast8_t dataReadCost);
