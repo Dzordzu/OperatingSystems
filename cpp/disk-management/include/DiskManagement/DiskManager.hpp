@@ -50,6 +50,19 @@ namespace DiskManagement {
         explicit SSTFManager(Disk &disk);
         uint_fast32_t findNext() override;
     };
+
+    class SCANManager : public Manager {
+        double CSCANReturnCostProportion = 0.5;
+        bool CSCAN = false;
+        bool lastRequest = true;
+    public:
+        explicit SCANManager(Disk &disk);
+        uint_fast32_t findNext() override;
+
+        void useLastRequest(bool useLastRequest);
+        void setModeToCSCAN(bool CSCAN);
+        void setCSCANReturnCostProportion(double CSCANReturnCost);
+    };
 }
 
 

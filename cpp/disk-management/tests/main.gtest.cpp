@@ -205,6 +205,30 @@ TEST(Algorithm, SSTF_2) {
 
 }
 
+TEST(Algorithm, SCAN_1) {
+
+    SCANManager manager(SD);
+    prepareForTest_1(&manager);
+    EXPECT_EQ(10, manager.simulate());
+
+    manager.useLastRequest(false);
+    prepareForTest_1(&manager);
+    EXPECT_EQ(200, manager.simulate());
+
+}
+
+TEST(Algorithm, CSCAN_1) {
+
+    SCANManager manager(SD); manager.setModeToCSCAN(true);
+    prepareForTest_1(&manager);
+    EXPECT_EQ(10, manager.simulate());
+
+    manager.useLastRequest(false);
+    prepareForTest_1(&manager);
+    EXPECT_EQ(254, manager.simulate());
+
+}
+
 //
 //
 //TEST(Algorithm, SCAN) {
