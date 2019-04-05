@@ -87,15 +87,31 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
 
 DiskManagement::Manager::Manager(DiskManagement::Disk &disk) : disk(disk) {}
 
-void DiskManagement::Manager::enqueueRequest(DiskRequest track) {
-    if(logStream != nullptr) logStream->add(Log("General", "Asked to enqueue " + std::to_string(track.getTrackPosition())));
+void DiskManagement::Manager::enqueueRequest(DiskRequest request) {
+    if(logStream != nullptr) logStream->add(Log("General", "Asked to enqueue " + std::to_string(request.getTrackPosition())));
 
-    if(disk.getSize() > queue.size()) {
-        queue.emplace_back(track);
+    if(disk.getSize() > request.getTrackPosition()) {
+        queue.emplace_back(request);
         if(logStream != nullptr) logStream->add(Log("General", "Accepted"));
     }
     else {
-        if(logStream != nullptr) logStream->add(Log("Failed", "Rejected: reason " + std::to_string(disk.getSize()) + " < " + std::to_string(queue.size())));
+
+        DiskRequestBuilder::getInstance()
+                .setTrackPosition(request.getTrackPosition() % disk.getSize())
+                .setQueuedTime(request.getQueuedTime());
+        if(request.isRealTime()) DiskRequestBuilder::getInstance().setTimeToDeadline(request.getDeadlineTime());
+
+        queue.emplace_back(DiskRequestBuilder::getInstance().build());
+
+        if(logStream != nullptr) {
+
+            std::string logMessage = "The original request value (track) has been rejected: Reason ";
+            logMessage += std::to_string(disk.getSize());
+            logMessage += " < ";
+            logMessage += std::to_string(request.getTrackPosition());
+
+            logStream->add(Log("Note", logMessage));
+        }
     }
 
 }
