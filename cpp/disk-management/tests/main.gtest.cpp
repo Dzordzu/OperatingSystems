@@ -8,10 +8,9 @@
 #include <string>
 #include <DiskManagement/DiskManager.hpp>
 
-using namespace DiskManagement;
+namespace DiskManagement {
 
-TEST(Algorithm, FCFS) {
-    Disk disk = DiskBuilder::getInstance()
+    Disk simpleDisk = DiskBuilder::getInstance()
             .setArmPosition(0)
             .enableServicingOnRun(true)
             .setDataReadCost(0)
@@ -19,7 +18,20 @@ TEST(Algorithm, FCFS) {
             .setSize(100)
             .build();
 
-    FCFSManager manager(disk);
+    Disk noServiceOnRun = DiskBuilder::getInstance()
+            .setArmPosition(0)
+            .enableServicingOnRun(false)
+            .setDataReadCost(0)
+            .setSingleTrackMovementCost(1)
+            .setSize(100)
+            .build();
+
+}
+
+using namespace DiskManagement;
+
+TEST(Algorithm, FCFS) {
+    FCFSManager manager(simpleDisk);
     StandardOutputLogStream * logStream = new StandardOutputLogStream();
     manager.setLogStream(logStream);
 
