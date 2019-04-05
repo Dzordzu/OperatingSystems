@@ -31,7 +31,7 @@ namespace DiskManagement {
     public:
         explicit Manager(Disk &disk);
 
-        void enqueueRequest(DiskRequest track);
+        void enqueueRequest(DiskRequest &track);
         void setLogStream(LogStream *logStream);
         void setDisk(const Disk &disk);
 

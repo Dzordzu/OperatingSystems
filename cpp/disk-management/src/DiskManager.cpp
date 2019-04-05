@@ -65,6 +65,12 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
 
 DiskManagement::Manager::Manager(DiskManagement::Disk &disk) : disk(disk) {}
 
+void DiskManagement::Manager::enqueueRequest(DiskRequest &track) {
+    if(disk.getSize() < queue.size())
+        queue.emplace_back(track);
+
+}
+
 uint_fast32_t DiskManagement::FCFSManager::findNext() {
     if(queue.begin()->getQueuedTime() > time) return disk.getArmPosition();
     return queue.begin()->getTrackPosition();
