@@ -143,9 +143,6 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
         if(c2.getQueuedTime() > time) {
             return true;
         }
-        
-        
-
 
         int_fast64_t difference1 = disk.getArmPosition() - c1.getTrackPosition();
         difference1 = difference1 < 0 ? -difference1 : difference1;
@@ -160,6 +157,8 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
 
 
 }
+
+DiskManagement::SSTFManager::SSTFManager(DiskManagement::Disk &disk) : Manager(disk) {}
 
 //uint_fast32_t DiskManagement::SCANManager::findNextTarget() {
 //    return disk.getArmPosition() == maxSize ? 0 : maxSize;
