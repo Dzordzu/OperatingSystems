@@ -13,7 +13,7 @@ namespace DiskManagement {
     /*
      * Disk names explanations:
      *
-     * SD - Simple Disk
+     * SD - Simple Disk (size: 100, stm: 1, dr: 0, enabled service on run, ap: 0)
      * NSOR - No Service On Run
      * SIZE[NUM] - Size (value of NUM)
      * SS - Small Size (same as SIZE10)
@@ -24,6 +24,8 @@ namespace DiskManagement {
      * DR[NUM] - Data Read Cost (value of NUM)
      * STM[NUM] - Single Track Movement (value of NUM)
      * AP[NUM] - Arm Position (value of NUM)
+     *
+     * note: SD can be override by any other property
      */
 
     Disk SD = DiskBuilder::getInstance()
@@ -34,7 +36,7 @@ namespace DiskManagement {
             .setSize(100)
             .build();
 
-    Disk NSOR = DiskBuilder::getInstance()
+    Disk SD_NSOR = DiskBuilder::getInstance()
             .setArmPosition(0)
             .enableServicingOnRun(false)
             .setDataReadCost(0)
@@ -42,7 +44,7 @@ namespace DiskManagement {
             .setSize(100)
             .build();
 
-    Disk SS = DiskBuilder::getInstance()
+    Disk SD_SS_NSOR = DiskBuilder::getInstance()
             .setArmPosition(0)
             .enableServicingOnRun(false)
             .setDataReadCost(0)
@@ -50,12 +52,12 @@ namespace DiskManagement {
             .setSize(10)
             .build();
 
-    Disk SS_NSOR = DiskBuilder::getInstance()
-            .setArmPosition(0)
+    Disk NSOR_NS_DR1_STM10_AP5 = DiskBuilder::getInstance()
+            .setArmPosition(5)
             .enableServicingOnRun(false)
-            .setDataReadCost(0)
-            .setSingleTrackMovementCost(1)
-            .setSize(10)
+            .setDataReadCost(1)
+            .setSingleTrackMovementCost(10)
+            .setSize(500)
             .build();
 
     /*
@@ -90,7 +92,7 @@ namespace DiskManagement {
         manager->enqueueRequest(DiskRequestBuilder::getInstance()
                                        .setQueuedTime(0)
                                        .setTrackPosition(10)
-                                       .build());
+                                       .build()); // 5 + 3 + 8
 
         manager->enqueueRequest(DiskRequestBuilder::getInstance()
                                        .setQueuedTime(1)
@@ -153,13 +155,21 @@ TEST(Algorithm, FCFS_2) {
     prepareForTest_2(&manager);
     EXPECT_EQ(15, manager.simulate());
 
-    manager.setDisk(NSOR);
+    manager.setDisk(SD_NSOR);
     prepareForTest_2(&manager);
     EXPECT_EQ(23, manager.simulate());
 
-    manager.setDisk(SS);
+    manager.setDisk(SD_SS_NSOR);
     prepareForTest_2(&manager);
     EXPECT_EQ(7, manager.simulate());
+
+    manager.setDisk(SD_SS_NSOR);
+    prepareForTest_2(&manager);
+    EXPECT_EQ(7, manager.simulate());
+
+    manager.setDisk(NSOR_NS_DR1_STM10_AP5);
+    prepareForTest_2(&manager);
+    EXPECT_EQ(163, manager.simulate());
 
 //    StandardOutputLogStream * logStream = new StandardOutputLogStream();
 //    manager.setLogStream(logStream);
