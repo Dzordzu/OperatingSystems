@@ -36,24 +36,76 @@ TEST(Algorithm, FCFS) {
     manager.setLogStream(logStream);
 
     manager.enqueueRequest(DiskRequestBuilder::getInstance()
-        .setQueuedTime(8)
-        .setTrackPosition(7)
-        .build());
+                                   .setQueuedTime(8)
+                                   .setTrackPosition(7)
+                                   .build());
 
     manager.enqueueRequest(DiskRequestBuilder::getInstance()
-       .setQueuedTime(9)
-       .setTrackPosition(4)
-       .build());
+                                   .setQueuedTime(9)
+                                   .setTrackPosition(4)
+                                   .build());
 
     manager.enqueueRequest(DiskRequestBuilder::getInstance()
-       .setQueuedTime(4)
-       .setTrackPosition(4)
-       .build());
+                                   .setQueuedTime(9)
+                                   .setTrackPosition(6)
+                                   .build());
+
+    manager.enqueueRequest(DiskRequestBuilder::getInstance()
+                                   .setQueuedTime(4)
+                                   .setTrackPosition(4)
+                                   .build());
 
     EXPECT_EQ(10, manager.simulate());
 
-    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
-    logStream->writeAll();
+//    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
+//    logStream->writeAll();
+
+}
+
+TEST(Algorithm, FCFS2) {
+    FCFSManager manager(simpleDisk);
+    StandardOutputLogStream * logStream = new StandardOutputLogStream();
+    manager.setLogStream(logStream);
+
+    manager.enqueueRequest(DiskRequestBuilder::getInstance()
+                                   .setQueuedTime(0)
+                                   .setTrackPosition(10)
+                                   .build());
+
+    manager.enqueueRequest(DiskRequestBuilder::getInstance()
+                                   .setQueuedTime(1)
+                                   .setTrackPosition(15)
+                                   .build());
+
+    manager.enqueueRequest(DiskRequestBuilder::getInstance()
+                                   .setQueuedTime(2)
+                                   .setTrackPosition(7)
+                                   .build());
+
+    EXPECT_EQ(15, manager.simulate());
+
+//    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
+//    logStream->writeAll();
+
+    manager.setDisk(noServiceOnRun);
+
+    manager.enqueueRequest(DiskRequestBuilder::getInstance()
+                                   .setQueuedTime(0)
+                                   .setTrackPosition(10)
+                                   .build());
+
+    manager.enqueueRequest(DiskRequestBuilder::getInstance()
+                                   .setQueuedTime(1)
+                                   .setTrackPosition(15)
+                                   .build());
+
+    manager.enqueueRequest(DiskRequestBuilder::getInstance()
+                                   .setQueuedTime(2)
+                                   .setTrackPosition(7)
+                                   .build());
+
+    EXPECT_EQ(23, manager.simulate());
+
 }
 
 
