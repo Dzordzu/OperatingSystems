@@ -16,6 +16,7 @@
 namespace DiskManagement {
 
     class Manager {
+    protected:
         LogStream * logStream;
         Disk disk;
         std::vector<QueuedTrack> queue;
@@ -23,9 +24,16 @@ namespace DiskManagement {
         uint_fast64_t operations;
         uint_fast64_t time;
 
+        void moveArmTo(uint_fast64_t next);
+
+        virtual void init();
     public:
+        void setLogStream(LogStream *logStream);
+        void setDisk(const Disk &disk);
+        uint_fast64_t simulate();
 
-
+        void service(uint_fast32_t initialPosition, uint_fast32_t distance, bool goesRight);
+        virtual uint_fast32_t findNext() = 0;
     };
 }
 
