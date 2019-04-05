@@ -62,3 +62,12 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
         }
     }
 }
+
+DiskManagement::Manager::Manager(DiskManagement::Disk &disk) : disk(disk) {}
+
+uint_fast32_t DiskManagement::FCFSManager::findNext() {
+    if(queue.begin()->getQueuedTime() > time) return disk.getArmPosition();
+    return queue.begin()->getTrackPosition();
+}
+
+DiskManagement::FCFSManager::FCFSManager(DiskManagement::Disk &disk) : Manager(disk) {}

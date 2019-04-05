@@ -11,7 +11,7 @@
 using namespace DiskManagement;
 
 TEST(Algorithm, FCFS) {
-    FCFSManager manager;
+    FCFSManager manager();
 
     manager.addDiskCall(DiskCallBuilder::getInstace()
         .setAccelerationTime(8)
