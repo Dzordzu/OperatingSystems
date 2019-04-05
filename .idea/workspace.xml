@@ -24,7 +24,6 @@
     <list default="true" id="d3b76862-218c-44c4-9e27-2609c0ee150e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cpp/cmake-build-debug/CMakeFiles/" />
@@ -69,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
+            <state relative-caret-position="195">
+              <caret line="188" column="31" selection-start-line="188" selection-start-column="31" selection-end-line="188" selection-end-column="31" />
               <folding>
                 <element signature="e#42#66#0" expanded="true" />
                 <element signature="e#2722#3473#0" />
@@ -86,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="203">
+              <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
               <folding>
                 <element signature="e#142#165#0" expanded="true" />
               </folding>
@@ -95,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="160" column="86" selection-start-line="160" selection-start-column="86" selection-end-line="160" selection-end-column="86" />
+            <state relative-caret-position="126">
+              <caret line="167" column="1" selection-start-line="167" selection-start-column="1" selection-end-line="167" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -124,6 +123,10 @@
       <find>log</find>
       <find>operations</find>
       <find>position</find>
+      <find>se</find>
+      <find>on</find>
+      <find>time+</find>
+      <find>servicing</find>
     </findStrings>
     <replaceStrings>
       <replace>duration</replace>
@@ -170,9 +173,9 @@
         <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/src/Disk.cpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp" />
-        <option value="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp" />
+        <option value="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" />
       </list>
     </option>
   </component>
@@ -431,14 +434,7 @@
       <workItem from="1554368708596" duration="7641000" />
       <workItem from="1554386033737" duration="417000" />
       <workItem from="1554386495525" duration="1246000" />
-      <workItem from="1554387784220" duration="47684000" />
-    </task>
-    <task id="LOCAL-00004" summary="Updated code and fixed some issues">
-      <created>1552521005312</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1552521005312</updated>
+      <workItem from="1554387784220" duration="49692000" />
     </task>
     <task id="LOCAL-00005" summary="Repaired code and (what's more important) tests">
       <created>1552521253525</created>
@@ -776,43 +772,50 @@
       <option name="project" value="LOCAL" />
       <updated>1554493320635</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Added new tests. It fails again">
+      <created>1554493683919</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1554493683919</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 20h 43m 53s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 21h 56m 27s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 20h 44m 50s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 22h 00m 24s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 20h 47m 56s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 22h 00m 40s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 21h 21m 56s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 22h 01m 01s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 21h 22m 29s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 22h 03m 47s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 21h 27m 30s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 22h 05m 00s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 21h 29m 19s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 22h 05m 41s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 21h 30m 02s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 22h 07m 24s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 21h 31m 04s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 22h 53m 07s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 21h 46m 20s.xml">
+    <history-entry file="All_in_DiskManagementTests - 2019.04.05 at 22h 54m 11s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140311000" />
+    <option name="totallyTimeSpent" value="142319000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -913,7 +916,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Small fixes" />
     <MESSAGE value="Made builders singletons" />
     <MESSAGE value="Small changes in tests" />
     <MESSAGE value="Renamed QueuedTrack to DiskRequest" />
@@ -938,7 +940,8 @@
     <MESSAGE value="Fixed issues. Next ones (including no initial arm position, no data read cost)" />
     <MESSAGE value="Fixed test xD" />
     <MESSAGE value="Added SSTFManager. Prepared SCAN, CSCAN managers (comments)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added SSTFManager. Prepared SCAN, CSCAN managers (comments)" />
+    <MESSAGE value="Added new tests. It fails again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new tests. It fails again" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/googletest-src/CMakeLists.txt">
@@ -1224,32 +1227,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="160" column="86" selection-start-line="160" selection-start-column="86" selection-end-line="160" selection-end-column="86" />
+        <state relative-caret-position="195">
+          <caret line="188" column="31" selection-start-line="188" selection-start-column="31" selection-end-line="188" selection-end-column="31" />
+          <folding>
+            <element signature="e#42#66#0" expanded="true" />
+            <element signature="e#2722#3473#0" />
+            <element signature="e#3459#3516#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="203">
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
           <folding>
             <element signature="e#142#165#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
-          <folding>
-            <element signature="e#42#66#0" expanded="true" />
-            <element signature="e#2722#3473#0" />
-            <element signature="e#3459#3516#0" />
-          </folding>
+        <state relative-caret-position="126">
+          <caret line="167" column="1" selection-start-line="167" selection-start-column="1" selection-end-line="167" selection-end-column="1" />
         </state>
       </provider>
     </entry>

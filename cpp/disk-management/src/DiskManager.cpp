@@ -19,10 +19,10 @@ uint_fast64_t DiskManagement::Manager::simulate() {
     moveArmTo(findNext());
 
     while(!queue.empty()) {
-        uint_fast64_t next = findNext();
-        if(disk.getArmPosition() != next) moveArmTo(next);
-
         time++;
+        uint_fast64_t next = findNext();
+        if(next != disk.getArmPosition()) moveArmTo(next);
+
         if(time > 1000) {
             if(logStream != nullptr) logStream->add(Log("General", "Maximum time exceeded"));
             break;
@@ -79,7 +79,17 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
 
         if(it->getQueuedTime() > time + trackDistance) continue;
         if((trackDistance < distance && goesRight == trackOnTheRight) || trackDistance == distance) {
-            if(logStream != nullptr) logStream->add(Log("Service", "Servicing " + std::to_string(it->getTrackPosition())));
+
+            if(logStream != nullptr) {
+                std::string logMessage = "Servicing ";
+                logMessage += std::to_string(it->getTrackPosition()) + " ";
+                //logMessage += "that has been queued at " + std::to_string(it->getQueuedTime());
+                //logMessage += " time(" + std::to_string(time) + ")";
+
+
+                logStream->add(Log("Service", logMessage));
+            }
+
             queue.erase(it);
             operations += disk.getDataReadCost();
             i--;
@@ -132,15 +142,17 @@ DiskManagement::FCFSManager::FCFSManager(DiskManagement::Disk &disk) : Manager(d
 
 uint_fast32_t DiskManagement::SSTFManager::findNext() {
 
-    if(queue.begin()->getQueuedTime() > time) return disk.getArmPosition();
+    if(queue.begin()->getQueuedTime() > time) {
+        return disk.getArmPosition();
+    }
 
     auto it = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest &c1, const DiskRequest &c2) {
 
-        if(c1.getQueuedTime() > time) {
+        if(c1.getQueuedTime() >= time) {
             return false;
         }
 
-        if(c2.getQueuedTime() > time) {
+        if(c2.getQueuedTime() >= time) {
             return true;
         }
 
@@ -154,6 +166,7 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
     });
 
     return it->getTrackPosition();
+
 
 
 }
