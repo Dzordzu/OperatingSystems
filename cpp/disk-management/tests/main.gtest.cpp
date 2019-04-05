@@ -11,8 +11,15 @@
 using namespace DiskManagement;
 
 TEST(Algorithm, FCFS) {
-    FCFSManager manager(DiskBuilder::getInstance()
-        .setArmPosition(0));
+    Disk disk = DiskBuilder::getInstance()
+            .setArmPosition(0)
+            .enableServicingOnRun(true)
+            .setDataReadCost(0)
+            .setSingleTrackMovementCost(1)
+            .setSize(100)
+            .build();
+
+    FCFSManager manager(disk);
 
     manager.addDiskCall(DiskCallBuilder::getInstace()
         .setAccelerationTime(8)
