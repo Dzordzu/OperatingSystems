@@ -84,34 +84,6 @@ int main() {
 //    showFor(5000);
 //    showFor(10000);
 
-    DiskManagement::FCFSManager manager;
-
-    manager.addDiskCall(DiskCallBuilder::getInstace()
-                                .setAccelerationTime(8)
-                                .setIsAsync(false)
-                                .setTimeToDeadline(45)
-                                .setPosition(7)
-                                .build());
-
-    manager.addDiskCall(DiskCallBuilder::getInstace()
-                                .setAccelerationTime(9)
-                                .setIsAsync(false)
-                                .setTimeToDeadline(45)
-                                .setPosition(4)
-                                .build());
-
-    manager.addDiskCall(DiskCallBuilder::getInstace()
-                                .setAccelerationTime(4)
-                                .setIsAsync(false)
-                                .setTimeToDeadline(2)
-                                .setPosition(4)
-                                .build());
-
-    StandardOutputLogStream * logStream = new StandardOutputLogStream();
-    manager.setLogStream(logStream);
-    10, manager.simulate();
-
-    logStream->writeAll();
 
 
 }
