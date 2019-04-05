@@ -44,6 +44,12 @@ namespace DiskManagement {
         explicit FCFSManager(Disk &disk);
         uint_fast32_t findNext() override;
     };
+
+    class SSTFManager : public Manager {
+    public:
+        explicit SSTFManager(Disk &disk);
+        uint_fast32_t findNext() override;
+    };
 }
 
 

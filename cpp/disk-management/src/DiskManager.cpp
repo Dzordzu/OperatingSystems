@@ -129,3 +129,43 @@ uint_fast32_t DiskManagement::FCFSManager::findNext() {
 }
 
 DiskManagement::FCFSManager::FCFSManager(DiskManagement::Disk &disk) : Manager(disk) {}
+
+uint_fast32_t DiskManagement::SSTFManager::findNext() {
+
+    if(queue.begin()->getQueuedTime() > time) return disk.getArmPosition();
+
+    auto it = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest &c1, const DiskRequest &c2) {
+
+        if(c1.getQueuedTime() > time) {
+            return false;
+        }
+
+        if(c2.getQueuedTime() > time) {
+            return true;
+        }
+        
+        
+
+
+        int_fast64_t difference1 = disk.getArmPosition() - c1.getTrackPosition();
+        difference1 = difference1 < 0 ? -difference1 : difference1;
+
+        int_fast64_t difference2 = disk.getArmPosition() - c2.getTrackPosition();
+        difference2 = difference2 < 0 ? -difference2 : difference2;
+
+        return difference1 < difference2;
+    });
+
+    return it->getTrackPosition();
+
+
+}
+
+//uint_fast32_t DiskManagement::SCANManager::findNextTarget() {
+//    return disk.getArmPosition() == maxSize ? 0 : maxSize;
+//}
+//
+//uint_fast32_t DiskManagement::CSCANManager::findNextTarget() {
+//    disk.getArmPosition() = 0;
+//    return maxSize;
+//}
