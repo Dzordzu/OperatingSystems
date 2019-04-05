@@ -28,7 +28,7 @@ namespace DiskManagement {
 
     Disk smallSize = DiskBuilder::getInstance()
             .setArmPosition(0)
-            .enableServicingOnRun(true)
+            .enableServicingOnRun(false)
             .setDataReadCost(0)
             .setSingleTrackMovementCost(1)
             .setSize(10)
@@ -97,10 +97,16 @@ TEST(Algorithm, FCFS_2) {
     prepareForTest_2(&manager);
     EXPECT_EQ(23, manager.simulate());
 
-//    StandardOutputLogStream * logStream = new StandardOutputLogStream();
-//    manager.setLogStream(logStream);
-//    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
-//    logStream->writeAll();
+    StandardOutputLogStream * logStream = new StandardOutputLogStream();
+    manager.setLogStream(logStream);
+
+    manager.setDisk(smallSize);
+    prepareForTest_2(&manager);
+    EXPECT_EQ(7, manager.simulate());
+
+
+    //logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
+    logStream->writeAll();
 
 }
 

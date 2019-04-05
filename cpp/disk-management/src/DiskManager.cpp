@@ -101,14 +101,17 @@ void DiskManagement::Manager::enqueueRequest(DiskRequest request) {
                 .setQueuedTime(request.getQueuedTime());
         if(request.isRealTime()) DiskRequestBuilder::getInstance().setTimeToDeadline(request.getDeadlineTime());
 
-        queue.emplace_back(DiskRequestBuilder::getInstance().build());
+        DiskRequest dr = DiskRequestBuilder::getInstance().build();
+        queue.emplace_back(dr);
 
         if(logStream != nullptr) {
 
             std::string logMessage = "The original request value (track) has been rejected: Reason ";
             logMessage += std::to_string(disk.getSize());
-            logMessage += " < ";
+            logMessage += " <= ";
             logMessage += std::to_string(request.getTrackPosition());
+            logMessage += " . Converting track value to ";
+            logMessage += std::to_string(request.getTrackPosition() % disk.getSize());
 
             logStream->add(Log("Note", logMessage));
         }
