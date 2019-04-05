@@ -125,7 +125,7 @@ TEST(Algorithm, FCFS_2) {
 
 //    StandardOutputLogStream * logStream = new StandardOutputLogStream();
 //    manager.setLogStream(logStream);
-    //logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
+//    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
 //    logStream->writeAll();
 
 }
