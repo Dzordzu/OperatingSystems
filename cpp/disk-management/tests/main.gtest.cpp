@@ -182,14 +182,10 @@ TEST(Algorithm, FCFS_2) {
 
 
 TEST(Algorithm, SSTF_1) {
+
     SSTFManager manager(SD);
     prepareForTest_1(&manager);
-    StandardOutputLogStream * logStream = new StandardOutputLogStream();
-    manager.setLogStream(logStream);
     EXPECT_EQ(10, manager.simulate());
-
-    logStream->writeAll();
-
 
 }
 //
