@@ -17,12 +17,12 @@ namespace DiskManagement {
 
     class Manager {
     protected:
-        LogStream * logStream;
+        LogStream * logStream = nullptr;
         Disk & disk;
         std::vector<DiskRequest> queue = {};
 
-        uint_fast64_t operations;
-        uint_fast64_t time;
+        uint_fast64_t operations = 0;
+        uint_fast64_t time = 0;
 
         void moveArmTo(uint_fast64_t next);
         void service(uint_fast32_t initialPosition, uint_fast32_t distance, bool goesRight);
@@ -31,7 +31,7 @@ namespace DiskManagement {
     public:
         explicit Manager(Disk &disk);
 
-        void enqueueRequest(DiskRequest &track);
+        void enqueueRequest(DiskRequest track);
         void setLogStream(LogStream *logStream);
         void setDisk(const Disk &disk);
 

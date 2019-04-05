@@ -125,6 +125,7 @@ DiskManagement::Disk DiskManagement::DiskBuilder::build() {
     dataReadCost = 0;
     singleTrackMovementCost = 1;
     servicingOnRun = false;
+    return disk;
 }
 
 DiskManagement::DiskBuilder & DiskManagement::DiskBuilder::setArmPosition(uint_fast32_t armPosition) {
