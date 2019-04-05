@@ -35,7 +35,7 @@ uint_fast64_t DiskManagement::Manager::simulate() {
 void DiskManagement::Manager::init() {
     this->operations = 0;
     this->time = 0;
-    this->disk.moveArmTo(0);
+    this->disk.moveArmTo(disk.getInitialArmPosition());
 
     std::stable_sort(queue.begin(), queue.end(), [](const DiskRequest &qt1, const DiskRequest qt2){
         return qt1.getQueuedTime() < qt2.getQueuedTime();
@@ -81,6 +81,7 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
         if((trackDistance < distance && goesRight == trackOnTheRight) || trackDistance == distance) {
             if(logStream != nullptr) logStream->add(Log("Service", "Servicing " + std::to_string(it->getTrackPosition())));
             queue.erase(it);
+            operations += disk.getDataReadCost();
             i--;
         }
 

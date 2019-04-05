@@ -47,6 +47,7 @@ namespace DiskManagement {
 
     class Disk {
         uint_fast32_t size;
+        uint_fast32_t initialArmPosition;
         uint_fast32_t armPosition;
         uint_fast8_t dataReadCost;
         uint_fast8_t singleTrackMovementCost;
@@ -54,10 +55,11 @@ namespace DiskManagement {
         bool servicingOnRun;
 
     public:
-        Disk(uint_fast32_t size, uint_fast32_t armPosition, uint_fast8_t dataReadCost,
+        Disk(uint_fast32_t size, uint_fast32_t initialArmPosition, uint_fast8_t dataReadCost,
              uint_fast8_t singleTrackMovementCost, bool servicingOnRun);
 
         uint_fast32_t getSize() const;
+        uint_fast32_t getInitialArmPosition() const;
         uint_fast32_t getArmPosition() const;
         uint_fast8_t getDataReadCost() const;
         uint_fast8_t getSingleTrackMovementCost() const;

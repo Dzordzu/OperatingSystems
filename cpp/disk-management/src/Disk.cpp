@@ -93,14 +93,21 @@ bool DiskManagement::Disk::isServicingOnRun() const {
     return servicingOnRun;
 }
 
-DiskManagement::Disk::Disk(uint_fast32_t size, uint_fast32_t armPosition, uint_fast8_t dataReadCost,
+DiskManagement::Disk::Disk(uint_fast32_t size, uint_fast32_t initialArmPosition, uint_fast8_t dataReadCost,
                            uint_fast8_t singleTrackMovementCost, bool servicingOnRun) : size(size),
-                                                                                        armPosition(armPosition),
+                                                                                        initialArmPosition(
+                                                                                                initialArmPosition
+                                                                                                ),
+                                                                                        armPosition(initialArmPosition),
                                                                                         dataReadCost(dataReadCost),
                                                                                         singleTrackMovementCost(
                                                                                                 singleTrackMovementCost),
                                                                                         servicingOnRun(
                                                                                                 servicingOnRun) {}
+
+uint_fast32_t DiskManagement::Disk::getInitialArmPosition() const {
+    return initialArmPosition;
+}
 
 DiskManagement::DiskBuilder & DiskManagement::DiskBuilder::setSize(uint_fast32_t size) {
     DiskBuilder::size = size;
