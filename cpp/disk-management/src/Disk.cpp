@@ -32,28 +32,28 @@ DiskManagement::DiskRequest::DiskRequest(uint_fast32_t queuedTime, uint_fast32_t
                                                                                                 trackPosition(
                                                                                                         trackNumber) {}
 
-DiskManagement::QueuedTrackBuilder & DiskManagement::QueuedTrackBuilder::setQueuedTime(uint_fast32_t queuedTime) {
-    QueuedTrackBuilder::queuedTime = queuedTime;
+DiskManagement::DiskManagementBuilder & DiskManagement::DiskManagementBuilder::setQueuedTime(uint_fast32_t queuedTime) {
+    DiskManagementBuilder::queuedTime = queuedTime;
     return *this;
 }
 
-DiskManagement::QueuedTrackBuilder & DiskManagement::QueuedTrackBuilder::setTrackPosition(uint_fast32_t trackNumber) {
-    QueuedTrackBuilder::trackPosition = trackNumber;
+DiskManagement::DiskManagementBuilder & DiskManagement::DiskManagementBuilder::setTrackPosition(uint_fast32_t trackNumber) {
+    DiskManagementBuilder::trackPosition = trackNumber;
     return *this;
 }
 
-DiskManagement::QueuedTrackBuilder & DiskManagement::QueuedTrackBuilder::setTimeToDeadline(uint_fast32_t timeToDeadline) {
+DiskManagement::DiskManagementBuilder & DiskManagement::DiskManagementBuilder::setTimeToDeadline(uint_fast32_t timeToDeadline) {
     realTime = true;
-    QueuedTrackBuilder::timeToDeadline = timeToDeadline;
+    DiskManagementBuilder::timeToDeadline = timeToDeadline;
     return *this;
 }
 
-DiskManagement::QueuedTrackBuilder &DiskManagement::QueuedTrackBuilder::getInstance() {
-    static QueuedTrackBuilder instance;
+DiskManagement::DiskManagementBuilder &DiskManagement::DiskManagementBuilder::getInstance() {
+    static DiskManagementBuilder instance;
     return instance;
 }
 
-DiskManagement::DiskRequest DiskManagement::QueuedTrackBuilder::build() {
+DiskManagement::DiskRequest DiskManagement::DiskManagementBuilder::build() {
     DiskManagement::DiskRequest queuedTrack = realTime ? DiskManagement::DiskRequest(queuedTime, trackPosition, timeToDeadline) : DiskManagement::DiskRequest(queuedTime, trackPosition);
     realTime = false;
     timeToDeadline = 0;

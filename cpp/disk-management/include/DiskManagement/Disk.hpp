@@ -25,21 +25,21 @@ namespace DiskManagement {
         uint_fast32_t getDeadlineTime() const;
     };
 
-    class QueuedTrackBuilder {
-        QueuedTrackBuilder() {};
+    class DiskManagementBuilder {
+        DiskManagementBuilder() {};
         uint_fast32_t queuedTime = 0;
         uint_fast32_t trackPosition = 0;
         uint_fast32_t timeToDeadline = 0;
         bool realTime = false;
 
     public:
-        static QueuedTrackBuilder& getInstance();
-        QueuedTrackBuilder(QueuedTrackBuilder const&) = delete;
-        void operator=(QueuedTrackBuilder const&) = delete;
+        static DiskManagementBuilder& getInstance();
+        DiskManagementBuilder(DiskManagementBuilder const&) = delete;
+        void operator=(DiskManagementBuilder const&) = delete;
 
-        QueuedTrackBuilder & setQueuedTime(uint_fast32_t queuedTime);
-        QueuedTrackBuilder & setTrackPosition(uint_fast32_t trackNumber);
-        QueuedTrackBuilder & setTimeToDeadline(uint_fast32_t timeToDeadline);
+        DiskManagementBuilder & setQueuedTime(uint_fast32_t queuedTime);
+        DiskManagementBuilder & setTrackPosition(uint_fast32_t trackNumber);
+        DiskManagementBuilder & setTimeToDeadline(uint_fast32_t timeToDeadline);
 
         DiskRequest build();
     };
