@@ -163,10 +163,6 @@ TEST(Algorithm, FCFS_2) {
     prepareForTest_2(&manager);
     EXPECT_EQ(7, manager.simulate());
 
-    manager.setDisk(SD_SS_NSOR);
-    prepareForTest_2(&manager);
-    EXPECT_EQ(7, manager.simulate());
-
     manager.setDisk(NSOR_NS_DR1_STM10_AP5);
     prepareForTest_2(&manager);
     EXPECT_EQ(183, manager.simulate());
@@ -188,6 +184,27 @@ TEST(Algorithm, SSTF_1) {
     EXPECT_EQ(10, manager.simulate());
 
 }
+
+TEST(Algorithm, SSTF_2) {
+
+    SSTFManager manager(SD);
+    prepareForTest_2(&manager);
+    EXPECT_EQ(15, manager.simulate());
+
+    manager.setDisk(SD_NSOR);
+    prepareForTest_2(&manager);
+    EXPECT_EQ(21, manager.simulate());
+
+    manager.setDisk(SD_SS_NSOR);
+    prepareForTest_2(&manager);
+    EXPECT_EQ(7, manager.simulate());
+
+    manager.setDisk(NSOR_NS_DR1_STM10_AP5);
+    prepareForTest_2(&manager);
+    EXPECT_EQ(163, manager.simulate());
+
+}
+
 //
 //
 //TEST(Algorithm, SCAN) {
