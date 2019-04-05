@@ -16,6 +16,8 @@ uint_fast64_t DiskManagement::Manager::simulate() {
     init();
     if(logStream != nullptr) logStream->add(Log("General", "Started algorithm"));
 
+    moveArmTo(findNext());
+
     while(!queue.empty()) {
         uint_fast64_t next = findNext();
         if(disk.getArmPosition() != next) moveArmTo(next);
