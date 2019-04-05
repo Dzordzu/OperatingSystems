@@ -63,19 +63,17 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
         auto it = queue.begin() + i;
 
         uint_fast32_t trackPosition = it->getTrackPosition();
-        uint_fast32_t trackDistance = trackPosition - initialPosition;
+        int_fast64_t trackDistance = trackPosition - initialPosition;
         bool trackOnTheRight = trackDistance > 0;
         trackDistance = trackDistance > 0 ? trackDistance : -trackDistance;
 
-        if(it->getQueuedTime() <= time + trackDistance) {
-            if(trackDistance <= distance) {
-                if(goesRight == trackOnTheRight) {
-                    if(logStream != nullptr) logStream->add(Log("Service", "Servicing " + std::to_string(it->getTrackPosition())));
-                    queue.erase(it);
-                    i--;
-                }
-            }
+        if(it->getQueuedTime() > time + trackDistance) continue;
+        if((trackDistance < distance && goesRight == trackOnTheRight) || trackDistance == distance) {
+            if(logStream != nullptr) logStream->add(Log("Service", "Servicing " + std::to_string(it->getTrackPosition())));
+            queue.erase(it);
+            i--;
         }
+
     }
 }
 
