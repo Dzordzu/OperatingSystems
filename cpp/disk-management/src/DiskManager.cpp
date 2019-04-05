@@ -18,10 +18,10 @@ uint_fast64_t DiskManagement::Manager::simulate() {
 
     while(!queue.empty()) {
         uint_fast64_t next = findNext();
-        moveArmTo(next);
+        if(disk.getArmPosition() != next) moveArmTo(next);
 
         time++;
-        if(time > 1000000) {
+        if(time > 1000) {
             if(logStream != nullptr) logStream->add(Log("General", "Maximum time exceeded"));
             break;
         }
@@ -42,16 +42,16 @@ void DiskManagement::Manager::init() {
 
 void DiskManagement::Manager::moveArmTo(uint_fast64_t next) {
 
-    if(logStream != nullptr && next != disk.getArmPosition()) logStream->add(Log("Move", "Moving to " + std::to_string(next)));
+    if(logStream != nullptr) logStream->add(Log("Move", "Moving to " + std::to_string(next)));
 
     uint_fast32_t previousArmPosition = disk.getArmPosition(); // before move
     uint_fast32_t servicingDistance = disk.moveArmTo(next);
 
+    if(!disk.isServicingOnRun()) { servicingDistance = 0; previousArmPosition = disk.getArmPosition(); }
+    service(previousArmPosition, servicingDistance, disk.goesRight());
+
     operations += disk.getSingleTrackMovementCost() * servicingDistance;
     time += servicingDistance;
-
-    if(!disk.isServicingOnRun()) servicingDistance = 0;
-    service(previousArmPosition, servicingDistance, disk.goesRight());
 
 }
 
@@ -65,14 +65,15 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
         uint_fast32_t trackPosition = it->getTrackPosition();
         uint_fast32_t trackDistance = trackPosition - initialPosition;
         bool trackOnTheRight = trackDistance > 0;
-        distance = distance > 0 ? distance : -distance;
+        trackDistance = trackDistance > 0 ? trackDistance : -trackDistance;
 
-        if(it->getQueuedTime() + trackDistance < time) {
-            if ((trackDistance < distance && goesRight == trackOnTheRight) || trackDistance == distance) {
-                if (logStream != nullptr) logStream->add(Log("Service", "Servicing and removing on the position  " + std::to_string(trackPosition)));
-                queue.erase(it);
-                operations += disk.getDataReadCost();
-                i--;
+        if(it->getQueuedTime() <= time + trackDistance) {
+            if(trackDistance <= distance) {
+                if(goesRight == trackOnTheRight) {
+                    if(logStream != nullptr) logStream->add(Log("Service", "Servicing " + std::to_string(it->getTrackPosition())));
+                    queue.erase(it);
+                    i--;
+                }
             }
         }
     }
