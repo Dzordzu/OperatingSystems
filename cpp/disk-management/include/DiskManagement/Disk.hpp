@@ -8,7 +8,7 @@
 #include <cstdint>
 
 namespace DiskManagement {
-    class QueuedTrack {
+    class DiskRequest {
         uint_fast32_t queuedTime = 0;
         uint_fast32_t trackPosition = 0;
 
@@ -16,8 +16,8 @@ namespace DiskManagement {
         uint_fast32_t timeToDeadline = 0;
 
     public:
-        QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t trackPosition, uint_fast32_t timeToDeadline);
-        QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t trackNumber);
+        DiskRequest(uint_fast32_t queuedTime, uint_fast32_t trackPosition, uint_fast32_t timeToDeadline);
+        DiskRequest(uint_fast32_t queuedTime, uint_fast32_t trackNumber);
 
         uint_fast32_t getQueuedTime() const;
         uint_fast32_t getTrackPosition() const;
@@ -41,7 +41,7 @@ namespace DiskManagement {
         QueuedTrackBuilder & setTrackPosition(uint_fast32_t trackNumber);
         QueuedTrackBuilder & setTimeToDeadline(uint_fast32_t timeToDeadline);
 
-        QueuedTrack build();
+        DiskRequest build();
     };
 
 

@@ -5,29 +5,29 @@
 #include <DiskManagement/Disk.hpp>
 #include <iostream>
 
-uint_fast32_t DiskManagement::QueuedTrack::getQueuedTime() const {
+uint_fast32_t DiskManagement::DiskRequest::getQueuedTime() const {
     return queuedTime;
 }
 
-uint_fast32_t DiskManagement::QueuedTrack::getTrackPosition() const {
+uint_fast32_t DiskManagement::DiskRequest::getTrackPosition() const {
     return trackPosition;
 }
 
-bool DiskManagement::QueuedTrack::isRealTime() const {
+bool DiskManagement::DiskRequest::isRealTime() const {
     return realTime;
 }
 
-uint_fast32_t DiskManagement::QueuedTrack::getDeadlineTime() const {
+uint_fast32_t DiskManagement::DiskRequest::getDeadlineTime() const {
     return queuedTime + timeToDeadline;
 }
 
-DiskManagement::QueuedTrack::QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t trackPosition,
+DiskManagement::DiskRequest::DiskRequest(uint_fast32_t queuedTime, uint_fast32_t trackPosition,
                                          uint_fast32_t timeToDeadline) : queuedTime(queuedTime),
                                                                          trackPosition(trackPosition),
                                                                          realTime(true),
                                                                          timeToDeadline(timeToDeadline) {}
 
-DiskManagement::QueuedTrack::QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t trackNumber) : queuedTime(queuedTime),
+DiskManagement::DiskRequest::DiskRequest(uint_fast32_t queuedTime, uint_fast32_t trackNumber) : queuedTime(queuedTime),
                                                                                                 realTime(false),
                                                                                                 trackPosition(
                                                                                                         trackNumber) {}
@@ -53,8 +53,8 @@ DiskManagement::QueuedTrackBuilder &DiskManagement::QueuedTrackBuilder::getInsta
     return instance;
 }
 
-DiskManagement::QueuedTrack DiskManagement::QueuedTrackBuilder::build() {
-    DiskManagement::QueuedTrack queuedTrack = realTime ? DiskManagement::QueuedTrack(queuedTime, trackPosition, timeToDeadline) : DiskManagement::QueuedTrack(queuedTime, trackPosition);
+DiskManagement::DiskRequest DiskManagement::QueuedTrackBuilder::build() {
+    DiskManagement::DiskRequest queuedTrack = realTime ? DiskManagement::DiskRequest(queuedTime, trackPosition, timeToDeadline) : DiskManagement::DiskRequest(queuedTime, trackPosition);
     realTime = false;
     timeToDeadline = 0;
     trackPosition = 0;

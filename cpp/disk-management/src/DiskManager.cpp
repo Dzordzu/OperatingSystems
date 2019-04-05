@@ -28,7 +28,7 @@ void DiskManagement::Manager::init() {
     this->time = 0;
     this->disk.moveArmTo(0);
 
-    std::stable_sort(queue.begin(), queue.end(), [](const QueuedTrack &qt1, const QueuedTrack qt2){
+    std::stable_sort(queue.begin(), queue.end(), [](const DiskRequest &qt1, const DiskRequest qt2){
         return qt1.getQueuedTime() < qt2.getQueuedTime();
     });
 }
