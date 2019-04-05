@@ -11,7 +11,8 @@
 namespace DiskManagement {
 
     /*
-     * Explanations:
+     * Disk names explanations:
+     *
      * SD - Simple Disk
      * NSOR - No Service On Run
      * SIZE[NUM] - Size (value of NUM)
@@ -57,6 +58,11 @@ namespace DiskManagement {
             .setSize(10)
             .build();
 
+    /*
+     * Tests:
+     * 1 - 2 SYNC
+     * 3 - 4 ASYNC
+     */
 
     void prepareForTest_1(Manager * manager) {
         manager->enqueueRequest(DiskRequestBuilder::getInstance()
@@ -97,6 +103,38 @@ namespace DiskManagement {
                                        .build());
     }
 
+    void prepareForTest_3(Manager * manager) {
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                        .setQueuedTime(0)
+                                        .setTrackPosition(100)
+                                        .setTimeToDeadline(200)
+                                        .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                        .setQueuedTime(49)
+                                        .setTrackPosition(60)
+                                        .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                        .setQueuedTime(49)
+                                        .setTrackPosition(150)
+                                        .setTimeToDeadline(50)
+                                        .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                        .setQueuedTime(100)
+                                        .setTrackPosition(125)
+                                        .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                        .setQueuedTime(170)
+                                        .setTrackPosition(150)
+                                        .build());
+
+
+    }
+
+
 }
 
 using namespace DiskManagement;
@@ -129,6 +167,8 @@ TEST(Algorithm, FCFS_2) {
 //    logStream->writeAll();
 
 }
+
+
 
 
 //TEST(Algorithm, SSTF) {
