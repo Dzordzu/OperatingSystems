@@ -21,7 +21,7 @@ TEST(Algorithm, FCFS) {
 
     FCFSManager manager(disk);
 
-    manager.addDiskCall(DiskCallBuilder::getInstace()
+    manager.enqueueRequest(DiskCallBuilder::getInstace()
         .setAccelerationTime(8)
         .setIsAsync(false)
         .setTimeToDeadline(45)
