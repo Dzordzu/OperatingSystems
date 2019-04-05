@@ -32,17 +32,20 @@ DiskManagement::QueuedTrack::QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t
                                                                                                 trackPosition(
                                                                                                         trackNumber) {}
 
-void DiskManagement::QueuedTrackBuilder::setQueuedTime(uint_fast32_t queuedTime) {
+DiskManagement::QueuedTrackBuilder & DiskManagement::QueuedTrackBuilder::setQueuedTime(uint_fast32_t queuedTime) {
     QueuedTrackBuilder::queuedTime = queuedTime;
+    return *this;
 }
 
-void DiskManagement::QueuedTrackBuilder::setTrackPosition(uint_fast32_t trackNumber) {
+DiskManagement::QueuedTrackBuilder & DiskManagement::QueuedTrackBuilder::setTrackPosition(uint_fast32_t trackNumber) {
     QueuedTrackBuilder::trackPosition = trackNumber;
+    return *this;
 }
 
-void DiskManagement::QueuedTrackBuilder::setTimeToDeadline(uint_fast32_t timeToDeadline) {
+DiskManagement::QueuedTrackBuilder & DiskManagement::QueuedTrackBuilder::setTimeToDeadline(uint_fast32_t timeToDeadline) {
     realTime = true;
     QueuedTrackBuilder::timeToDeadline = timeToDeadline;
+    return *this;
 }
 
 DiskManagement::QueuedTrackBuilder &DiskManagement::QueuedTrackBuilder::getInstance() {
@@ -99,16 +102,20 @@ DiskManagement::Disk::Disk(uint_fast32_t size, uint_fast32_t armPosition, uint_f
                                                                                         servicingOnRun(
                                                                                                 servicingOnRun) {}
 
-void DiskManagement::DiskBuilder::setSize(uint_fast32_t size) {
+DiskManagement::DiskBuilder & DiskManagement::DiskBuilder::setSize(uint_fast32_t size) {
     DiskBuilder::size = size;
+    return *this;
 }
 
-void DiskManagement::DiskBuilder::setDataReadCost(uint_fast8_t dataReadCost) {
+DiskManagement::DiskBuilder & DiskManagement::DiskBuilder::setDataReadCost(uint_fast8_t dataReadCost) {
     DiskBuilder::dataReadCost = dataReadCost;
+    return *this;
 }
 
-void DiskManagement::DiskBuilder::setSingleTrackMovementCost(uint_fast8_t singleTrackMovementCost) {
+DiskManagement::DiskBuilder & DiskManagement::DiskBuilder::setSingleTrackMovementCost(
+        uint_fast8_t singleTrackMovementCost) {
     DiskBuilder::singleTrackMovementCost = singleTrackMovementCost;
+    return *this;
 }
 
 DiskManagement::Disk DiskManagement::DiskBuilder::build() {
@@ -120,10 +127,12 @@ DiskManagement::Disk DiskManagement::DiskBuilder::build() {
     servicingOnRun = false;
 }
 
-void DiskManagement::DiskBuilder::setArmPosition(uint_fast32_t armPosition) {
+DiskManagement::DiskBuilder & DiskManagement::DiskBuilder::setArmPosition(uint_fast32_t armPosition) {
     DiskBuilder::armPosition = armPosition;
+    return *this;
 }
 
-void DiskManagement::DiskBuilder::enableServicingOnRun(bool servicingOnRun) {
+DiskManagement::DiskBuilder & DiskManagement::DiskBuilder::enableServicingOnRun(bool servicingOnRun) {
     DiskBuilder::servicingOnRun = servicingOnRun;
+    return *this;
 }
