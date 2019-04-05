@@ -18,7 +18,7 @@ namespace DiskManagement {
     class Manager {
     protected:
         LogStream * logStream = nullptr;
-        Disk & disk;
+        Disk disk;
         std::vector<DiskRequest> queue = {};
 
         uint_fast64_t operations = 0;
