@@ -9,11 +9,11 @@
 
 namespace DiskManagement {
     class QueuedTrack {
-        uint_fast32_t queuedTime;
-        uint_fast32_t trackPosition;
+        uint_fast32_t queuedTime = 0;
+        uint_fast32_t trackPosition = 0;
 
-        bool realTime;
-        uint_fast32_t timeToDeadline;
+        bool realTime = false;
+        uint_fast32_t timeToDeadline = 0;
 
     public:
         QueuedTrack(uint_fast32_t queuedTime, uint_fast32_t trackPosition, uint_fast32_t timeToDeadline);
@@ -27,9 +27,9 @@ namespace DiskManagement {
 
     class QueuedTrackBuilder {
         QueuedTrackBuilder() = default;
-        uint_fast32_t queuedTime;
-        uint_fast32_t trackPosition;
-        uint_fast32_t timeToDeadline;
+        uint_fast32_t queuedTime = 0;
+        uint_fast32_t trackPosition = 0;
+        uint_fast32_t timeToDeadline = 0;
         bool realTime = false;
 
     public:
@@ -69,8 +69,8 @@ namespace DiskManagement {
 
     class DiskBuilder {
         DiskBuilder() = default;
-        uint_fast32_t size;
-        uint_fast32_t armPosition;
+        uint_fast32_t size = 0;
+        uint_fast32_t armPosition = 0;
         uint_fast8_t dataReadCost = 0;
         uint_fast8_t singleTrackMovementCost = 1;
         bool servicingOnRun = false;
