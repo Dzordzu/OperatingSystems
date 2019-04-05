@@ -101,7 +101,10 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
 DiskManagement::Manager::Manager(DiskManagement::Disk &disk) : disk(disk) {}
 
 void DiskManagement::Manager::enqueueRequest(DiskRequest request) {
-    if(logStream != nullptr) logStream->add(Log("General", "Asked to enqueue " + std::to_string(request.getTrackPosition())));
+    if(logStream != nullptr) {
+        Log log("General", "Asked to enqueue " + std::to_string(request.getTrackPosition()));
+        logStream->add(log);
+    }
 
     if(disk.getSize() > request.getTrackPosition()) {
         queue.emplace_back(request);
