@@ -64,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="191" selection-end-column="12" />
+            <state relative-caret-position="303">
+              <caret line="193" column="41" selection-start-line="193" selection-start-column="41" selection-end-line="193" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -391,14 +391,7 @@
       <workItem from="1554634823641" duration="5174000" />
       <workItem from="1554640227473" duration="78000" />
       <workItem from="1554640357567" duration="768000" />
-      <workItem from="1554641168701" duration="6202000" />
-    </task>
-    <task id="LOCAL-00031" summary="Added enqueueRequest method">
-      <created>1554471583426</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1554471583426</updated>
+      <workItem from="1554641168701" duration="6261000" />
     </task>
     <task id="LOCAL-00032" summary="Small change">
       <created>1554471641039</created>
@@ -736,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554648513348</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Fixed calculations, added new tests">
+      <created>1554649360950</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1554649360951</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -772,7 +772,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177265000" />
+    <option name="totallyTimeSpent" value="177324000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -897,7 +897,6 @@
       <path value="$PROJECT_DIR$/cpp/cmake-build-release-mingw/googletest-src" />
       <path value="$PROJECT_DIR$/cpp/cmake-build-release/googletest-src" />
     </ignored-roots>
-    <MESSAGE value="Added new tests. It fails again" />
     <MESSAGE value="Fixed some issue" />
     <MESSAGE value="Removed unnecessary comments" />
     <MESSAGE value="Added new tests" />
@@ -922,7 +921,8 @@
     <MESSAGE value="Now FCFS supports real time" />
     <MESSAGE value="Fixed wrong calculations" />
     <MESSAGE value="Removed unnecessary lines" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary lines" />
+    <MESSAGE value="Fixed calculations, added new tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed calculations, added new tests" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/googletest-src/CMakeLists.txt" />
@@ -1150,8 +1150,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="191" selection-end-column="12" />
+        <state relative-caret-position="303">
+          <caret line="193" column="41" selection-start-line="193" selection-start-column="41" selection-end-line="193" selection-end-column="41" />
         </state>
       </provider>
     </entry>

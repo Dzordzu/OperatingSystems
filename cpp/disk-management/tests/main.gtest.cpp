@@ -191,6 +191,10 @@ TEST(Algorithm, FCFS_3) {
     prepareForTest_3(&manager);
     EXPECT_EQ(258, manager.simulate());
 
+    manager.setDisk(NSOR_NS_DR1_STM10_AP5);
+    prepareForTest_3(&manager);
+    EXPECT_EQ(2536, manager.simulate());
+
 }
 
 
