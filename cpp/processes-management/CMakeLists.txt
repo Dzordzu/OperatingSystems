@@ -20,3 +20,5 @@ target_link_libraries(ProcessesManagement
 
 target_compile_features(ProcessesManagement PRIVATE cxx_std_14)
 add_subdirectory(tests)
+
+include(InstallScript.cmake)
