@@ -140,12 +140,14 @@ void DiskManagement::Manager::enqueueRequest(DiskRequest request) {
 
 }
 
-const uint_fast32_t DiskManagement::Manager::getDistance(uint_fast32_t const &from, uint_fast32_t const &to) const {
-    return to > from ? to - from : from - to;
+const uint_fast32_t DiskManagement::Manager::getDistance(DiskRequest const &to) const {
+    uint_fast32_t target = to.getTrackPosition();
+    uint_fast32_t from = disk.getArmPosition();
+    return target > from ? target - from : from - target;
 }
 
-const uint_fast32_t DiskManagement::Manager::isDirectedRight(uint_fast32_t const &from, uint_fast32_t const &to) const {
-    return from > to;
+const uint_fast32_t DiskManagement::Manager::isDirectedRight(DiskRequest const &to) const {
+    return disk.getArmPosition() < to.getTrackPosition();
 }
 
 uint_fast32_t DiskManagement::FCFSManager::findNext() {
@@ -167,7 +169,7 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
         /**
          * TODO fix this shitty error with time, add methods to calculate it
          */
-        if(c1.getQueuedTime() >= time) {
+        if(c1.getQueuedTime() + getDistance(c1) >= time) {
             return false;
         }
 

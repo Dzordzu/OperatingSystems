@@ -30,8 +30,8 @@ namespace DiskManagement {
         virtual void init();
         virtual uint_fast32_t findNext() = 0;
 
-        const uint_fast32_t getDistance(uint_fast32_t const & from, uint_fast32_t const & to) const;
-        const uint_fast32_t isDirectedRight(uint_fast32_t const &from, uint_fast32_t const &to) const;
+        const uint_fast32_t getDistance(DiskRequest const &to) const;
+        const uint_fast32_t isDirectedRight(DiskRequest const &to) const;
 
     public:
         explicit Manager(Disk &disk);
