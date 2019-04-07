@@ -185,7 +185,11 @@ TEST(Algorithm, FCFS_3) {
 
     FCFSManager manager(SD);
     prepareForTest_3(&manager);
-    EXPECT_EQ(253, manager.simulate());
+    EXPECT_EQ(258, manager.simulate());
+
+    manager.setDisk(SD_NSOR);
+    prepareForTest_3(&manager);
+    EXPECT_EQ(258, manager.simulate());
 
 }
 
