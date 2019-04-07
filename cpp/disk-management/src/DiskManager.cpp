@@ -44,7 +44,11 @@ void DiskManagement::Manager::init() {
 
 void DiskManagement::Manager::moveArmTo(uint_fast64_t next) {
 
-    if(logStream != nullptr) logStream->add(Log("Move", "Moving to " + std::to_string(next)));
+    if(logStream != nullptr) {
+        std::string logMessage = "Moving to " + std::to_string(next);
+        logMessage += " time(" + std::to_string(time) + ")";
+        logStream->add(Log("Move", logMessage));
+    }
 
     uint_fast32_t previousArmPosition = disk.getArmPosition(); // before move
     uint_fast32_t servicingDistance = disk.moveArmTo(next);
@@ -83,8 +87,8 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
             if(logStream != nullptr) {
                 std::string logMessage = "Servicing ";
                 logMessage += std::to_string(it->getTrackPosition()) + " ";
-                //logMessage += "that has been queued at " + std::to_string(it->getQueuedTime());
-                //logMessage += " time(" + std::to_string(time) + ")";
+                logMessage += "that has been queued at " + std::to_string(it->getQueuedTime());
+                logMessage += " time(" + std::to_string(time + trackDistance) + ")";
 
 
                 logStream->add(Log("Service", logMessage));
@@ -157,6 +161,14 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
 
         if(c2.getQueuedTime() >= time) {
             return true;
+        }
+
+        if(c1.isRealTime() && !c2.isRealTime()) return true;
+        if(!c1.isRealTime() && c2.isRealTime()) return false;
+
+        if(c1.isRealTime() && c2.isRealTime()) {
+            if(c1.getDeadlineTime() < c2.getDeadlineTime()) return true;
+            if(c1.getDeadlineTime() > c2.getDeadlineTime()) return false;
         }
 
         int_fast64_t difference1 = disk.getArmPosition() - c1.getTrackPosition();

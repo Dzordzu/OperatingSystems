@@ -130,7 +130,7 @@ namespace DiskManagement {
 
         manager->enqueueRequest(DiskRequestBuilder::getInstance()
                                         .setQueuedTime(100)
-                                        .setTrackPosition(100)
+                                        .setTrackPosition(99)
                                         .setTimeToDeadline(100)
                                         .build());
 
@@ -184,8 +184,13 @@ TEST(Algorithm, FCFS_2) {
 TEST(Algorithm, FCFS_3) {
 
     FCFSManager manager(SD);
-    prepareForTest_2(&manager);
-    EXPECT_EQ(170, manager.simulate());
+
+    StandardOutputLogStream * logStream = new StandardOutputLogStream();
+    manager.setLogStream(logStream);
+    prepareForTest_3(&manager);
+    EXPECT_EQ(170, manager.simulate());//
+    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
+    logStream->writeAll();
 
 }
 
