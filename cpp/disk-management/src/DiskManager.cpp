@@ -181,30 +181,30 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
         return disk.getArmPosition();
     }
 
-    auto it = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest &c1, const DiskRequest &c2) {
+    auto it = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest &d1, const DiskRequest &d2) {
 
         /**
          * TODO fix this shitty error with time, add methods to calculate it
          */
-        if(c1.getQueuedTime() >= time) { // && (c1.getQueuedTime() >= time && c2.getQueuedTime() >= time)
+        if(d1.getQueuedTime() >= time) { // && (c1.getQueuedTime() >= time && c2.getQueuedTime() >= time)
             return false;
         }
 
-        if(c2.getQueuedTime() >= time) {
+        if(d2.getQueuedTime() >= time) {
             return true;
         }
 
-        if(c1.isRealTime() && !c2.isRealTime()) return true;
-        if(!c1.isRealTime() && c2.isRealTime()) return false;
-        if(c1.isRealTime() && c2.isRealTime()) {
-            if(c1.getDeadlineTime() < c2.getDeadlineTime()) return true;
-            if(c1.getDeadlineTime() > c2.getDeadlineTime()) return false;
+        if(d1.isRealTime() && !d2.isRealTime()) return true;
+        if(!d1.isRealTime() && d2.isRealTime()) return false;
+        if(d1.isRealTime() && d2.isRealTime()) {
+            if(d1.getDeadlineTime() < d2.getDeadlineTime()) return true;
+            if(d1.getDeadlineTime() > d2.getDeadlineTime()) return false;
         }
 
-        int_fast64_t difference1 = disk.getArmPosition() - c1.getTrackPosition();
+        int_fast64_t difference1 = disk.getArmPosition() - d1.getTrackPosition();
         difference1 = difference1 < 0 ? -difference1 : difference1;
 
-        int_fast64_t difference2 = disk.getArmPosition() - c2.getTrackPosition();
+        int_fast64_t difference2 = disk.getArmPosition() - d2.getTrackPosition();
         difference2 = difference2 < 0 ? -difference2 : difference2;
 
         return difference1 < difference2;
@@ -265,7 +265,7 @@ uint_fast32_t DiskManagement::SCANManager::findNext() {
         return d1.getTrackPosition() < d2.getTrackPosition();
     });
 
-    auto maxIt = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest & d1, const DiskRequest & d2){
+    auto maxIt = std::max_element(queue.begin(), queue.end(), [=](const DiskRequest & d1, const DiskRequest & d2) {
         if(d1.getQueuedTime() > time) return false;
         if(d2.getQueuedTime() > time) return true;
 

@@ -62,12 +62,16 @@ namespace OperatingSystems {
             uint_fast32_t findNext() override;
         };
 
+        /**
+        * @IMPORTANT When lastFirstMode is turned off real time has no effect
+        */
         class SCANLike {
         protected:
             bool lastFirstMode = true;
         public:
             void enableLastFirstMode(bool lastFirstMode);
         };
+
 
         class SCANManager : public Manager, public SCANLike {
         public:
