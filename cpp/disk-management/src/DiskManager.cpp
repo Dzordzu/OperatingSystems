@@ -194,6 +194,12 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
             return true;
         }
 
+        if(c1.isRealTime() && !c2.isRealTime()) return true;
+        if(!c1.isRealTime() && c2.isRealTime()) return false;
+        if(c1.isRealTime() && c2.isRealTime()) {
+            if(c1.getDeadlineTime() < c2.getDeadlineTime()) return true;
+            if(c1.getDeadlineTime() > c2.getDeadlineTime()) return false;
+        }
 
         int_fast64_t difference1 = disk.getArmPosition() - c1.getTrackPosition();
         difference1 = difference1 < 0 ? -difference1 : difference1;
