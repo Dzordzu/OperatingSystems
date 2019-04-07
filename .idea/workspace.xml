@@ -25,9 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3b76862-218c-44c4-9e27-2609c0ee150e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/disk-management/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/tests/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/processes-management/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/processes-management/tests/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cpp/cmake-build-release/" />
@@ -71,11 +69,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+            <state relative-caret-position="102">
+              <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/Disk.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-512">
+              <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="726">
+              <caret line="58" column="32" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -145,9 +170,7 @@
         <option value="$PROJECT_DIR$/cpp/disk-management/src/DiskCall.cpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManagement.hpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/src/Disk.cpp" />
-        <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp" />
-        <option value="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" />
         <option value="$PROJECT_DIR$/cpp/processes-management/src/Manager.cpp" />
         <option value="$PROJECT_DIR$/cpp/utils/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cpp/CMakeLists.txt" />
@@ -161,6 +184,8 @@
         <option value="$PROJECT_DIR$/cpp/processes-management/tests/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cpp/disk-management/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cpp/disk-management/tests/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp" />
+        <option value="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" />
       </list>
     </option>
   </component>
@@ -199,17 +224,25 @@
               <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
               <item name="cpp" type="462c0819:PsiDirectoryNode" />
               <item name="disk-management" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
               <item name="cpp" type="462c0819:PsiDirectoryNode" />
-              <item name="processes-management" type="462c0819:PsiDirectoryNode" />
+              <item name="disk-management" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="DiskManagement" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
               <item name="cpp" type="462c0819:PsiDirectoryNode" />
-              <item name="processes-management" type="462c0819:PsiDirectoryNode" />
+              <item name="disk-management" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="operating-systems-cpp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cpp" type="462c0819:PsiDirectoryNode" />
+              <item name="disk-management" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -254,7 +287,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="CMake Application.gmock">
+  <component name="RunManager" selected="Google Test.All in DiskManagementTests">
     <configuration name="All in CppUtilsTests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" nameIsGenerated="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="operating-systems-cpp" TARGET_NAME="CppUtilsTests" CONFIG_NAME="Release-Cygwin" RUN_TARGET_PROJECT_NAME="operating-systems-cpp" RUN_TARGET_NAME="CppUtilsTests" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -365,28 +398,7 @@
       <workItem from="1554564958102" duration="2290000" />
       <workItem from="1554625323709" duration="6729000" />
       <workItem from="1554633640642" duration="616000" />
-      <workItem from="1554634823641" duration="252000" />
-    </task>
-    <task id="LOCAL-00016" summary="28-5 = 14 and everything is wrong">
-      <created>1554410004004</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1554410004004</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Implemented SCAN">
-      <created>1554412838006</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1554412838006</updated>
-    </task>
-    <task id="LOCAL-00018" summary="I've forgotten to add core functionality to git. Really">
-      <created>1554412944013</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1554412944013</updated>
+      <workItem from="1554634823641" duration="1889000" />
     </task>
     <task id="LOCAL-00019" summary="Started v2">
       <created>1554414224186</created>
@@ -710,7 +722,28 @@
       <option name="project" value="LOCAL" />
       <updated>1554631304221</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Fixed typo">
+      <created>1554635104919</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1554635104921</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Changed order">
+      <created>1554635161575</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1554635161575</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Cleaned code">
+      <created>1554636637960</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1554636637961</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -746,7 +779,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165295000" />
+    <option name="totallyTimeSpent" value="166932000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -776,7 +809,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3289689" />
-      <window_info anchor="bottom" id="CMake" order="12" visible="true" weight="0.32719547" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.32719547" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -869,9 +902,6 @@
       <path value="$PROJECT_DIR$/cpp/cmake-build-release-mingw/googletest-src" />
       <path value="$PROJECT_DIR$/cpp/cmake-build-release/googletest-src" />
     </ignored-roots>
-    <MESSAGE value="Removed unnecessary reference" />
-    <MESSAGE value="Upgraded enqueueRequest" />
-    <MESSAGE value="Upgraded tests structure" />
     <MESSAGE value="Found new errors! YUPI! (I should have tested it before I had used it)" />
     <MESSAGE value="Found new errors! YUPI! (I should have written tests it before I had used it)" />
     <MESSAGE value="Typo" />
@@ -894,7 +924,10 @@
     <MESSAGE value="Added installation script for disk-management" />
     <MESSAGE value="Upgraded config (gitignore and workspace CLion)" />
     <MESSAGE value="Upgraded config (workspace CLion)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upgraded config (workspace CLion)" />
+    <MESSAGE value="Fixed typo" />
+    <MESSAGE value="Changed order" />
+    <MESSAGE value="Cleaned code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned code" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/googletest-src/CMakeLists.txt" />
@@ -975,39 +1008,8 @@
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/googletest-src/googletest/src/gtest.cc" />
     <entry file="file:///usr/include/c++/8.2.1/bits/stl_vector.h" />
     <entry file="file:///usr/include/c++/8.2.1/bits/stl_iterator.h" />
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="65" column="31" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/math.h" />
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/Disk.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="108" column="4" selection-start-line="108" selection-start-column="4" selection-end-line="108" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/stdint.h" />
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
-          <folding>
-            <element signature="e#142#165#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="110" column="57" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/CMakeCache.txt" />
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-release/CMakeCache.txt" />
     <entry file="file://$USER_HOME$/CLionProjects/Test/test.cpp" />
@@ -1115,8 +1117,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+        <state relative-caret-position="102">
+          <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/Disk.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-512">
+          <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="25" lean-forward="true" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="58" column="32" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
         </state>
       </provider>
     </entry>

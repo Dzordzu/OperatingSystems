@@ -4,7 +4,7 @@
 
 #include <DiskManagement/DiskManager.hpp>
 
-void DiskManagement::Manager::setLogStream(LogStream *logStream) {
+void DiskManagement::Manager::setLogStream(LogStream * const logStream) {
     Manager::logStream = logStream;
 }
 
