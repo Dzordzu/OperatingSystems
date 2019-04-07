@@ -19,19 +19,19 @@ install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 # Now install config
 install(EXPORT cpputils-export
         FILE
-        CppUtilsTargets.cmake
+            CppUtilsTargets.cmake
         NAMESPACE
-        CppUtils::
+            OperatingSystems::
         DESTINATION
-        ${INSTALL_CONFIGDIR}
+            ${INSTALL_CONFIGDIR}
         )
 
 # We export our config (with namespce)
 export(EXPORT cpputils-export
         FILE
-        ${CMAKE_CURRENT_BINARY_DIR}/CppUtilsTargets.cmake
+            ${CMAKE_CURRENT_BINARY_DIR}/CppUtilsTargets.cmake
         NAMESPACE
-        CppUtils::
+            OperatingSystems::
         )
 
 # And export whole package

@@ -12,7 +12,7 @@ install(EXPORT processesmanagement-export
         FILE
             ProcessesManagementTargets.cmake
         NAMESPACE
-            ProcessesManagement::
+            OperatingSystems::
         DESTINATION
             ${CMAKE_INSTALL_LIBDR}/cmake/ProcessesManagement
         )
@@ -21,7 +21,7 @@ export(EXPORT processesmanagement-export
         FILE
             ${CMAKE_CURRENT_BINARY_DIR}/ProcessesManagementTargets.cmake
         NAMESPACE
-            ProcessesManagement::
+            OperatingSystems::
         )
 
 export(PACKAGE ProcessesManagement)

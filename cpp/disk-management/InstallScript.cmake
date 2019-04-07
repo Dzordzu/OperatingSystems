@@ -12,7 +12,7 @@ install(EXPORT diskmanagement-export
         FILE
             DiskManagementTargets.cmake
         NAMESPACE
-            DiskManagement::
+            OperatingSystems::
         DESTINATION
             ${CMAKE_INSTALL_LIBDIR}/cmake/DiskManaagement
         )
@@ -21,7 +21,7 @@ export(EXPORT diskmanagement-export
         FILE
             ${CMAKE_CURRENT_BINARY_DIR}/DiskManagementTargets.cmake
         NAMESPACE
-            DiskManagement::
+            OperatingSystems::
         )
 
 export(PACKAGE DiskManagement)
