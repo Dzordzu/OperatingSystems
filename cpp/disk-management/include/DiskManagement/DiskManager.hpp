@@ -62,18 +62,26 @@ namespace OperatingSystems {
             uint_fast32_t findNext() override;
         };
 
-        class SCANManager : public Manager {
-            double CSCANReturnCostProportion = 0.5;
-            bool CSCAN = false;
-            bool lastRequest = true;
+        class SCANLike {
+        protected:
+            bool lastFirstMode = true;
+        public:
+            void enableLastFirstMode(bool lastFirstMode);
+        };
 
-            void CSCANMoveArmToStart();
+        class SCANManager : public Manager, public SCANLike {
         public:
             explicit SCANManager(Disk &disk);
+        protected:
             uint_fast32_t findNext() override;
+        };
 
-            void useLastRequest(bool useLastRequest);
-            void setModeToCSCAN(bool CSCAN);
+        class CSCANManager : public Manager, public SCANLike {
+            double CSCANReturnCostProportion = 0.5;
+            void CSCANMoveArmToStart();
+        public:
+            explicit CSCANManager(Disk &disk);
+            uint_fast32_t findNext() override;
             void setCSCANReturnCostProportion(double CSCANReturnCost);
         };
     }

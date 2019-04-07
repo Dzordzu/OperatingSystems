@@ -218,42 +218,23 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
 
 DiskManagement::SSTFManager::SSTFManager(DiskManagement::Disk &disk) : Manager(disk) {}
 
-DiskManagement::SCANManager::SCANManager(DiskManagement::Disk &disk) : Manager(disk) { alwaysMove = true; }
+DiskManagement::CSCANManager::CSCANManager(DiskManagement::Disk &disk) : Manager(disk) { alwaysMove = true; }
 
-uint_fast32_t DiskManagement::SCANManager::findNext() {
-
-    if(this->lastRequest) {
-        uint_fast32_t position = 0;
-        for(size_t i = 0; i<queue.size(); i++) {
-            if(queue[i].getQueuedTime() > time) break;
-            position = std::max(position, queue[i].getTrackPosition());
-        }
-
-        if(CSCAN && position < disk.getArmPosition()) CSCANMoveArmToStart();
-
-        return position;
-    }
-
-    if(!CSCAN) return disk.getArmPosition() == disk.getSize() ? 0 : disk.getSize();
-    else {
-        CSCANMoveArmToStart();
-        return disk.getSize();
-    }
+uint_fast32_t DiskManagement::CSCANManager::findNext() {
+    CSCANMoveArmToStart();
+    auto it = std::max_element(queue.begin(), queue.end(), [=](const DiskRequest & d1, const DiskRequest & d2) {
+        if(d1.getQueuedTime() > time) return false;
+        if(d2.getQueuedTime() > time) return true;
+        return d1.getTrackPosition() < d2.getTrackPosition();
+    });
+    return lastFirstMode ? it->getTrackPosition() : disk.getSize();
 }
 
-void DiskManagement::SCANManager::setCSCANReturnCostProportion(double CSCANReturnCostProportion) {
-    SCANManager::CSCANReturnCostProportion = CSCANReturnCostProportion;
+void DiskManagement::CSCANManager::setCSCANReturnCostProportion(double CSCANReturnCostProportion) {
+    CSCANManager::CSCANReturnCostProportion = CSCANReturnCostProportion;
 }
 
-void DiskManagement::SCANManager::setModeToCSCAN(bool CSCAN) {
-    SCANManager::CSCAN = CSCAN;
-}
-
-void DiskManagement::SCANManager::useLastRequest(bool useLastRequest) {
-    SCANManager::lastRequest = useLastRequest;
-}
-
-void DiskManagement::SCANManager::CSCANMoveArmToStart() {
+void DiskManagement::CSCANManager::CSCANMoveArmToStart() {
     operations += (uint_fast32_t)(CSCANReturnCostProportion * disk.getArmPosition());
     disk.moveArmTo(0);
 }
@@ -263,3 +244,43 @@ void DiskManagement::SCANManager::CSCANMoveArmToStart() {
 //    disk.getArmPosition() = 0;
 //    return maxSize;
 //}
+void DiskManagement::SCANLike::enableLastFirstMode(bool lastFirstMode) {
+    SCANLike::lastFirstMode = lastFirstMode;
+}
+
+DiskManagement::SCANManager::SCANManager(DiskManagement::Disk &disk) : Manager(disk) {}
+
+uint_fast32_t DiskManagement::SCANManager::findNext() {
+
+    uint_fast32_t position;
+
+    if(!lastFirstMode) {
+        return disk.goesRight() ? 0 : disk.getSize();
+    }
+
+    auto minIt = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest & d1, const DiskRequest & d2){
+        if(d2.getQueuedTime() > time) return false;
+        if(d1.getQueuedTime() > time) return true;
+
+        return d1.getTrackPosition() < d2.getTrackPosition();
+    });
+
+    auto maxIt = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest & d1, const DiskRequest & d2){
+        if(d1.getQueuedTime() > time) return false;
+        if(d2.getQueuedTime() > time) return true;
+
+        return d1.getTrackPosition() < d2.getTrackPosition();
+    });
+
+    if(disk.goesRight()) {
+        position = minIt->getTrackPosition();
+        if(position == disk.getArmPosition()) position = maxIt->getTrackPosition();
+    }
+    else {
+        position = maxIt->getTrackPosition();
+        if(position == disk.getArmPosition()) position = minIt->getTrackPosition();
+    }
+
+
+    return position;
+}
