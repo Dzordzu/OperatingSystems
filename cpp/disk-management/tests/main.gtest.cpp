@@ -108,29 +108,36 @@ namespace DiskManagement {
     void prepareForTest_3(Manager * manager) {
         manager->enqueueRequest(DiskRequestBuilder::getInstance()
                                         .setQueuedTime(0)
-                                        .setTrackPosition(100)
-                                        .setTimeToDeadline(200)
+                                        .setTrackPosition(50)
+                                        .setTimeToDeadline(75)
+                                        .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                        .setQueuedTime(0)
+                                        .setTrackPosition(30)
+                                        .build());
+
+        manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                        .setQueuedTime(0)
+                                        .setTrackPosition(75)
                                         .build());
 
         manager->enqueueRequest(DiskRequestBuilder::getInstance()
                                         .setQueuedTime(49)
-                                        .setTrackPosition(60)
-                                        .build());
-
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                        .setQueuedTime(49)
-                                        .setTrackPosition(150)
-                                        .setTimeToDeadline(50)
+                                        .setTrackPosition(20)
+                                        .setTimeToDeadline(30)
                                         .build());
 
         manager->enqueueRequest(DiskRequestBuilder::getInstance()
                                         .setQueuedTime(100)
-                                        .setTrackPosition(125)
+                                        .setTrackPosition(100)
+                                        .setTimeToDeadline(100)
                                         .build());
 
         manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                        .setQueuedTime(170)
-                                        .setTrackPosition(150)
+                                        .setQueuedTime(100)
+                                        .setTrackPosition(0)
+                                        .setTimeToDeadline(101)
                                         .build());
 
 
@@ -171,6 +178,14 @@ TEST(Algorithm, FCFS_2) {
 //    manager.setLogStream(logStream);
 //    logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
 //    logStream->writeAll();
+
+}
+
+TEST(Algorithm, FCFS_3) {
+
+    FCFSManager manager(SD);
+    prepareForTest_2(&manager);
+    EXPECT_EQ(170, manager.simulate());
 
 }
 
