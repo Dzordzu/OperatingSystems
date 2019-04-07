@@ -18,5 +18,7 @@ target_link_libraries(DiskManagement
         PUBLIC
         CppUtils)
 
-target_compile_features(DiskManagement PRIVATE cxx_std_14)
+target_compile_features(DiskManagement PRIVATE cxx_std_17)
 add_subdirectory(tests)
+
+include(InstallScript.cmake)
