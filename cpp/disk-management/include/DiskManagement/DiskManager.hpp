@@ -12,6 +12,7 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
+#include <limits>
 
 namespace DiskManagement {
 

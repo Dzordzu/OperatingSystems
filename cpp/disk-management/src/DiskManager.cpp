@@ -152,8 +152,20 @@ const uint_fast32_t DiskManagement::Manager::isDirectedRight(DiskRequest const &
 
 uint_fast32_t DiskManagement::FCFSManager::findNext() {
     if(queue.begin()->getQueuedTime() > time) return disk.getArmPosition();
+
+    auto it = queue.rbegin() - 1;
+    int_fast64_t shortestRealTimeTrackPosition = -1, shortestRealTimeValue = INT_FAST64_MAX;
+
+    for(int i=0; i<queue.size(); i++) {
+        it++;
+        if(!it->isRealTime() || it->getQueuedTime() > time) continue;
+
+        if(it->getDeadlineTime() < shortestRealTimeValue)
+            shortestRealTimeTrackPosition = it->getTrackPosition();
+    }
+
     if(logStream != nullptr) logStream->add(Log("General", "Found next " + std::to_string(queue.begin()->getTrackPosition())));
-    return queue.begin()->getTrackPosition();
+    return shortestRealTimeTrackPosition == -1 ? queue.begin()->getTrackPosition() : shortestRealTimeTrackPosition;
 }
 
 DiskManagement::FCFSManager::FCFSManager(DiskManagement::Disk &disk) : Manager(disk) {}
@@ -169,7 +181,7 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
         /**
          * TODO fix this shitty error with time, add methods to calculate it
          */
-        if(c1.getQueuedTime() + getDistance(c1) >= time) {
+        if(c1.getQueuedTime() >= time) { // && (c1.getQueuedTime() >= time && c2.getQueuedTime() >= time)
             return false;
         }
 
@@ -177,13 +189,6 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
             return true;
         }
 
-        if(c1.isRealTime() && !c2.isRealTime()) return true;
-        if(!c1.isRealTime() && c2.isRealTime()) return false;
-
-        if(c1.isRealTime() && c2.isRealTime()) {
-            if(c1.getDeadlineTime() < c2.getDeadlineTime()) return true;
-            if(c1.getDeadlineTime() > c2.getDeadlineTime()) return false;
-        }
 
         int_fast64_t difference1 = disk.getArmPosition() - c1.getTrackPosition();
         difference1 = difference1 < 0 ? -difference1 : difference1;
