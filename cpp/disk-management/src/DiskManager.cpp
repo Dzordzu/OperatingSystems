@@ -140,6 +140,14 @@ void DiskManagement::Manager::enqueueRequest(DiskRequest request) {
 
 }
 
+const uint_fast32_t DiskManagement::Manager::getDistance(uint_fast32_t const &from, uint_fast32_t const &to) const {
+    return to > from ? to - from : from - to;
+}
+
+const uint_fast32_t DiskManagement::Manager::isDirectedRight(uint_fast32_t const &from, uint_fast32_t const &to) const {
+    return from > to;
+}
+
 uint_fast32_t DiskManagement::FCFSManager::findNext() {
     if(queue.begin()->getQueuedTime() > time) return disk.getArmPosition();
     if(logStream != nullptr) logStream->add(Log("General", "Found next " + std::to_string(queue.begin()->getTrackPosition())));
