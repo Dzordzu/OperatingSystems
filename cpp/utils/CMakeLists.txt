@@ -15,3 +15,5 @@ target_include_directories(CppUtils
 
 target_compile_features(CppUtils PRIVATE cxx_std_14)
 add_subdirectory(tests)
+
+include(InstallScript.cmake)

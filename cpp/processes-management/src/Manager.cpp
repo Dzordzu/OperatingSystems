@@ -136,7 +136,7 @@ void SJFManager::addToQueue(Process &process) {
         return;
     }
 
-    u_short indexMovement = 0;
+    short indexMovement = 0;
 
     if(queue[0].getStatus()) {
         indexMovement = 1;
