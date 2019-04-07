@@ -254,7 +254,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Google Test.All in DiskManagementTests">
+  <component name="RunManager" selected="CMake Application.gmock">
     <configuration name="All in CppUtilsTests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" nameIsGenerated="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="operating-systems-cpp" TARGET_NAME="CppUtilsTests" CONFIG_NAME="Release-Cygwin" RUN_TARGET_PROJECT_NAME="operating-systems-cpp" RUN_TARGET_NAME="CppUtilsTests" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -320,9 +320,9 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="CMake Application.MAIN" />
       <item itemvalue="CMake Application.CppUtils" />
       <item itemvalue="CMake Application.DiskManagement" />
-      <item itemvalue="CMake Application.MAIN" />
       <item itemvalue="CMake Application.ProcessesManagement" />
       <item itemvalue="CMake Application.gmock" />
       <item itemvalue="CMake Application.gmock_main" />
