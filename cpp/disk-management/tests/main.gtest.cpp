@@ -251,6 +251,18 @@ TEST(Algorithm, SCAN_1) {
 
 }
 
+TEST(Algorithm, SCAN_3) {
+
+    SCANManager manager(SD);
+    prepareForTest_3(&manager);
+    EXPECT_EQ(258, manager.simulate());
+
+    manager.useLastRequest(false);
+    prepareForTest_3(&manager);
+    EXPECT_EQ(258, manager.simulate());
+
+}
+
 TEST(Algorithm, CSCAN_1) {
 
     SCANManager manager(SD); manager.setModeToCSCAN(true);
@@ -261,6 +273,18 @@ TEST(Algorithm, CSCAN_1) {
     prepareForTest_1(&manager);
     EXPECT_EQ(250, manager.simulate());
 
+
+}
+
+TEST(Algorithm, CSCAN_3) {
+
+    SCANManager manager(SD); manager.setModeToCSCAN(true);
+    prepareForTest_3(&manager);
+    EXPECT_EQ(258, manager.simulate());
+
+    manager.useLastRequest(false);
+    prepareForTest_3(&manager);
+    EXPECT_EQ(258, manager.simulate());
 
 }
 
