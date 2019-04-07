@@ -89,6 +89,7 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
                 logMessage += std::to_string(it->getTrackPosition()) + " ";
                 logMessage += "that has been queued at " + std::to_string(it->getQueuedTime());
                 logMessage += " time(" + std::to_string(time + trackDistance) + ")";
+                logMessage += ", "; it->isRealTime() ? logMessage += "real time" : logMessage += "normal";
 
 
                 logStream->add(Log("Service", logMessage));
@@ -155,6 +156,9 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
 
     auto it = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest &c1, const DiskRequest &c2) {
 
+        /**
+         * TODO fix this shitty error with time, add methods to calculate it
+         */
         if(c1.getQueuedTime() >= time) {
             return false;
         }
