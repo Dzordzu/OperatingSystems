@@ -8,6 +8,8 @@
 #include <cstdint>
 
 namespace DiskManagement {
+
+
     class DiskRequest {
         uint_fast32_t queuedTime = 0;
         uint_fast32_t trackPosition = 0;
@@ -24,26 +26,6 @@ namespace DiskManagement {
         bool isRealTime() const;
         uint_fast32_t getDeadlineTime() const;
     };
-
-    class DiskRequestBuilder {
-        DiskRequestBuilder() {};
-        uint_fast32_t queuedTime = 0;
-        uint_fast32_t trackPosition = 0;
-        uint_fast32_t timeToDeadline = 0;
-        bool realTime = false;
-
-    public:
-        static DiskRequestBuilder& getInstance();
-        DiskRequestBuilder(DiskRequestBuilder const&) = delete;
-        void operator=(DiskRequestBuilder const&) = delete;
-
-        DiskRequestBuilder & setQueuedTime(uint_fast32_t queuedTime);
-        DiskRequestBuilder & setTrackPosition(uint_fast32_t trackNumber);
-        DiskRequestBuilder & setTimeToDeadline(uint_fast32_t timeToDeadline);
-
-        DiskRequest build();
-    };
-
 
     class Disk {
         uint_fast32_t size;
@@ -67,6 +49,32 @@ namespace DiskManagement {
         bool isServicingOnRun() const;
 
         uint32_t moveArmTo(uint32_t nextPosition);
+    };
+
+
+    /*
+     * **************************************
+     * Builders
+     * **************************************
+     */
+
+    class DiskRequestBuilder {
+        DiskRequestBuilder() {};
+        uint_fast32_t queuedTime = 0;
+        uint_fast32_t trackPosition = 0;
+        uint_fast32_t timeToDeadline = 0;
+        bool realTime = false;
+
+    public:
+        static DiskRequestBuilder& getInstance();
+        DiskRequestBuilder(DiskRequestBuilder const&) = delete;
+        void operator=(DiskRequestBuilder const&) = delete;
+
+        DiskRequestBuilder & setQueuedTime(uint_fast32_t queuedTime);
+        DiskRequestBuilder & setTrackPosition(uint_fast32_t trackNumber);
+        DiskRequestBuilder & setTimeToDeadline(uint_fast32_t timeToDeadline);
+
+        DiskRequest build();
     };
 
     class DiskBuilder {
