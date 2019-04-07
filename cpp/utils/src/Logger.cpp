@@ -4,6 +4,11 @@
 
 #include "CppUtils/Logger.hpp"
 
+/**
+ * @XXX This smells
+ */
+using namespace OperatingSystems::CppUtils;
+
 Log::Log(const std::string &title, const std::string &name) : title(title), message(name) {}
 
 const std::string &Log::getTitle() const {
