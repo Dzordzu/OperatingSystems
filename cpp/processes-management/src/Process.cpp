@@ -4,6 +4,11 @@
 
 #include <ProcessesManagement/Process.hpp>
 
+/**
+ * @XXX This smells
+ */
+using namespace OperatingSystems::ProcessesManagement;
+
 Process::Process(const std::string &name, const uint_fast16_t delay, const uint_fast16_t executionTime) : name(name),
                                                                                                  delay(delay),
                                                                                                  execTime(executionTime) {}

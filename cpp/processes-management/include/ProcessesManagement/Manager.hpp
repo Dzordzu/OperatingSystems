@@ -11,78 +11,108 @@
 #include <utility>
 #include <iostream>
 
-class ProcessBuilder {
-    ProcessBuilder(){}
-    Process lastProcess;
+namespace OperatingSystems {
+    namespace ProcessesManagement {
 
-    std::string name;
-    uint_fast16_t delay, executionTime;
+        using OperatingSystems::CppUtils::LogStream;
+        using OperatingSystems::CppUtils::Log;
 
-public:
-    ProcessBuilder(ProcessBuilder const&) = delete;
-    void operator=(ProcessBuilder const&) = delete;
+        class ProcessBuilder {
+            ProcessBuilder() {}
 
-    inline static ProcessBuilder &getInstance() {
-        static ProcessBuilder instance;
-        return instance;
+            Process lastProcess;
+
+            std::string name;
+            uint_fast16_t delay, executionTime;
+
+        public:
+            ProcessBuilder(ProcessBuilder const &) = delete;
+
+            void operator=(ProcessBuilder const &) = delete;
+
+            inline static ProcessBuilder &getInstance() {
+                static ProcessBuilder instance;
+                return instance;
+            }
+
+            ProcessBuilder &newProcess();
+
+            inline ProcessBuilder &setDelay(uint_fast16_t delay) {
+                this->delay = delay;
+                return *this;
+            }
+
+            inline ProcessBuilder &setName(const std::string &name) {
+                this->name = name;
+                return *this;
+            }
+
+            inline ProcessBuilder &setExecutionTime(uint_fast16_t executionTime) {
+                this->executionTime = executionTime;
+                return *this;
+            }
+
+            inline Process create() {
+                lastProcess = Process(name, delay, executionTime);
+                return lastProcess;
+            }
+
+        };
+
+        class Manager {
+        protected:
+            std::vector<Process> processes;
+
+            std::vector<QueuedProcess> queue;
+
+            uint_fast16_t nextPid;
+            uint_fast64_t currentTime;
+
+            bool finished();
+            virtual void addToQueue(Process &process);
+        public:
+            void addProcess(Process process);
+            uint_fast32_t getProcessesAmount();
+            std::vector<Process> getProcessesVector();
+            virtual double simulate();
+            virtual double simulate(LogStream *const logStream) = 0;
+            virtual void reset();
+        };
+
+        class FCFSManager : public Manager {
+        public:
+            inline FCFSManager() { reset(); }
+            double simulate(LogStream *const logStream) override;
+            double simulate() override;
+        };
+
+        class SJFManager : public FCFSManager {
+        public:
+            inline SJFManager() { reset(); }
+            void addToQueue(Process &process) override;
+        };
+
+        class SRTFManager : public FCFSManager {
+        public:
+            inline SRTFManager() { reset(); }
+            void addToQueue(Process &process) override;
+        };
+
+        class RRManager : public Manager {
+        protected:
+            uint_fast16_t execTimes;
+        public:
+            inline RRManager() {
+                reset();
+                execTimes = 10;
+            }
+
+            double simulate(LogStream *const logStream) override;
+            double simulate() override;
+            inline void setExecTimes(uint_fast16_t execTimes) { this->execTimes = execTimes; }
+        };
     }
-
-    ProcessBuilder &newProcess();
-    inline ProcessBuilder &setDelay(uint_fast16_t delay) { this->delay = delay;return *this; }
-    inline ProcessBuilder &setName(const std::string &name) {this->name = name; return *this; }
-    inline ProcessBuilder &setExecutionTime(uint_fast16_t executionTime) { this->executionTime = executionTime;return *this; }
-    inline Process create() { lastProcess = Process(name, delay, executionTime); return lastProcess; }
-
-};
-
-class Manager {
-protected:
-    std::vector<Process> processes;
-
-    std::vector<QueuedProcess> queue;
-
-    uint_fast16_t nextPid;
-    uint_fast64_t currentTime;
-
-    bool finished();
-    virtual void addToQueue(Process & process);
-public:
-    void addProcess(Process process);
-    uint_fast32_t getProcessesAmount();
-    std::vector<Process> getProcessesVector();
-    virtual double simulate();
-    virtual double simulate(LogStream * const logStream) = 0;
-    virtual void reset();
-};
-
-class FCFSManager : public Manager {
-public:
-    inline FCFSManager() { reset(); }
-    double simulate(LogStream * const logStream) override;
-    double simulate() override;
-};
-
-class SJFManager : public FCFSManager {
-public:
-    inline SJFManager() { reset(); }
-    void addToQueue(Process & process) override;
-};
-
-class SRTFManager : public FCFSManager {
-public:
-    inline SRTFManager() { reset(); }
-    void addToQueue(Process & process) override;
-};
-
-class RRManager : public Manager {
-protected:
-    uint_fast16_t execTimes;
-public:
-    inline RRManager() { reset(); execTimes = 10; }
-    double simulate(LogStream * const logStream) override;
-    double simulate() override;
-    inline void setExecTimes(uint_fast16_t execTimes) {this->execTimes = execTimes;}
-};
+}
 
 
 #endif //OPERATING_SYSTEMS_CPP_MANAGER_HPP

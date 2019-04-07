@@ -4,6 +4,11 @@
 
 #include <ProcessesManagement/Manager.hpp>
 
+/**
+ * @XXX This smells
+ */
+using namespace OperatingSystems::ProcessesManagement;
+
 ProcessBuilder &ProcessBuilder::newProcess() {
 
     lastProcess = Process();
