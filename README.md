@@ -10,7 +10,12 @@ Currently it contains following micro projects:
 
 ## Installation
 ### C++
-In order to install and run this project you need to download CMake and g++ compiler. The exact installation steps are in the wiki
+1. Download g++ compiler
+2. Download CMake
+3. Make project
+4. Run MAIN or add one or more libraries to your project
+
+Use can also see an [installation guide for c++](cpp/INSTALL.md)
 
 ## TODO
 * Prepare GUI (web) interface
