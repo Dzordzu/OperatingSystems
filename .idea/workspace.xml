@@ -26,8 +26,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d3b76862-218c-44c4-9e27-2609c0ee150e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cpp/cmake-build-release/" />
@@ -62,11 +60,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Release-Cygwin" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="192" column="11" selection-start-line="192" selection-start-column="11" selection-end-line="192" selection-end-column="11" />
+            <state relative-caret-position="116">
+              <caret line="185" column="28" selection-start-line="185" selection-start-column="28" selection-end-line="185" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -74,17 +72,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="160" column="53" selection-start-line="160" selection-start-column="53" selection-end-line="160" selection-end-column="53" />
+            <state relative-caret-position="255">
+              <caret line="161" lean-forward="true" selection-start-line="161" selection-end-line="161" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="31" />
+            <state relative-caret-position="238">
+              <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
               <folding>
                 <element signature="e#142#161#0" expanded="true" />
               </folding>
@@ -170,9 +168,9 @@
         <option value="$PROJECT_DIR$/cpp/disk-management/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cpp/disk-management/tests/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/Disk.hpp" />
-        <option value="$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" />
         <option value="$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp" />
+        <option value="$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp" />
       </list>
     </option>
   </component>
@@ -392,28 +390,7 @@
       <workItem from="1554634823641" duration="5174000" />
       <workItem from="1554640227473" duration="78000" />
       <workItem from="1554640357567" duration="768000" />
-      <workItem from="1554641168701" duration="5197000" />
-    </task>
-    <task id="LOCAL-00026" summary="Made disk a singleton">
-      <created>1554469351583</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1554469351583</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Small fixes">
-      <created>1554469503018</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1554469503018</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Made builders singletons">
-      <created>1554470899789</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1554470899789</updated>
+      <workItem from="1554641168701" duration="5363000" />
     </task>
     <task id="LOCAL-00029" summary="Small changes in tests">
       <created>1554471121707</created>
@@ -737,7 +714,28 @@
       <option name="project" value="LOCAL" />
       <updated>1554644729564</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Now FCFS supports real time">
+      <created>1554648438174</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1554648438174</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Fixed wrong calculations">
+      <created>1554648466375</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1554648466375</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Removed unnecessary lines">
+      <created>1554648490501</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1554648490501</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -773,7 +771,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176260000" />
+    <option name="totallyTimeSpent" value="176426000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -898,9 +896,6 @@
       <path value="$PROJECT_DIR$/cpp/cmake-build-release-mingw/googletest-src" />
       <path value="$PROJECT_DIR$/cpp/cmake-build-release/googletest-src" />
     </ignored-roots>
-    <MESSAGE value="Fixed issues. Next ones (including no initial arm position, no data read cost)" />
-    <MESSAGE value="Fixed test xD" />
-    <MESSAGE value="Added SSTFManager. Prepared SCAN, CSCAN managers (comments)" />
     <MESSAGE value="Added new tests. It fails again" />
     <MESSAGE value="Fixed some issue" />
     <MESSAGE value="Removed unnecessary comments" />
@@ -923,7 +918,10 @@
     <MESSAGE value="Added important note" />
     <MESSAGE value="Added (single lined) methods calculating direction and distance" />
     <MESSAGE value="Updated methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated methods" />
+    <MESSAGE value="Now FCFS supports real time" />
+    <MESSAGE value="Fixed wrong calculations" />
+    <MESSAGE value="Removed unnecessary lines" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary lines" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/googletest-src/CMakeLists.txt" />
@@ -1132,27 +1130,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="192" column="11" selection-start-line="192" selection-start-column="11" selection-end-line="192" selection-end-column="11" />
+        <state relative-caret-position="238">
+          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding>
+            <element signature="e#142#161#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="160" column="53" selection-start-line="160" selection-start-column="53" selection-end-line="160" selection-end-column="53" />
+        <state relative-caret-position="255">
+          <caret line="161" lean-forward="true" selection-start-line="161" selection-end-line="161" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
+    <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/main.gtest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="31" />
-          <folding>
-            <element signature="e#142#161#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="116">
+          <caret line="185" column="28" selection-start-line="185" selection-start-column="28" selection-end-line="185" selection-end-column="28" />
         </state>
       </provider>
     </entry>
