@@ -8,145 +8,145 @@
 #include <string>
 #include <DiskManagement/DiskManager.hpp>
 
-namespace DiskManagement {
+namespace OperatingSystems {
+    namespace DiskManagement {
 
-    /*
-     * Disk names explanations:
-     *
-     * SD - Simple Disk (size: 100, stm: 1, dr: 0, enabled service on run, ap: 0)
-     * NSOR - No Service On Run
-     * SIZE[NUM] - Size (value of NUM)
-     * SS - Small Size (same as SIZE10)
-     * NS - Normal Size (same AS SIZE500)
-     * HS - Huge Size (same as SIZE10000)
-     * ES - Enormous Size (same as SIZE100000)
-     * ASYNC - Asynchronous
-     * DR[NUM] - Data Read Cost (value of NUM)
-     * STM[NUM] - Single Track Movement (value of NUM)
-     * AP[NUM] - Arm Position (value of NUM)
-     *
-     * note: SD can be override by any other property
-     */
+        /*
+         * Disk names explanations:
+         *
+         * SD - Simple Disk (size: 100, stm: 1, dr: 0, enabled service on run, ap: 0)
+         * NSOR - No Service On Run
+         * SIZE[NUM] - Size (value of NUM)
+         * SS - Small Size (same as SIZE10)
+         * NS - Normal Size (same AS SIZE500)
+         * HS - Huge Size (same as SIZE10000)
+         * ES - Enormous Size (same as SIZE100000)
+         * ASYNC - Asynchronous
+         * DR[NUM] - Data Read Cost (value of NUM)
+         * STM[NUM] - Single Track Movement (value of NUM)
+         * AP[NUM] - Arm Position (value of NUM)
+         *
+         * note: SD can be override by any other property
+         */
 
-    Disk SD = DiskBuilder::getInstance()
-            .setArmPosition(0)
-            .enableServicingOnRun(true)
-            .setDataReadCost(0)
-            .setSingleTrackMovementCost(1)
-            .setSize(100)
-            .build();
+        Disk SD = DiskBuilder::getInstance()
+                .setArmPosition(0)
+                .enableServicingOnRun(true)
+                .setDataReadCost(0)
+                .setSingleTrackMovementCost(1)
+                .setSize(100)
+                .build();
 
-    Disk SD_NSOR = DiskBuilder::getInstance()
-            .setArmPosition(0)
-            .enableServicingOnRun(false)
-            .setDataReadCost(0)
-            .setSingleTrackMovementCost(1)
-            .setSize(100)
-            .build();
+        Disk SD_NSOR = DiskBuilder::getInstance()
+                .setArmPosition(0)
+                .enableServicingOnRun(false)
+                .setDataReadCost(0)
+                .setSingleTrackMovementCost(1)
+                .setSize(100)
+                .build();
 
-    Disk SD_SS_NSOR = DiskBuilder::getInstance()
-            .setArmPosition(0)
-            .enableServicingOnRun(false)
-            .setDataReadCost(0)
-            .setSingleTrackMovementCost(1)
-            .setSize(10)
-            .build();
+        Disk SD_SS_NSOR = DiskBuilder::getInstance()
+                .setArmPosition(0)
+                .enableServicingOnRun(false)
+                .setDataReadCost(0)
+                .setSingleTrackMovementCost(1)
+                .setSize(10)
+                .build();
 
-    Disk NSOR_NS_DR1_STM10_AP5 = DiskBuilder::getInstance()
-            .setArmPosition(5)
-            .enableServicingOnRun(false)
-            .setDataReadCost(1)
-            .setSingleTrackMovementCost(10)
-            .setSize(500)
-            .build();
+        Disk NSOR_NS_DR1_STM10_AP5 = DiskBuilder::getInstance()
+                .setArmPosition(5)
+                .enableServicingOnRun(false)
+                .setDataReadCost(1)
+                .setSingleTrackMovementCost(10)
+                .setSize(500)
+                .build();
 
-    /*
-     * Tests:
-     * 1 - 2 SYNC
-     * 3 - 4 ASYNC
-     */
+        /*
+         * Tests:
+         * 1 - 2 SYNC
+         * 3 - 4 ASYNC
+         */
 
-    void prepareForTest_1(Manager * manager) {
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                       .setQueuedTime(8)
-                                       .setTrackPosition(7)
-                                       .build());
+        void prepareForTest_1(Manager *manager) {
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(8)
+                                            .setTrackPosition(7)
+                                            .build());
 
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                       .setQueuedTime(9)
-                                       .setTrackPosition(4)
-                                       .build());
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(9)
+                                            .setTrackPosition(4)
+                                            .build());
 
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                       .setQueuedTime(9)
-                                       .setTrackPosition(6)
-                                       .build());
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(9)
+                                            .setTrackPosition(6)
+                                            .build());
 
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                       .setQueuedTime(4)
-                                       .setTrackPosition(4)
-                                       .build());
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(4)
+                                            .setTrackPosition(4)
+                                            .build());
+        }
+
+        void prepareForTest_2(Manager *manager) {
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(0)
+                                            .setTrackPosition(10)
+                                            .build()); // 5 + 3 + 8
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(1)
+                                            .setTrackPosition(15)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(2)
+                                            .setTrackPosition(7)
+                                            .build());
+        }
+
+        void prepareForTest_3(Manager *manager) {
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(0)
+                                            .setTrackPosition(50)
+                                            .setTimeToDeadline(75)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(0)
+                                            .setTrackPosition(30)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(0)
+                                            .setTrackPosition(75)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(49)
+                                            .setTrackPosition(20)
+                                            .setTimeToDeadline(30)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(100)
+                                            .setTrackPosition(99)
+                                            .setTimeToDeadline(100)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(100)
+                                            .setTrackPosition(0)
+                                            .setTimeToDeadline(101)
+                                            .build());
+
+
+        }
     }
-
-    void prepareForTest_2(Manager * manager) {
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                       .setQueuedTime(0)
-                                       .setTrackPosition(10)
-                                       .build()); // 5 + 3 + 8
-
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                       .setQueuedTime(1)
-                                       .setTrackPosition(15)
-                                       .build());
-
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                       .setQueuedTime(2)
-                                       .setTrackPosition(7)
-                                       .build());
-    }
-
-    void prepareForTest_3(Manager * manager) {
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                        .setQueuedTime(0)
-                                        .setTrackPosition(50)
-                                        .setTimeToDeadline(75)
-                                        .build());
-
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                        .setQueuedTime(0)
-                                        .setTrackPosition(30)
-                                        .build());
-
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                        .setQueuedTime(0)
-                                        .setTrackPosition(75)
-                                        .build());
-
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                        .setQueuedTime(49)
-                                        .setTrackPosition(20)
-                                        .setTimeToDeadline(30)
-                                        .build());
-
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                        .setQueuedTime(100)
-                                        .setTrackPosition(99)
-                                        .setTimeToDeadline(100)
-                                        .build());
-
-        manager->enqueueRequest(DiskRequestBuilder::getInstance()
-                                        .setQueuedTime(100)
-                                        .setTrackPosition(0)
-                                        .setTimeToDeadline(101)
-                                        .build());
-
-
-    }
-
-
 }
 
-using namespace DiskManagement;
+using namespace OperatingSystems::DiskManagement;
 
 TEST(Algorithm, FCFS_1) {
 

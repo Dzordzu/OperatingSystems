@@ -8,11 +8,16 @@
 #include <ProcessesManagement/Manager.hpp>
 #include <string>
 
+namespace OperatingSystems {
+    namespace ProcessesManagement {
+        class ExampleManager : public Manager {
+        public:
+            double simulate(LogStream *const logStream) override { return 0; }
+        };
+    }
+}
 
-class ExampleManager : public Manager {
-public:
-    double simulate(LogStream *const logStream) override {return 0;}
-};
+using namespace OperatingSystems::ProcessesManagement;
 
 TEST(ProcessesManagement, ExampleManager) {
     ExampleManager manager;
@@ -32,6 +37,7 @@ TEST(ProcessesManagement, ExampleManager) {
     EXPECT_EQ(manager.getProcessesVector()[0].getDelay(), 0);
     EXPECT_EQ(manager.getProcessesVector()[1].getDelay(), 50);
 
+}
 }
 
 

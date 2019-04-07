@@ -7,6 +7,7 @@
 #include <CppUtils/Logger.hpp>
 #include <string>
 
+using namespace OperatingSystems::CppUtils;
 
 TEST(LoggerTest, StandardOutputLogStream) {
     StandardOutputLogStream stream;
