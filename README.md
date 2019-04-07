@@ -8,5 +8,9 @@ Currently it contains following micro projects:
 * [Processes Management simulation API](cpp/processes-management) 
 * [Disk Schedulding simulation API](cpp/disk-management)
 
+## Installation
+### C++
+In order to install and run this project you need to download CMake and g++ compiler. The exact installation steps are in the wiki
+
 ## TODO
 * Prepare GUI (web) interface
