@@ -38,7 +38,7 @@ TEST(ProcessesManagement, ExampleManager) {
     EXPECT_EQ(manager.getProcessesVector()[1].getDelay(), 50);
 
 }
-}
+
 
 
 TEST(ProcessesManagement, FCFSManager) {

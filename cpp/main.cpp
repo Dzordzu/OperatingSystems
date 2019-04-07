@@ -7,6 +7,10 @@
 #include <mutex>
 
 void showFor(uint_fast64_t sample) {
+
+    using namespace OperatingSystems::ProcessesManagement;
+    using OperatingSystems::CppUtils::StandardOutputLogStream;
+
     StandardOutputLogStream logs;
     FCFSManager fcfsManager;
     SJFManager sjfManager;

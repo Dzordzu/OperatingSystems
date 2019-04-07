@@ -230,7 +230,7 @@ TEST(Algorithm, SSTF_2) {
 
 TEST(Algorithm, SSTF_3) {
 
-    FCFSManager manager(SD);
+    SSTFManager manager(SD);
     prepareForTest_3(&manager);
     EXPECT_EQ(258, manager.simulate());
 
