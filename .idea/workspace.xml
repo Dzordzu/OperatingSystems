@@ -24,7 +24,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3b76862-218c-44c4-9e27-2609c0ee150e" name="Default Changelist" comment="">
+    <list default="true" id="d3b76862-218c-44c4-9e27-2609c0ee150e" name="Default Changelist" comment="Changed pointer in setter to const pointer">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -73,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+              <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -91,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+              <caret line="6" column="73" lean-forward="true" selection-start-line="6" selection-start-column="73" selection-end-line="6" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -100,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="726">
-              <caret line="58" column="32" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+              <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -398,14 +399,7 @@
       <workItem from="1554564958102" duration="2290000" />
       <workItem from="1554625323709" duration="6729000" />
       <workItem from="1554633640642" duration="616000" />
-      <workItem from="1554634823641" duration="1889000" />
-    </task>
-    <task id="LOCAL-00019" summary="Started v2">
-      <created>1554414224186</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1554414224186</updated>
+      <workItem from="1554634823641" duration="2054000" />
     </task>
     <task id="LOCAL-00020" summary="Renamed DiskCall to Disk">
       <created>1554414269142</created>
@@ -743,13 +737,17 @@
       <option name="project" value="LOCAL" />
       <updated>1554636637961</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Changed pointer in setter to const pointer">
+      <created>1554636890616</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1554636890616</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_DiskManagementTests_-_Parallel - 2019.04.06 at 00h 54m 07s.xml">
-      <configuration name="All in DiskManagementTests - Parallel" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="All_in_DiskManagementTests_-_Parallel - 2019.04.07 at 11h 26m 09s.xml">
       <configuration name="All in DiskManagementTests - Parallel" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
@@ -777,9 +775,12 @@
     <history-entry file="All_in_DiskManagementTests - 2019.04.07 at 11h 55m 43s.xml">
       <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="All_in_DiskManagementTests - 2019.04.07 at 13h 33m 19s.xml">
+      <configuration name="All in DiskManagementTests" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166932000" />
+    <option name="totallyTimeSpent" value="167097000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -794,7 +795,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21140939" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21140939" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -902,7 +903,6 @@
       <path value="$PROJECT_DIR$/cpp/cmake-build-release-mingw/googletest-src" />
       <path value="$PROJECT_DIR$/cpp/cmake-build-release/googletest-src" />
     </ignored-roots>
-    <MESSAGE value="Found new errors! YUPI! (I should have tested it before I had used it)" />
     <MESSAGE value="Found new errors! YUPI! (I should have written tests it before I had used it)" />
     <MESSAGE value="Typo" />
     <MESSAGE value="Upgraded tests" />
@@ -927,7 +927,8 @@
     <MESSAGE value="Fixed typo" />
     <MESSAGE value="Changed order" />
     <MESSAGE value="Cleaned code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned code" />
+    <MESSAGE value="Changed pointer in setter to const pointer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed pointer in setter to const pointer" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cpp/cmake-build-debug/googletest-src/CMakeLists.txt" />
@@ -1118,7 +1119,7 @@
     <entry file="file://$PROJECT_DIR$/cpp/disk-management/tests/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1139,14 +1140,14 @@
     <entry file="file://$PROJECT_DIR$/cpp/disk-management/include/DiskManagement/DiskManager.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
-          <caret line="58" column="32" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+          <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cpp/disk-management/src/DiskManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+          <caret line="6" column="73" lean-forward="true" selection-start-line="6" selection-start-column="73" selection-end-line="6" selection-end-column="73" />
         </state>
       </provider>
     </entry>
