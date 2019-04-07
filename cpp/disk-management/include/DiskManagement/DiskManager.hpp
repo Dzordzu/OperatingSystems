@@ -14,64 +14,69 @@
 #include <functional>
 #include <limits>
 
-namespace DiskManagement {
+namespace OperatingSystems {
+    namespace DiskManagement {
 
-    class Manager {
-    protected:
-        LogStream * logStream = nullptr;
-        Disk disk;
-        std::vector<DiskRequest> queue = {};
+        using OperatingSystems::CppUtils::LogStream;
+        using OperatingSystems::CppUtils::Log;
 
-        uint_fast64_t operations = 0;
-        uint_fast64_t time = 0;
-        bool alwaysMove = false;
+        class Manager {
+        protected:
+            LogStream * logStream = nullptr;
+            Disk disk;
+            std::vector<DiskRequest> queue = {};
 
-        void moveArmTo(uint_fast64_t next);
-        void service(uint_fast32_t initialPosition, uint_fast32_t distance, bool goesRight);
-        virtual void init();
-        virtual uint_fast32_t findNext() = 0;
+            uint_fast64_t operations = 0;
+            uint_fast64_t time = 0;
+            bool alwaysMove = false;
 
-        const uint_fast32_t getDistance(DiskRequest const &to) const;
-        const uint_fast32_t isDirectedRight(DiskRequest const &to) const;
+            void moveArmTo(uint_fast64_t next);
+            void service(uint_fast32_t initialPosition, uint_fast32_t distance, bool goesRight);
+            virtual void init();
+            virtual uint_fast32_t findNext() = 0;
 
-    public:
-        explicit Manager(Disk &disk);
+            const uint_fast32_t getDistance(DiskRequest const &to) const;
+            const uint_fast32_t isDirectedRight(DiskRequest const &to) const;
 
-        void enqueueRequest(DiskRequest request);
-        void setLogStream(LogStream *logStream);
-        void setDisk(const Disk &disk);
+        public:
+            explicit Manager(Disk &disk);
 
-        uint_fast64_t simulate();
+            void enqueueRequest(DiskRequest request);
+            void setLogStream(LogStream *logStream);
+            void setDisk(const Disk &disk);
 
-    };
+            uint_fast64_t simulate();
+
+        };
 
 
-    class FCFSManager : public Manager {
-    public:
-        explicit FCFSManager(Disk &disk);
-        uint_fast32_t findNext() override;
-    };
+        class FCFSManager : public Manager {
+        public:
+            explicit FCFSManager(Disk &disk);
+            uint_fast32_t findNext() override;
+        };
 
-    class SSTFManager : public Manager {
-    public:
-        explicit SSTFManager(Disk &disk);
-        uint_fast32_t findNext() override;
-    };
+        class SSTFManager : public Manager {
+        public:
+            explicit SSTFManager(Disk &disk);
+            uint_fast32_t findNext() override;
+        };
 
-    class SCANManager : public Manager {
-        double CSCANReturnCostProportion = 0.5;
-        bool CSCAN = false;
-        bool lastRequest = true;
+        class SCANManager : public Manager {
+            double CSCANReturnCostProportion = 0.5;
+            bool CSCAN = false;
+            bool lastRequest = true;
 
-        void CSCANMoveArmToStart();
-    public:
-        explicit SCANManager(Disk &disk);
-        uint_fast32_t findNext() override;
+            void CSCANMoveArmToStart();
+        public:
+            explicit SCANManager(Disk &disk);
+            uint_fast32_t findNext() override;
 
-        void useLastRequest(bool useLastRequest);
-        void setModeToCSCAN(bool CSCAN);
-        void setCSCANReturnCostProportion(double CSCANReturnCost);
-    };
+            void useLastRequest(bool useLastRequest);
+            void setModeToCSCAN(bool CSCAN);
+            void setCSCANReturnCostProportion(double CSCANReturnCost);
+        };
+    }
 }
 
 

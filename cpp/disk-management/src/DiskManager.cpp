@@ -4,6 +4,11 @@
 
 #include <DiskManagement/DiskManager.hpp>
 
+/**
+ * @XXX This smells
+ */
+
+using namespace OperatingSystems;
 void DiskManagement::Manager::setLogStream(LogStream * const logStream) {
     Manager::logStream = logStream;
 }

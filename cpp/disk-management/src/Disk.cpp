@@ -5,6 +5,11 @@
 #include <DiskManagement/Disk.hpp>
 #include <iostream>
 
+/**
+ * @XXX This smells
+ */
+using namespace OperatingSystems;
+
 uint_fast32_t DiskManagement::DiskRequest::getQueuedTime() const {
     return queuedTime;
 }
