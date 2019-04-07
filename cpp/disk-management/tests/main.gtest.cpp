@@ -188,7 +188,7 @@ TEST(Algorithm, FCFS_3) {
     StandardOutputLogStream * logStream = new StandardOutputLogStream();
     manager.setLogStream(logStream);
     prepareForTest_3(&manager);
-    EXPECT_EQ(170, manager.simulate());//
+    EXPECT_EQ(253, manager.simulate());//
     logStream->filter([](const Log& log){ return log.getTitle() != "General"; }, *logStream);
     logStream->writeAll();
 
