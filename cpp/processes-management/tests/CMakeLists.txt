@@ -1,6 +1,6 @@
 add_executable(ProcessManagementTests main.gtest.cpp)
 target_link_libraries(ProcessManagementTests gmock_main ProcessesManagement)
-add_test(NAME example_test COMMAND Tests)
+add_test(NAME example_test COMMAND ProcessManagementTests)
 
 target_link_directories(ProcessManagementTests
         PUBLIC
