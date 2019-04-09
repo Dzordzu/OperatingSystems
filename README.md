@@ -5,8 +5,8 @@ This repository has been created in order to provide code samples for the real b
 ## Available content
 Currently it contains following micro projects:
 ### C++ directory
-* [Processes Management simulation API](cpp/processes-management) 
-* [Disk Schedulding simulation API](cpp/disk-management)
+* [Processes Management simulation (with API)](cpp/processes-management) 
+* [Disk Schedulding simulation (with API)](cpp/disk-management)
 
 ## Installation
 ### C++
