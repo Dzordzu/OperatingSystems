@@ -216,12 +216,15 @@ DiskManagement::SSTFManager::SSTFManager(DiskManagement::Disk &disk) : Manager(d
 DiskManagement::CSCANManager::CSCANManager(DiskManagement::Disk &disk) : Manager(disk) { alwaysMove = true; }
 
 uint_fast32_t DiskManagement::CSCANManager::findNext() {
-    CSCANMoveArmToStart();
+
     auto it = std::max_element(queue.begin(), queue.end(), [=](const DiskRequest & d1, const DiskRequest & d2) {
         if(d1.getQueuedTime() > time) return false;
         if(d2.getQueuedTime() > time) return true;
         return d1.getTrackPosition() < d2.getTrackPosition();
     });
+
+    if(it->getTrackPosition() < disk.getArmPosition()) CSCANMoveArmToStart();;
+
     return lastFirstMode ? it->getTrackPosition() : disk.getSize();
 }
 
