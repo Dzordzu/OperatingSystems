@@ -157,8 +157,6 @@ const uint_fast32_t DiskManagement::Manager::isDirectedRight(DiskRequest const &
 }
 
 uint_fast32_t DiskManagement::FCFSManager::findNext() {
-    if(queue.begin()->getQueuedTime() > time) return disk.getArmPosition();
-
     auto it = queue.rbegin() - 1;
     int_fast64_t shortestRealTimeTrackPosition = -1, shortestRealTimeValue = INT_FAST64_MAX;
 
@@ -177,10 +175,6 @@ uint_fast32_t DiskManagement::FCFSManager::findNext() {
 DiskManagement::FCFSManager::FCFSManager(DiskManagement::Disk &disk) : Manager(disk) {}
 
 uint_fast32_t DiskManagement::SSTFManager::findNext() {
-
-    if(queue.begin()->getQueuedTime() > time) {
-        return disk.getArmPosition();
-    }
 
     auto it = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest &d1, const DiskRequest &d2) {
 
