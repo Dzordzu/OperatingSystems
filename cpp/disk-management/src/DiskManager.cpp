@@ -25,6 +25,7 @@ uint_fast64_t DiskManagement::Manager::simulate() {
 
     while(!queue.empty()) {
         time++;
+        if(queue.begin()->getQueuedTime() > time) continue;
         uint_fast64_t next = findNext();
         if(next != disk.getArmPosition() || alwaysMove) moveArmTo(next);
 
