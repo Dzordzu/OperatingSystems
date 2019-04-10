@@ -296,9 +296,11 @@ TEST(Algorithm, SCAN_1) {
 
 TEST(Algorithm, SCAN_3) {
 
+
     SCANManager manager(SD);
     prepareForTest_3(&manager);
-    EXPECT_EQ(258, manager.simulate());
+    EXPECT_EQ(249, manager.simulate());
+
 
     manager.enableLastFirstMode(false);
     prepareForTest_3(&manager);
