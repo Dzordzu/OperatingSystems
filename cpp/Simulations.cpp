@@ -94,7 +94,7 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     typedef typename Simulations::Pair<std::string, Manager> manager;
 
     Disk disk = DiskBuilder::getInstance()
-            .enableServicingOnRun(true)
+            .enableServicingOnRun(false)
             .setSize(1000)
             .setSingleTrackMovementCost(1)
             .setDataReadCost(0)
@@ -117,8 +117,8 @@ void Simulations::diskManagement(uint_fast32_t sample) {
 
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<uint_fast16_t > timeDist(1, 1000);
-    std::uniform_int_distribution<uint_fast16_t > positionDist(1, 1000);
+    std::uniform_int_distribution<uint_fast16_t > timeDist(1, 100);
+    std::uniform_int_distribution<uint_fast16_t > positionDist(1, 100);
     std::uniform_int_distribution<uint_fast16_t > probability(0, 1);
 
     for(uint_fast16_t i = 0; i<sample; i++) {
@@ -140,7 +140,7 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     auto filterFunc = [](const Log & log) -> bool { return log.getTitle() == "Result"; };
 
     for(manager m : managers) {
-        m.second.setMaxTime(100000);
+        m.second.setMaxTime(10000000);
         m.second.setLogStream(&logStream);
         std::cout<<m.first<<" "<<std::to_string(m.second.simulate())<<std::endl;
         //logStream.filter(filterFunc, logStream);

@@ -8,7 +8,7 @@
 int main() {
 
     //Simulations::processesManagement(5);
-    Simulations::diskManagement(10000);
+    Simulations::diskManagement(100000);
 
 
 
