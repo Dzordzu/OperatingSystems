@@ -60,6 +60,13 @@ namespace OperatingSystems {
                 .setSingleTrackMovementCost(10)
                 .setSize(500)
                 .build();
+        Disk SD_SIZE1000 = DiskBuilder::getInstance()
+                .setArmPosition(0)
+                .enableServicingOnRun(true)
+                .setDataReadCost(0)
+                .setSingleTrackMovementCost(1)
+                .setSize(1000)
+                .build();
 
         /*
          * Tests:
@@ -142,6 +149,42 @@ namespace OperatingSystems {
                                             .build());
 
 
+        }
+
+
+        void prepareForTest_4(Manager *manager) {
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(0)
+                                            .setTrackPosition(50)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(50)
+                                            .setTrackPosition(100)
+                                            .setTimeToDeadline(40)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(50)
+                                            .setTrackPosition(0)
+                                            .setTimeToDeadline(50)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(400)
+                                            .setTrackPosition(50)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(1000)
+                                            .setTrackPosition(100)
+                                            .setTimeToDeadline(1000)
+                                            .build());
+
+            manager->enqueueRequest(DiskRequestBuilder::getInstance()
+                                            .setQueuedTime(1000)
+                                            .setTrackPosition(49)
+                                            .build());
         }
     }
 }
@@ -259,9 +302,16 @@ TEST(Algorithm, SCAN_3) {
 
     manager.enableLastFirstMode(false);
     prepareForTest_3(&manager);
-    EXPECT_EQ(258, manager.simulate());
+    EXPECT_EQ(200, manager.simulate());
 
 }
+
+TEST(Algorithm, SCAN_4) {
+    SCANManager manager(SD_SIZE1000);
+    prepareForTest_4(&manager);
+    EXPECT_EQ(351, manager.simulate());
+}
+
 
 TEST(Algorithm, CSCAN_1) {
 
@@ -284,7 +334,7 @@ TEST(Algorithm, CSCAN_3) {
 
     manager.enableLastFirstMode(false);
     prepareForTest_3(&manager);
-    EXPECT_EQ(258, manager.simulate());
+    EXPECT_EQ(250, manager.simulate());
 
 }
 

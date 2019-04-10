@@ -29,7 +29,7 @@ uint_fast64_t DiskManagement::Manager::simulate() {
         uint_fast64_t next = findNext();
         if(next != disk.getArmPosition() || alwaysMove) moveArmTo(next);
 
-        if(time > 1000) {
+        if(time > 1000000) {
             if(logStream != nullptr) logStream->add(Log("General", "Maximum time exceeded"));
             break;
         }
@@ -88,7 +88,11 @@ void DiskManagement::Manager::service(uint_fast32_t initialPosition, uint_fast32
         trackDistance = trackDistance > 0 ? trackDistance : -trackDistance;
 
         if(it->getQueuedTime() > time + trackDistance) continue;
-        if((trackDistance < distance && goesRight == trackOnTheRight) || trackDistance == distance) {
+
+        bool right = goesRight && initialPosition + distance == trackPosition;
+        bool left = !goesRight && initialPosition - distance == trackPosition;
+
+        if((trackDistance < distance && goesRight == trackOnTheRight) || left || right) {
 
             if(logStream != nullptr) {
                 std::string logMessage = "Servicing ";
@@ -192,6 +196,7 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
         if(d1.isRealTime() && !d2.isRealTime()) return true;
         if(!d1.isRealTime() && d2.isRealTime()) return false;
         if(d1.isRealTime() && d2.isRealTime()) {
+            // not d1<d2, because of equity
             if(d1.getDeadlineTime() < d2.getDeadlineTime()) return true;
             if(d1.getDeadlineTime() > d2.getDeadlineTime()) return false;
         }
@@ -257,15 +262,31 @@ uint_fast32_t DiskManagement::SCANManager::findNext() {
     }
 
     auto minIt = std::min_element(queue.begin(), queue.end(), [=](const DiskRequest & d1, const DiskRequest & d2){
-        if(d2.getQueuedTime() > time) return false;
-        if(d1.getQueuedTime() > time) return true;
+        if(d2.getQueuedTime() > time) return true;
+        if(d1.getQueuedTime() > time) return false;
+
+        if(d1.isRealTime() && !d2.isRealTime()) return false;
+        if(!d1.isRealTime() && d2.isRealTime()) return true;
+        if(d1.isRealTime() && d2.isRealTime()) {
+            // not d1<d2, because of equity
+            if(d1.getDeadlineTime() < d2.getDeadlineTime()) return false;
+            if(d1.getDeadlineTime() > d2.getDeadlineTime()) return true;
+        }
 
         return d1.getTrackPosition() < d2.getTrackPosition();
     });
 
     auto maxIt = std::max_element(queue.begin(), queue.end(), [=](const DiskRequest & d1, const DiskRequest & d2) {
-        if(d1.getQueuedTime() > time) return false;
-        if(d2.getQueuedTime() > time) return true;
+        if(d2.getQueuedTime() > time) return false;
+        if(d1.getQueuedTime() > time) return true;
+
+        if(d1.isRealTime() && !d2.isRealTime()) return false;
+        if(!d1.isRealTime() && d2.isRealTime()) return true;
+        if(d1.isRealTime() && d2.isRealTime()) {
+            // not d1<d2, because of equity
+            if(d1.getDeadlineTime() < d2.getDeadlineTime()) return true;
+            if(d1.getDeadlineTime() > d2.getDeadlineTime()) return false;
+        }
 
         return d1.getTrackPosition() < d2.getTrackPosition();
     });
