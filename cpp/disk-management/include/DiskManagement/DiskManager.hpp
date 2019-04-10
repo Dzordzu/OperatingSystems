@@ -29,6 +29,7 @@ namespace OperatingSystems {
             uint_fast64_t operations = 0;
             uint_fast64_t time = 0;
             bool alwaysMove = false;
+            uint_fast64_t maxTime = 500;
 
             void moveArmTo(uint_fast64_t next);
             void service(uint_fast32_t initialPosition, uint_fast32_t distance, bool goesRight);
@@ -44,6 +45,7 @@ namespace OperatingSystems {
             void enqueueRequest(DiskRequest request);
             void setLogStream(LogStream *logStream);
             void setDisk(const Disk &disk);
+            void setMaxTime(uint_fast64_t maxTime);
 
             uint_fast64_t simulate();
 

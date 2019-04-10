@@ -29,7 +29,7 @@ uint_fast64_t DiskManagement::Manager::simulate() {
         uint_fast64_t next = findNext();
         if(next != disk.getArmPosition() || alwaysMove) moveArmTo(next);
 
-        if(time > 1000000) {
+        if(time > maxTime) {
             if(logStream != nullptr) logStream->add(Log("General", "Maximum time exceeded"));
             break;
         }
@@ -158,6 +158,10 @@ const uint_fast32_t DiskManagement::Manager::getDistance(DiskRequest const &to) 
 
 const uint_fast32_t DiskManagement::Manager::isDirectedRight(DiskRequest const &to) const {
     return disk.getArmPosition() < to.getTrackPosition();
+}
+
+void DiskManagement::Manager::setMaxTime(uint_fast64_t maxTime) {
+    Manager::maxTime = maxTime;
 }
 
 uint_fast32_t DiskManagement::FCFSManager::findNext() {
