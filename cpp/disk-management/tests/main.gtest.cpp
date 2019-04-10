@@ -282,6 +282,13 @@ TEST(Algorithm, SSTF_3) {
     EXPECT_EQ(258, manager.simulate());
 }
 
+TEST(Algorithm, SSTF_4) {
+    SSTFManager manager(SD_SIZE1000);
+    prepareForTest_4(&manager);
+    manager.setMaxTime(10000);
+    EXPECT_EQ(351, manager.simulate());
+}
+
 TEST(Algorithm, SCAN_1) {
 
     SCANManager manager(SD);
