@@ -140,11 +140,11 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     auto filterFunc = [](const Log & log) -> bool { return log.getTitle() == "Result"; };
 
     for(manager m : managers) {
+        m.second.setMaxTime(100000);
         m.second.setLogStream(&logStream);
         std::cout<<m.first<<" "<<std::to_string(m.second.simulate())<<std::endl;
         //logStream.filter(filterFunc, logStream);
-        logStream.writeAll();
-        std::cout<<std::endl;
+//        logStream.writeAll();
         logStream.clear();
     }
 
