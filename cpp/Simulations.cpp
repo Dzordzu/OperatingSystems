@@ -94,10 +94,10 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     typedef typename Simulations::Pair<std::string, Manager> manager;
 
     Disk disk = DiskBuilder::getInstance()
-            .enableServicingOnRun(false)
+            .enableServicingOnRun(true)
             .setSize(1000)
-            .setSingleTrackMovementCost(1)
-            .setDataReadCost(0)
+            .setSingleTrackMovementCost(10)
+            .setDataReadCost(1)
             .setArmPosition(50)
             .build();
 
@@ -117,8 +117,8 @@ void Simulations::diskManagement(uint_fast32_t sample) {
 
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<uint_fast16_t > timeDist(1, 100);
-    std::uniform_int_distribution<uint_fast16_t > positionDist(1, 100);
+    std::uniform_int_distribution<uint_fast16_t > timeDist(0, 500);
+    std::uniform_int_distribution<uint_fast16_t > positionDist(0, 500);
     std::uniform_int_distribution<uint_fast16_t > probability(0, 1);
 
     for(uint_fast16_t i = 0; i<sample; i++) {
@@ -135,21 +135,30 @@ void Simulations::diskManagement(uint_fast32_t sample) {
 
     }
 
-    manager const * fastestManager = managers.begin();
-    manager const * slowestManager = managers.begin();
+    manager * fastestManager = managers.begin();
+    manager * slowestManager = managers.begin();
     auto filterFunc = [](const Log & log) -> bool { return log.getTitle() == "Result"; };
 
-    for(manager m : managers) {
-        m.second.setMaxTime(10000000);
+    cscanManager.setCSCANReturnCostProportion(0);
+
+    for(manager & m : managers) {
+
+        m.second.setMaxTime(100000000);
         m.second.setLogStream(&logStream);
-        std::cout<<m.first<<" "<<std::to_string(m.second.simulate())<<std::endl;
-        //logStream.filter(filterFunc, logStream);
+//        logStream.filter(filterFunc, logStream);
+
+        uint_fast64_t result = m.second.simulate()/10;
+        std::cout<<m.first<<" "<<std::to_string(result)<<std::endl;
+
 //        logStream.writeAll();
         logStream.clear();
+        fastestManager = fastestManager->second.getOperations() < result ? fastestManager : &m;
+        slowestManager = slowestManager->second.getOperations() > result ? slowestManager : &m;
     }
 
 
-
+    std::cout<<"Fastest: "<<fastestManager->first<<std::endl;
+    std::cout<<"Slowest: "<<slowestManager->first<<std::endl;
 
 
 

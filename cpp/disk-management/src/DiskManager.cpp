@@ -164,6 +164,10 @@ void DiskManagement::Manager::setMaxTime(uint_fast64_t maxTime) {
     Manager::maxTime = maxTime;
 }
 
+uint_fast64_t DiskManagement::Manager::getOperations() const {
+    return operations;
+}
+
 uint_fast32_t DiskManagement::FCFSManager::findNext() {
     auto it = queue.rbegin() - 1;
     int_fast64_t shortestRealTimeTrackPosition = -1, shortestRealTimeValue = INT_FAST64_MAX;

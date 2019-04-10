@@ -47,6 +47,8 @@ namespace OperatingSystems {
             void setDisk(const Disk &disk);
             void setMaxTime(uint_fast64_t maxTime);
 
+            uint_fast64_t getOperations() const;
+
             uint_fast64_t simulate();
 
         };
