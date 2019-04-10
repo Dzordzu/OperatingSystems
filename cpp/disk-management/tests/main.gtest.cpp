@@ -332,7 +332,7 @@ TEST(Algorithm, CSCAN_3) {
 
     CSCANManager manager(SD);
     prepareForTest_3(&manager);
-    EXPECT_EQ(249, manager.simulate());
+    EXPECT_EQ(286, manager.simulate());
 
     manager.enableLastFirstMode(false);
     prepareForTest_3(&manager);
