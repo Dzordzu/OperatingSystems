@@ -6,6 +6,7 @@ project(operating-systems-cpp VERSION 1.0.0 )
 #
 include(cmake/GTest.cmake)
 
+#find_package(OperatingSystems::CppUtils)
 
 add_subdirectory(utils)
 add_subdirectory(processes-management)
@@ -18,4 +19,6 @@ target_link_libraries(MAIN
         CppUtils
         ProcessesManagement
         DiskManagement)
+
+include(cmake/InstallScript.cmake)
 #message(Test)
