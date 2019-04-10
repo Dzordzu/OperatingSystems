@@ -13,7 +13,11 @@ add_subdirectory(processes-management)
 add_subdirectory(disk-management)
 
 
-add_executable(MAIN main.cpp)
+add_executable(MAIN main.cpp
+        Simulations.cpp
+        Simulations.h
+        )
+
 target_link_libraries(MAIN
         PUBLIC
         CppUtils

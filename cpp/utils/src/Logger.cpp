@@ -9,7 +9,7 @@
  */
 using namespace OperatingSystems::CppUtils;
 
-Log::Log(const std::string &title, const std::string &name) : title(title), message(name) {}
+Log::Log(const std::string &title, const std::string &message) : title(title), message(message) {}
 
 const std::string &Log::getTitle() const {
     return title;

@@ -16,7 +16,7 @@ namespace OperatingSystems {
             std::string message;
 
         public:
-            Log(const std::string &title, const std::string &name);
+            Log(const std::string &title, const std::string &message);
             const std::string &getTitle() const;
             const std::string &getMessage() const;
         };
