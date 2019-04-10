@@ -310,6 +310,7 @@ TEST(Algorithm, SCAN_3) {
 
 TEST(Algorithm, SCAN_4) {
     SCANManager manager(SD_SIZE1000);
+    manager.setMaxTime(10000);
     prepareForTest_4(&manager);
     EXPECT_EQ(351, manager.simulate());
 }
