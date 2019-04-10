@@ -218,17 +218,29 @@ uint_fast32_t DiskManagement::SSTFManager::findNext() {
 
 DiskManagement::SSTFManager::SSTFManager(DiskManagement::Disk &disk) : Manager(disk) {}
 
-DiskManagement::CSCANManager::CSCANManager(DiskManagement::Disk &disk) : Manager(disk) { alwaysMove = true; }
+DiskManagement::CSCANManager::CSCANManager(DiskManagement::Disk &disk) : Manager(disk) { alwaysMove = false; }
 
 uint_fast32_t DiskManagement::CSCANManager::findNext() {
 
     auto it = std::max_element(queue.begin(), queue.end(), [=](const DiskRequest & d1, const DiskRequest & d2) {
-        if(d1.getQueuedTime() > time) return false;
-        if(d2.getQueuedTime() > time) return true;
+        if(d2.getQueuedTime() > time) return false;
+        if(d1.getQueuedTime() > time) return true;
+
+        if(d1.isRealTime() && !d2.isRealTime()) return false;
+        if(!d1.isRealTime() && d2.isRealTime()) return true;
+        if(d1.isRealTime() && d2.isRealTime()) {
+            // not d1<d2, because of equity
+            if(d1.getDeadlineTime() < d2.getDeadlineTime()) return true;
+            if(d1.getDeadlineTime() > d2.getDeadlineTime()) return false;
+        }
+
         return d1.getTrackPosition() < d2.getTrackPosition();
     });
 
-    if(it->getTrackPosition() < disk.getArmPosition()) CSCANMoveArmToStart();;
+    if(it->getTrackPosition() < disk.getArmPosition()) {
+        CSCANMoveArmToStart();
+        service(0, 0, false);
+    }
 
     return lastFirstMode ? it->getTrackPosition() : disk.getSize();
 }
