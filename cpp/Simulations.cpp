@@ -108,11 +108,25 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     CSCANManager cscanManager(disk);
     SCANManager scanManager(disk);
 
+    FCFSManager fcfsManagerEDF(disk);
+    SSTFManager sstfManagerEDF(disk);
+    CSCANManager cscanManagerEDF(disk);
+    SCANManager scanManagerEDF(disk);
+
     std::array<manager, 4> managers {
         manager("FCFS", fcfsManager),
         manager("SSTF", sstfManager),
         manager("SCAN", scanManager),
         manager("CSAN", cscanManager)
+
+    };
+
+    std::array<manager, 4> managersEDF {
+            manager("FCFS EDF", fcfsManagerEDF),
+            manager("SSTF EDF", sstfManagerEDF),
+            manager("SCAN EDF", scanManagerEDF),
+            manager("CSAN EDF", cscanManagerEDF)
+
     };
 
     std::random_device rd;
@@ -122,15 +136,30 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     std::uniform_int_distribution<uint_fast16_t > probability(0, 1);
 
     for(uint_fast16_t i = 0; i<sample; i++) {
-        DiskRequestBuilder::getInstance()
-                .setQueuedTime(timeDist(mt))
-                .setTrackPosition(positionDist(mt));
 
-        if(probability(mt) == 1) DiskRequestBuilder::getInstance().setTimeToDeadline(timeDist(mt)/10);
+        uint_fast32_t queuedTime = timeDist(mt);
+        uint_fast32_t trackPosition = positionDist(mt);
+        uint_fast32_t timeToDeadline = timeDist(mt)/10;
+
+        DiskRequestBuilder::getInstance()
+                .setQueuedTime(queuedTime)
+                .setTrackPosition(trackPosition);
+
+        if(probability(mt) == 1) DiskRequestBuilder::getInstance().setTimeToDeadline(timeToDeadline);
+        auto requestEDF = DiskRequestBuilder::getInstance().build();
+
+        DiskRequestBuilder::getInstance()
+                .setQueuedTime(queuedTime)
+                .setTrackPosition(trackPosition);
         auto request = DiskRequestBuilder::getInstance().build();
+
 
         for(manager & m : managers) {
             m.second.enqueueRequest(request);
+        }
+
+        for(manager & m : managersEDF) {
+            m.second.enqueueRequest(requestEDF);
         }
 
     }
@@ -142,6 +171,21 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     cscanManager.setCSCANReturnCostProportion(0);
 
     for(manager & m : managers) {
+
+        m.second.setMaxTime(100000000);
+        m.second.setLogStream(&logStream);
+//        logStream.filter(filterFunc, logStream);
+
+        uint_fast64_t result = m.second.simulate()/10;
+        std::cout<<m.first<<" "<<std::to_string(result)<<std::endl;
+
+//        logStream.writeAll();
+        logStream.clear();
+        fastestManager = fastestManager->second.getOperations() < result ? fastestManager : &m;
+        slowestManager = slowestManager->second.getOperations() > result ? slowestManager : &m;
+    }
+
+    for(manager & m : managersEDF) {
 
         m.second.setMaxTime(100000000);
         m.second.setLogStream(&logStream);
