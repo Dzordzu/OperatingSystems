@@ -113,6 +113,9 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     CSCANManager cscanManagerEDF(disk);
     SCANManager scanManagerEDF(disk);
 
+    cscanManagerEDF.setCSCANReturnCostProportion(1);
+    cscanManager.setCSCANReturnCostProportion(1);
+
     std::array<manager, 4> managers {
         manager("FCFS", fcfsManager),
         manager("SSTF", sstfManager),
@@ -168,8 +171,6 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     manager * slowestManager = managers.begin();
     auto filterFunc = [](const Log & log) -> bool { return log.getTitle() == "Result"; };
 
-    cscanManager.setCSCANReturnCostProportion(0);
-
     for(manager & m : managers) {
 
         m.second.setMaxTime(100000000);
@@ -181,8 +182,8 @@ void Simulations::diskManagement(uint_fast32_t sample) {
 
 //        logStream.writeAll();
         logStream.clear();
-        fastestManager = fastestManager->second.getOperations() < result ? fastestManager : &m;
-        slowestManager = slowestManager->second.getOperations() > result ? slowestManager : &m;
+        fastestManager = fastestManager->second.getOperations() < result*10 ? fastestManager : &m;
+        slowestManager = slowestManager->second.getOperations() > result*10 ? slowestManager : &m;
     }
 
     for(manager & m : managersEDF) {
@@ -196,8 +197,8 @@ void Simulations::diskManagement(uint_fast32_t sample) {
 
 //        logStream.writeAll();
         logStream.clear();
-        fastestManager = fastestManager->second.getOperations() < result ? fastestManager : &m;
-        slowestManager = slowestManager->second.getOperations() > result ? slowestManager : &m;
+        fastestManager = fastestManager->second.getOperations() < result*10 ? fastestManager : &m;
+        slowestManager = slowestManager->second.getOperations() > result*10 ? slowestManager : &m;
     }
 
 
