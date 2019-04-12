@@ -94,34 +94,41 @@ void Simulations::diskManagement(uint_fast32_t sample) {
     typedef typename Simulations::Pair<std::string, Manager> manager;
 
     Disk disk = DiskBuilder::getInstance()
+            .enableServicingOnRun(false)
+            .setSize(1000)
+            .setSingleTrackMovementCost(10)
+            .setDataReadCost(1)
+            .setArmPosition(500)
+            .build();
+
+    Disk disk2 = DiskBuilder::getInstance()
             .enableServicingOnRun(true)
             .setSize(1000)
             .setSingleTrackMovementCost(10)
             .setDataReadCost(1)
-            .setArmPosition(50)
+            .setArmPosition(500)
             .build();
 
     StandardOutputLogStream logStream;
 
     FCFSManager fcfsManager(disk);
     SSTFManager sstfManager(disk);
-    CSCANManager cscanManager(disk);
-    SCANManager scanManager(disk);
+    CSCANManager cscanManager(disk2);
+    SCANManager scanManager(disk2);
 
     FCFSManager fcfsManagerEDF(disk);
     SSTFManager sstfManagerEDF(disk);
-    CSCANManager cscanManagerEDF(disk);
-    SCANManager scanManagerEDF(disk);
+    CSCANManager cscanManagerEDF(disk2);
+    SCANManager scanManagerEDF(disk2);
 
-    cscanManagerEDF.setCSCANReturnCostProportion(1);
-    cscanManager.setCSCANReturnCostProportion(1);
+    cscanManagerEDF.setCSCANReturnCostProportion(0.7);
+    cscanManager.setCSCANReturnCostProportion(0.7);
 
     std::array<manager, 4> managers {
         manager("FCFS", fcfsManager),
         manager("SSTF", sstfManager),
         manager("SCAN", scanManager),
         manager("CSAN", cscanManager)
-
     };
 
     std::array<manager, 4> managersEDF {
@@ -134,13 +141,13 @@ void Simulations::diskManagement(uint_fast32_t sample) {
 
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<uint_fast16_t > timeDist(0, 500);
-    std::uniform_int_distribution<uint_fast16_t > positionDist(0, 500);
+    std::uniform_int_distribution<uint_fast16_t > timeDist(0, 1000);
+    std::uniform_int_distribution<uint_fast16_t > positionDist(0, 1000);
     std::uniform_int_distribution<uint_fast16_t > probability(0, 1);
 
     for(uint_fast16_t i = 0; i<sample; i++) {
 
-        uint_fast32_t queuedTime = timeDist(mt);
+        uint_fast32_t queuedTime = 0;//timeDist(mt);
         uint_fast32_t trackPosition = positionDist(mt);
         uint_fast32_t timeToDeadline = timeDist(mt)/10;
 
