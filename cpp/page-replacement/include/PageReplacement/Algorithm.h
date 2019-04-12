@@ -16,13 +16,13 @@ namespace OperatingSystems {
         typedef uint_fast64_t Time;
 
         struct Frame {
-            Page &page;
+            Page * page = nullptr;
             bool callBit = false;
         };
 
         struct Call {
-            Page &page;
-            Time time;
+            Page * page = nullptr;
+            Time time = Time(0);
         };
 
         class Algorithm {
