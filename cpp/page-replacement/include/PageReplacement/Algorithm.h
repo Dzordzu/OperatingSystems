@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <cstdint>
+#include <algorithm>
 
 namespace OperatingSystems {
     namespace PageReplacement {
@@ -34,7 +35,7 @@ namespace OperatingSystems {
             void setFramesAmount(uint_fast64_t framesAmount);
             void addCall(Call const & call);
             virtual void simulate();
-            virtual void findNextVictim(Page const & page, std::vector<Frame> & frames) = 0;
+            virtual std::vector<Frame>::iterator findNextVictim(std::vector<Frame> & frames) = 0;
         };
 
 
