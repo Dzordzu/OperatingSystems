@@ -16,30 +16,38 @@ namespace OperatingSystems {
         typedef uint_fast64_t Time;
 
         struct Frame {
+            Frame() = default;
+            Frame(Page *page, bool callBit);
+
             Page * page = nullptr;
             bool callBit = false;
         };
 
         struct Call {
+            Call() = default;
+            Call(Page *page, Time time);
+
             Page * page = nullptr;
             Time time = Time(0);
         };
 
         class Algorithm {
-            std::vector<Page> pages;
-            std::vector<Frame> frames;
+        protected:
+            std::vector<Frame> frames = {Frame{nullptr, false}};
             std::vector<Call> calls;
 
+            virtual std::vector<Frame>::iterator findNextVictim() = 0;
         public:
-            void setPagesAmount(uint_fast64_t pagesAmount);
             void setFramesAmount(uint_fast64_t framesAmount);
             void addCall(Call const & call);
             virtual void simulate();
-            virtual std::vector<Frame>::iterator findNextVictim(std::vector<Frame> & frames) = 0;
         };
 
 
-        class OPTIMAL : public Algorithm {};
+        class OPTIMAL : public Algorithm {
+        protected:
+            std::vector<Frame>::iterator findNextVictim() override;
+        };
         class FIFO : public Algorithm {};
         class LRU : public Algorithm {};
         class SCA : public Algorithm {};
