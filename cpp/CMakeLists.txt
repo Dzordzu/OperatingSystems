@@ -11,6 +11,7 @@ include(cmake/GTest.cmake)
 add_subdirectory(utils)
 add_subdirectory(processes-management)
 add_subdirectory(disk-management)
+add_subdirectory(page-replacement)
 
 
 add_executable(MAIN main.cpp
@@ -22,7 +23,8 @@ target_link_libraries(MAIN
         PUBLIC
         CppUtils
         ProcessesManagement
-        DiskManagement)
+        DiskManagement
+        PageReplacement)
 
 include(cmake/InstallScript.cmake)
 #message(Test)

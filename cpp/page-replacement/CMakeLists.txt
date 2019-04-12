@@ -18,6 +18,6 @@ target_link_libraries(PageReplacement
         CppUtils)
 
 target_compile_features(PageReplacement PRIVATE cxx_std_14)
-add_subdirectory(tests)
+# add_subdirectory(tests)
 
 include(InstallScript.cmake)

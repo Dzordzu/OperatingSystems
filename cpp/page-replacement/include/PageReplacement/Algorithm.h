@@ -2,7 +2,7 @@
 // Created by Dzordzu on 12.04.2019.
 //
 
-#ifndef OPERATING_SYSTEMS_CPP_MANAGER_H
+#ifndef OPERATING_SYSTEMS_CPP_ALGORITHM_H
 #define OPERATING_SYSTEMS_CPP_ALGORITHM_H
 
 #include <vector>
@@ -11,8 +11,8 @@
 namespace OperatingSystems {
     namespace PageReplacement {
 
-        typedef typename uint_fast64_t Page;
-        typedef typename uint_fast64_t Time;
+        typedef uint_fast64_t Page;
+        typedef uint_fast64_t Time;
 
         struct Frame {
             Page &page;
@@ -38,7 +38,7 @@ namespace OperatingSystems {
         };
 
 
-        class OPTIMAL : public Algorithm
+        class OPTIMAL : public Algorithm {};
         class FIFO : public Algorithm {};
         class LRU : public Algorithm {};
         class SCA : public Algorithm {};
@@ -48,5 +48,4 @@ namespace OperatingSystems {
 }
 
 
-
-#endif //OPERATING_SYSTEMS_CPP_MANAGER_H
+#endif //OPERATING_SYSTEMS_CPP_ALGORITHM_H
