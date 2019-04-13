@@ -12,8 +12,8 @@ void OperatingSystems::PageReplacement::Algorithm::setFramesAmount(uint_fast64_t
 
 }
 
-void OperatingSystems::PageReplacement::Algorithm::addCall(const OperatingSystems::PageReplacement::Call &call) {
-    auto it = std::find(calls.begin(), calls.end(), [=](Call const & call1){return call1.time == call.time;});
+void OperatingSystems::PageReplacement::Algorithm::addCall(OperatingSystems::PageReplacement::Call const & call) {
+    auto it = std::find_if(calls.begin(), calls.end(), [=](Call const & call1){return call1.time == call.time;});
     if(it == calls.end()) this->calls.emplace_back(call);
 }
 
