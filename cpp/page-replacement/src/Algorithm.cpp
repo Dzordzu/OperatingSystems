@@ -17,12 +17,10 @@ void OperatingSystems::PageReplacement::Algorithm::addCall(const OperatingSystem
     if(it == calls.end()) this->calls.emplace_back(call);
 }
 
-void OperatingSystems::PageReplacement::Algorithm::simulate() {
+uint_fast64_t OperatingSystems::PageReplacement::Algorithm::simulate() {
     std::sort(calls.begin(), calls.end(), [=](Call const & c1, Call const & c2){
         return c1.time < c2.time;
     });
-
-    uint_fast64_t frameError = 0;
 
     for(Call const & call : calls) {
 
@@ -31,7 +29,7 @@ void OperatingSystems::PageReplacement::Algorithm::simulate() {
             if(frame.page == nullptr) {
                 frame.page = call.page;
                 found = true;
-                frameError++;
+                pageErrors++;
                 break;
             }
             if(frame.page == call.page) {
@@ -43,12 +41,16 @@ void OperatingSystems::PageReplacement::Algorithm::simulate() {
         if(!found) {
             auto it = findNextVictim();
             it->page = call.page;
-            frameError++;
+            pageErrors++;
         }
     }
 
-    return
+    return pageErrors;
 
+}
+
+uint_fast64_t OperatingSystems::PageReplacement::Algorithm::getPageErrors() const {
+    return pageErrors;
 }
 
 OperatingSystems::PageReplacement::Call::Call(OperatingSystems::PageReplacement::Page *page,

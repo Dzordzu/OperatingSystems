@@ -35,12 +35,14 @@ namespace OperatingSystems {
         protected:
             std::vector<Frame> frames = {Frame{nullptr, false}};
             std::vector<Call> calls;
+            uint_fast64_t pageErrors;
 
             virtual std::vector<Frame>::iterator findNextVictim() = 0;
         public:
             void setFramesAmount(uint_fast64_t framesAmount);
             void addCall(Call const & call);
-            virtual void simulate();
+            virtual uint_fast64_t simulate();
+            uint_fast64_t getPageErrors() const;
         };
 
 
