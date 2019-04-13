@@ -19,7 +19,7 @@ void prepareForTest_1(Algorithm &algorithm) {
 
     algorithm.addCall(Call{& *pages.begin()+6, 6});
 
-    for(Time i=6;i<0;i--) {
+    for(Time i=6;i>=0;i--) {
         algorithm.addCall(Call{& *pages.begin()+i, 12-i});
     }
 }

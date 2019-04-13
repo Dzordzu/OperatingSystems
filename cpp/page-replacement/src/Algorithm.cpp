@@ -64,5 +64,26 @@ OperatingSystems::PageReplacement::Frame::Frame(OperatingSystems::PageReplacemen
 
 std::vector<OperatingSystems::PageReplacement::Frame, std::allocator<OperatingSystems::PageReplacement::Frame>>::iterator
 OperatingSystems::PageReplacement::OPTIMAL::findNextVictim() {
-    return {};
+    std::vector<Frame>::iterator resultFrameIt;
+    uint_fast64_t maxDifference = 0;
+
+    auto findNextCall = [=](std::vector<Frame>::iterator const & frame) {
+
+        auto loopCallIterator = calls.begin();
+        for(uint_fast64_t i=0; i<calls.size(); i++) {
+            if(loopCallIterator->time <= time) continue;
+            if(loopCallIterator->page == frame->page) return loopCallIterator;
+
+            loopCallIterator++;
+        }
+        return calls.end();
+    };
+
+    auto loopFrameIt = frames.begin();
+    for(uint_fast64_t i=0; i<frames.size(); i++) {
+        auto nextCall = findNextCall(loopFrameIt);
+        if(nextCall == calls.end()) continue;
+        // TODO finish
+        loopFrameIt++;
+    }
 }
