@@ -38,6 +38,8 @@ uint_fast64_t OperatingSystems::PageReplacement::Algorithm::simulate() {
             }
         }
 
+        time = call.time;
+
         if(!found) {
             auto it = findNextVictim();
             it->page = call.page;
