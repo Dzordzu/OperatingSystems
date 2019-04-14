@@ -2,6 +2,7 @@
 // Created by Dzordzu on 12.04.2019.
 //
 
+#include <iostream>
 #include "PageReplacement/Algorithm.h"
 
 
@@ -64,14 +65,17 @@ OperatingSystems::PageReplacement::Frame::Frame(OperatingSystems::PageReplacemen
 
 std::vector<OperatingSystems::PageReplacement::Frame, std::allocator<OperatingSystems::PageReplacement::Frame>>::iterator
 OperatingSystems::PageReplacement::OPTIMAL::findNextVictim() {
-    std::vector<Frame>::iterator resultFrameIt;
+    auto resultFrameIt = frames.begin();
     uint_fast64_t maxDifference = 0;
 
     auto findNextCall = [=](std::vector<Frame>::iterator const & frame) {
 
         auto loopCallIterator = calls.begin();
         for(uint_fast64_t i=0; i<calls.size(); i++) {
-            if(loopCallIterator->time <= time) continue;
+            if(loopCallIterator->time <= time) {
+                loopCallIterator++;
+                continue;
+            }
             if(loopCallIterator->page == frame->page) return loopCallIterator;
 
             loopCallIterator++;
@@ -82,8 +86,16 @@ OperatingSystems::PageReplacement::OPTIMAL::findNextVictim() {
     auto loopFrameIt = frames.begin();
     for(uint_fast64_t i=0; i<frames.size(); i++) {
         auto nextCall = findNextCall(loopFrameIt);
-        if(nextCall == calls.end()) continue;
-        // TODO finish
+        if(nextCall == calls.end()) {
+            loopFrameIt++;
+            continue;
+        }
+        if(maxDifference < nextCall->page - loopFrameIt->page) {
+            maxDifference = nextCall->page - loopFrameIt->page;
+            resultFrameIt = loopFrameIt;
+        }
         loopFrameIt++;
     }
+
+    return maxDifference == 0 ? resultFrameIt + (pageErrors % frames.size()) : resultFrameIt;
 }
