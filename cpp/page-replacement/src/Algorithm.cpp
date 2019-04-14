@@ -11,7 +11,9 @@ void OperatingSystems::PageReplacement::Algorithm::setFramesAmount(uint_fast64_t
     this->frames = {};
     for(uint_fast64_t i = 0; i<framesAmount; i++) {
         this->frames.emplace_back(Frame{nullptr, false});
-        if(logStream != nullptr) logStream->add(Log("Adding", "Adding frame " + frames.rbegin()->name));
+        if(logStream != nullptr) {
+            logStream->add(Log("Adding", "Adding frame " + frames.rbegin()->name));
+        }
     }
 
 }
@@ -59,7 +61,9 @@ uint_fast64_t OperatingSystems::PageReplacement::Algorithm::simulate() {
             auto it = findNextVictim();
             it->page = call.page;
             if(logStream != nullptr) {
-                logStream->add(Log("Frame reference change", "Adding " + std::to_string(*it->page) + " to " + it->name));
+                std::string pageNum = std::to_string(*it->page);
+                std::string frameName = it->name;
+                logStream->add(Log("Frame reference change", "Adding " + pageNum + " to " + frameName));
             }
             pageErrors++;
         }
