@@ -20,7 +20,9 @@ void OperatingSystems::PageReplacement::Algorithm::addCall(OperatingSystems::Pag
     auto it = std::find_if(calls.begin(), calls.end(), [=](Call const & call1){return call1.time == call.time;});
     if(it == calls.end()) {
         this->calls.emplace_back(call);
-        logStream->add(Log("Adding call", "pos=" + std::to_string(*call.page) + " time=" + std::to_string(call.time)));
+        if(logStream != nullptr) {
+            logStream->add(Log("Adding call", "pos=" + std::to_string(*call.page) + " time=" + std::to_string(call.time)));
+        }
     }
     else if(logStream != nullptr) {
         logStream->add(Log("Skipping call", "pos=" + std::to_string(*call.page) + " time=" + std::to_string(call.time)));
@@ -74,7 +76,6 @@ uint_fast64_t OperatingSystems::PageReplacement::Algorithm::getPageErrors() cons
 OperatingSystems::PageReplacement::Algorithm::Algorithm(OperatingSystems::CppUtils::LogStream *logStream) : logStream(
         logStream) {}
 
-OperatingSystems::PageReplacement::Algorithm::Algorithm() {}
 
 
 OperatingSystems::PageReplacement::Call::Call(OperatingSystems::PageReplacement::Page *page,
@@ -126,6 +127,11 @@ OperatingSystems::PageReplacement::OPTIMAL::findNextVictim() {
 OperatingSystems::PageReplacement::OPTIMAL::OPTIMAL(OperatingSystems::CppUtils::LogStream *logStream) : Algorithm(
         logStream) {}
 
-OperatingSystems::PageReplacement::OPTIMAL::OPTIMAL() {
 
+std::vector<OperatingSystems::PageReplacement::Frame, std::allocator<OperatingSystems::PageReplacement::Frame>>::iterator
+OperatingSystems::PageReplacement::FIFO::findNextVictim() {
+    return frames.begin() + (pageErrors % frames.size());
 }
+
+OperatingSystems::PageReplacement::FIFO::FIFO(OperatingSystems::CppUtils::LogStream *logStream) : Algorithm(
+        logStream) {}

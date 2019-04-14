@@ -51,8 +51,6 @@ namespace OperatingSystems {
             uint_fast64_t getPageErrors() const;
 
             explicit Algorithm(LogStream *logStream);
-
-            Algorithm();
         };
 
 
@@ -61,10 +59,18 @@ namespace OperatingSystems {
             std::vector<Frame>::iterator findNextVictim() override;
 
         public:
-            explicit OPTIMAL();
+            explicit OPTIMAL() : Algorithm(nullptr) {}
             explicit OPTIMAL(LogStream *logStream);
         };
-        class FIFO : public Algorithm {};
+        class FIFO : public Algorithm {
+        protected:
+        public:
+            FIFO() : Algorithm(nullptr)   {}
+            FIFO(LogStream *logStream);
+
+        protected:
+            std::vector<Frame>::iterator findNextVictim() override;
+        };
         class LRU : public Algorithm {};
         class SCA : public Algorithm {};
         class RAND : public Algorithm {};

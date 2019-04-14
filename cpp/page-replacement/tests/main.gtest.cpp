@@ -13,7 +13,6 @@ using OperatingSystems::CppUtils::StandardOutputLogStream;
 void prepareForTest_1(Algorithm &algorithm, std::vector<Page> & pages ) {
 
     pages = {0, 1, 2, 3, 4, 5, 6};
-    std::cout<<(*pages.begin()+2)<<std::endl;
 
     for(Time i=0;i<5;i++) {
         algorithm.addCall(Call{& *pages.begin()+i, 1+i});
@@ -26,12 +25,18 @@ void prepareForTest_1(Algorithm &algorithm, std::vector<Page> & pages ) {
     }
 }
 
-TEST(Algorithms, FIFO) {
+TEST(Algorithms, OPTIMAL) {
     std::vector<Page> pages;
-    StandardOutputLogStream logStream;
-    OPTIMAL optimal(&logStream);
+    OPTIMAL optimal;
     optimal.setFramesAmount(3);
     prepareForTest_1(optimal, pages);
     EXPECT_EQ(optimal.simulate(), 10);
-    logStream.writeAll();
+}
+
+TEST(Algorithms, FIFO) {
+    std::vector<Page> pages;
+    FIFO fifo;
+    fifo.setFramesAmount(3);
+    prepareForTest_1(fifo, pages);
+    EXPECT_EQ(fifo.simulate(), 11);
 }
