@@ -8,19 +8,23 @@
 #include <vector>
 #include <cstdint>
 #include <algorithm>
+#include <CppUtils/Logger.hpp>
 
 namespace OperatingSystems {
     namespace PageReplacement {
 
         typedef uint_fast64_t Page;
         typedef uint_fast64_t Time;
+        using OperatingSystems::CppUtils::LogStream;
+        using OperatingSystems::CppUtils::Log;
 
         struct Frame {
-            Frame() = default;
+            inline Frame() {static uint_fast64_t id(-1); id++; name = "Frame " + std::to_string(id);}
             Frame(Page *page, bool callBit);
 
             Page * page = nullptr;
             bool callBit = false;
+            std::string name = "";
         };
 
         struct Call {
@@ -37,6 +41,7 @@ namespace OperatingSystems {
             std::vector<Call> calls;
             uint_fast64_t pageErrors = 0;
             Time time = Time(0);
+            LogStream * logStream = nullptr;
 
             virtual std::vector<Frame>::iterator findNextVictim() = 0;
         public:
@@ -44,12 +49,20 @@ namespace OperatingSystems {
             void addCall(Call const & call);
             virtual uint_fast64_t simulate();
             uint_fast64_t getPageErrors() const;
+
+            explicit Algorithm(LogStream *logStream);
+
+            Algorithm();
         };
 
 
         class OPTIMAL : public Algorithm {
         protected:
             std::vector<Frame>::iterator findNextVictim() override;
+
+        public:
+            explicit OPTIMAL();
+            explicit OPTIMAL(LogStream *logStream);
         };
         class FIFO : public Algorithm {};
         class LRU : public Algorithm {};

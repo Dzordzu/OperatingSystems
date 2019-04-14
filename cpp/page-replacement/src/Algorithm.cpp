@@ -8,14 +8,23 @@
 
 void OperatingSystems::PageReplacement::Algorithm::setFramesAmount(uint_fast64_t framesAmount) {
     this->frames.clear();
-    this->frames.resize(framesAmount);
-    for(uint_fast64_t i = 0; i<framesAmount; i++) this->frames.emplace_back(Frame{nullptr, false});
+    this->frames = {};
+    for(uint_fast64_t i = 0; i<framesAmount; i++) {
+        this->frames.emplace_back(Frame{nullptr, false});
+        if(logStream != nullptr) logStream->add(Log("Adding", "Adding frame " + frames.rbegin()->name));
+    }
 
 }
 
 void OperatingSystems::PageReplacement::Algorithm::addCall(OperatingSystems::PageReplacement::Call const & call) {
     auto it = std::find_if(calls.begin(), calls.end(), [=](Call const & call1){return call1.time == call.time;});
-    if(it == calls.end()) this->calls.emplace_back(call);
+    if(it == calls.end()) {
+        this->calls.emplace_back(call);
+        logStream->add(Log("Adding call", "pos=" + std::to_string(*call.page) + " time=" + std::to_string(call.time)));
+    }
+    else if(logStream != nullptr) {
+        logStream->add(Log("Skipping call", "pos=" + std::to_string(*call.page) + " time=" + std::to_string(call.time)));
+    }
 }
 
 uint_fast64_t OperatingSystems::PageReplacement::Algorithm::simulate() {
@@ -30,6 +39,9 @@ uint_fast64_t OperatingSystems::PageReplacement::Algorithm::simulate() {
             if(frame.page == nullptr) {
                 frame.page = call.page;
                 found = true;
+                if(logStream != nullptr) {
+                    logStream->add(Log("Frame reference change", "Adding " + std::to_string(*frame.page) + " to empty " + frame.name));
+                }
                 pageErrors++;
                 break;
             }
@@ -44,6 +56,9 @@ uint_fast64_t OperatingSystems::PageReplacement::Algorithm::simulate() {
         if(!found) {
             auto it = findNextVictim();
             it->page = call.page;
+            if(logStream != nullptr) {
+                logStream->add(Log("Frame reference change", "Adding " + std::to_string(*it->page) + " to " + it->name));
+            }
             pageErrors++;
         }
     }
@@ -56,11 +71,19 @@ uint_fast64_t OperatingSystems::PageReplacement::Algorithm::getPageErrors() cons
     return pageErrors;
 }
 
+OperatingSystems::PageReplacement::Algorithm::Algorithm(OperatingSystems::CppUtils::LogStream *logStream) : logStream(
+        logStream) {}
+
+OperatingSystems::PageReplacement::Algorithm::Algorithm() {}
+
+
 OperatingSystems::PageReplacement::Call::Call(OperatingSystems::PageReplacement::Page *page,
                                               OperatingSystems::PageReplacement::Time time) : page(page), time(time) {}
 
-OperatingSystems::PageReplacement::Frame::Frame(OperatingSystems::PageReplacement::Page *page, bool callBit) : page(
-        page), callBit(callBit) {}
+OperatingSystems::PageReplacement::Frame::Frame(OperatingSystems::PageReplacement::Page *page, bool callBit) : Frame() {
+    this->page = page;
+    this->callBit = (callBit);
+}
 
 
 std::vector<OperatingSystems::PageReplacement::Frame, std::allocator<OperatingSystems::PageReplacement::Frame>>::iterator
@@ -87,8 +110,8 @@ OperatingSystems::PageReplacement::OPTIMAL::findNextVictim() {
     for(uint_fast64_t i=0; i<frames.size(); i++) {
         auto nextCall = findNextCall(loopFrameIt);
         if(nextCall == calls.end()) {
-            loopFrameIt++;
-            continue;
+            resultFrameIt = loopFrameIt;
+            break;
         }
         if(maxDifference < nextCall->page - loopFrameIt->page) {
             maxDifference = nextCall->page - loopFrameIt->page;
@@ -98,4 +121,11 @@ OperatingSystems::PageReplacement::OPTIMAL::findNextVictim() {
     }
 
     return maxDifference == 0 ? resultFrameIt + (pageErrors % frames.size()) : resultFrameIt;
+}
+
+OperatingSystems::PageReplacement::OPTIMAL::OPTIMAL(OperatingSystems::CppUtils::LogStream *logStream) : Algorithm(
+        logStream) {}
+
+OperatingSystems::PageReplacement::OPTIMAL::OPTIMAL() {
+
 }
